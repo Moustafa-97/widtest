@@ -1,0 +1,14 @@
+.apartmentSearchPage {
+  height: fit-content;
+  min-height: 775px;
+  width: 100%;
+  margin: auto;
+  margin-bottom: 150px;
+  display: flex;
+  justify-content: center;
+  transform: translateY(-7%);
+  -webkit-transform: translateY(-7%);
+  -moz-transform: translateY(-7%);
+  -ms-transform: translateY(-7%);
+  -o-transform: translateY(-7%);
+}
