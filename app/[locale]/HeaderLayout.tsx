@@ -20,6 +20,8 @@ export default function HeaderLayout({
   const pathname = usePathname();
 console.log("token", token);
 console.log("cookies", cookies);
+console.log("mm", document.cookie);
+
 
 
   const headerRoutes = [
