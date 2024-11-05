@@ -27,7 +27,7 @@ export default async function LocaleLayout({
   // Fetch messages server-side
   const messages = await getMessages(locale as any);
   const cookiez = cookies();
-  const token = cookiez.get("jwt")?.value;
+  const token = cookiez.getAll();
 
   // const token = process.env.NEXT_PUBLIC_TESTTOKEN;
 
