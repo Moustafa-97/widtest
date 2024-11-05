@@ -19,8 +19,8 @@ const ModalButton = ({
   data,
   text,
   token,
-  // locale,
-}: ApiButtonProps) => {
+}: // locale,
+ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [response, setResponse] = useState<any>(null);
@@ -31,9 +31,10 @@ const ModalButton = ({
     setLoading(true);
     try {
       console.log(token);
-      
+
       const options: RequestInit = {
         method,
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
@@ -42,17 +43,19 @@ const ModalButton = ({
 
       if (method !== "GET" && data) {
         console.log(method);
-        
+
         options.body = JSON.stringify(data);
       }
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint}`, options);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint}`,
+        options
+      );
 
       console.log(res);
-      
+
       if (res.ok) {
         console.log("ok");
-        
       }
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
@@ -93,23 +96,23 @@ const ModalButton = ({
   return (
     <>
       {/* {token && token ? ( */}
-        <>
-          <div>
-            <button onClick={handleClick} className={styles.button}>
-              {loading ? "..." : `${text}`}
-            </button>
-          </div>
+      <>
+        <div>
+          <button onClick={handleClick} className={styles.button}>
+            {loading ? "..." : `${text}`}
+          </button>
+        </div>
 
-          {/* Modal */}
-          {showModal && (
-            <div className={styles.modalOverlay}>
-              <div className={styles.modal} ref={modalRef}>
-                <h2>Redirecting</h2>
-                <p>{response.message}</p>
-              </div>
+        {/* Modal */}
+        {showModal && (
+          <div className={styles.modalOverlay}>
+            <div className={styles.modal} ref={modalRef}>
+              <h2>Redirecting</h2>
+              <p>{response.message}</p>
             </div>
-          )}
-        </>
+          </div>
+        )}
+      </>
       {/* ) : (
         <div>
           <Link href={`/${locale}/login`} className={styles.link}>

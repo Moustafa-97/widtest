@@ -57,6 +57,7 @@ export default function Account({
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
+          withCredentials: true,
         }
       );
 

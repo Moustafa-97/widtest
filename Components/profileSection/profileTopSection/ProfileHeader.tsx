@@ -28,6 +28,7 @@ export default function ProfileHeader(props: any) {
         {
           method: "PUT",
           body: formData,
+          credentials: "include",
           headers: {
             Authorization: `Bearer ${process.env.NEXT_PUBLIC_TESTTOKEN}`,
           },
