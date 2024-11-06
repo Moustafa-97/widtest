@@ -8,7 +8,7 @@ export default function HomePageLay(props: Props) {
   return (
     <>
       <header>
-        <Header cookies={undefined} token={undefined} />
+        <Header token={undefined} />
       </header>
       <div>{props.children}</div>
       <footer>
