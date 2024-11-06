@@ -5,23 +5,21 @@ import { usePathname } from "next/navigation";
 import Header from "@/Components/Header/Header";
 import MobileAppFooter from "@/Components/Footer/Footer";
 
-
 export default function HeaderLayout({
   children,
   locale,
-  token,
-  cookies,
-}: {
+}: // token,
+// cookies,
+{
   children: React.ReactNode;
   locale: string;
-  token: string | any;
-  cookies: string | any;
+  // token: string | any;
+  // cookies: string | any;
 }) {
   const pathname = usePathname();
-console.log("token", token);
-console.log("cookies", cookies);
 
-
+  const token = localStorage.getItem("token");
+  console.log(token);
 
   const headerRoutes = [
     `/${locale}/login`,
@@ -35,7 +33,10 @@ console.log("cookies", cookies);
     <>
       {!headerRoutes.includes(pathname) && (
         <header>
-          <Header cookies={cookies} token={token} />
+          <Header
+            // cookies={cookies}
+            token={token}
+          />
         </header>
       )}
       {children}

@@ -56,12 +56,12 @@ export default function ApartmentsPage({
   end_date,
   city,
   district,
-  token,
-}: any) {
+}: // token,
+any) {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("SearchPage");
-
+  const token = localStorage.getItem("token");
   // screen width handling
   const [screenWidth, setScreenWidth] = useState<number>(0);
 
@@ -244,7 +244,7 @@ export default function ApartmentsPage({
             setErrorMessage(data);
             setApartments(null);
           }
-        } catch (error: any) {
+        } catch (error : any) {
           setErrorMessage(error?.message);
         } finally {
           setLoading(false);

@@ -4,7 +4,7 @@ import styles from "./appartment.module.css";
 import "react-date-range/dist/styles.css"; // Date range picker styles
 import "react-date-range/dist/theme/default.css"; // Date range theme
 import { OrbitProgress } from "react-loading-indicators";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 
 // Dynamically load the ApartmentsPage component with no SSR
 const ApartmentsPage = dynamic(
@@ -30,8 +30,8 @@ export default async function ApartmentPage({
 }: {
   searchParams: SearchParams;
 }) {
-  const cookiez = await cookies();
-  const token = cookiez.get("jwt")?.value;
+  // const cookiez = await cookies();
+  // const token = cookiez.get("jwt")?.value;
   // const token = process.env.NEXT_PUBLIC_TESTTOKEN;
   const { start_date, end_date, city, district } = searchParams || {};
 
@@ -43,7 +43,7 @@ export default async function ApartmentPage({
           end_date={end_date || ""}
           city={city || ""}
           district={district || ""}
-          token={token || ""}
+          // token={token || ""}
         />
       </section>
     </>

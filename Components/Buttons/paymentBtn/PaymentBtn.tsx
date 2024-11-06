@@ -2,6 +2,8 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./paymentBtn.module.css";
+import { useLocale } from "next-intl";
+import Link from "next/link";
 
 interface ApiButtonProps {
   method: "POST" | "GET" | "DELETE";
@@ -10,7 +12,7 @@ interface ApiButtonProps {
   data?: any;
   text: string;
   width: string;
-  token: string | undefined;
+  token: string | any;
   locale: string | null;
 }
 
@@ -28,6 +30,7 @@ ApiButtonProps) => {
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
+  const locale = useLocale();
   const handleClick = async () => {
     setLoading(true);
     try {
@@ -44,7 +47,6 @@ ApiButtonProps) => {
           "Content-Type": "application/json",
           ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
-        
       };
 
       if (method !== "GET" && data) {
@@ -94,14 +96,20 @@ ApiButtonProps) => {
 
   return (
     <>
-      {/* {token && token ? ( */}
       <>
-        <div>
-          <button onClick={handleClick} className={styles.button}>
-            {loading ? "..." : `${text}`}
-          </button>
-        </div>
-
+        {token && token ? (
+          <div>
+            <button onClick={handleClick} className={styles.button}>
+              {loading ? "..." : `${text}`}
+            </button>
+          </div>
+        ) : (
+          <div>
+            <Link href={`/${locale}/login`} className={`${styles.button} ${styles.linkButton} `}>
+              Login
+            </Link>
+          </div>
+        )}
         {/* Modal */}
         {showModal && (
           <div className={styles.modalOverlay}>

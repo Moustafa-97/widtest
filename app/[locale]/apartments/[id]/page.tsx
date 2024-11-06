@@ -9,7 +9,7 @@ import { CiHeart } from "react-icons/ci";
 import { getLocale, getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 import { OrbitProgress } from "react-loading-indicators";
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 const ApiButton = dynamic(() => import("@/Components/Buttons/ApiButton"), {
   ssr: false,
 });
@@ -114,14 +114,6 @@ type Data = {
   };
 };
 
-type History = [
-  {
-    Apartment: {
-      id: string;
-    };
-  }
-];
-
 export default async function ApartmentPageId({
   params: { id },
   searchParams: { start_date, end_date, city, district },
@@ -130,8 +122,8 @@ export default async function ApartmentPageId({
 
   const locale: "en" | "ar" | any = getLocale();
 
-  const cookiez = await cookies();
-  const token = cookiez.get("jwt")?.value;
+  // const cookiez = await cookies();
+  // const token = cookiez.get("jwt")?.value;
   // const token = process.env.NEXT_PUBLIC_TESTTOKEN;
   // Fetch data (SSR)
 
@@ -156,29 +148,31 @@ export default async function ApartmentPageId({
   };
 
   const data: Data | null = await fetchData();
-  const fetchHistory = async (): Promise<Data | null> => {
-    if (!token) return null;
-    try {
-      const res = await axios.get(
-        `${
-          process.env.NEXT_PUBLIC_BACKENDAPI
-        }/v1/user/get-bookings-history?locale=${await locale}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          withCredentials: true,
-        }
-      );
-      return res?.data || null;
-    } catch (err) {
-      console.log(err);
-      return null;
-    }
-  };
 
-  const history: History | any = await fetchHistory();
+  // //////////////////////////////// to check ////////////////////////////////////////////////
+  // const fetchHistory = async (): Promise<Data | null> => {
+  //   if (!token) return null;
+  //   try {
+  //     const res = await axios.get(
+  //       `${
+  //         process.env.NEXT_PUBLIC_BACKENDAPI
+  //       }/v1/user/get-bookings-history?locale=${await locale}`,
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //         withCredentials: true,
+  //       }
+  //     );
+  //     return res?.data || null;
+  //   } catch (err) {
+  //     console.log(err);
+  //     return null;
+  //   }
+  // };
+
+  // const history: History | any = await fetchHistory();
 
   const lon = data?.data.ApartmentAddress.longitude;
   const lat = data?.data.ApartmentAddress.latitude;
@@ -228,7 +222,7 @@ export default async function ApartmentPageId({
                 icon={<CiHeart />}
                 method={"POST"}
                 endpoint={`/v1/wishlist/toggle-wish/${id}`}
-                token={token}
+                // token={token}
                 id={data?.data.id}
               />
             </div>
@@ -237,7 +231,7 @@ export default async function ApartmentPageId({
                 icon={<IoMdShare />}
                 method={"POST"}
                 endpoint={`/v1/wishlist/toggle-wish/${id}`}
-                token={token}
+                // token={token}
               />
             </div>
             <div className={styles.viewBtn}>
@@ -419,18 +413,16 @@ export default async function ApartmentPageId({
       <div className={styles.reviewContainer}>
         <div className={styles.reviewHeader}>
           <h4>REVIEWS</h4>
-          {(history &&
-            (await history?.filter(
-              (item: any) => item.Apartment?.id === data?.data.id
-            ).length)) > 0 ? (
-            <ReviewModal
-              method="POST"
-              endpoint=""
-              data=""
-              text="Add review"
-              width="100%"
-            />
-          ) : null}
+
+          <ReviewModal
+            method="POST"
+            endpoint=""
+            data=""
+            text="Add review"
+            width="100%"
+            id={data?.data.id}
+            locale={await locale}
+          />
         </div>
         <Reviews id={id} />
       </div>

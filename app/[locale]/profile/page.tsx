@@ -1,4 +1,4 @@
-import { cookies } from "next/headers";
+// import { cookies } from "next/headers";
 import React from "react";
 import dynamic from "next/dynamic";
 import axios from "axios";
@@ -20,8 +20,8 @@ type Data = {
   phoneNumber: string;
 };
 export default async function profilePage() {
-  const cookiez = await cookies();
-  const token = await cookiez.get("jwt")?.value;
+  // const cookiez = await cookies();
+  // const token = await cookiez.get("jwt")?.value;
   // const token = process.env.NEXT_PUBLIC_TESTTOKEN;
   const getProfileData = async () => {
     const res = await axios.get(
@@ -47,7 +47,7 @@ export default async function profilePage() {
         {profileData && (
           <>
             <ProfileHeader profile={profileData} />
-            <ProfileMain cookies={token} />
+            <ProfileMain />
           </>
         )}
       </section>

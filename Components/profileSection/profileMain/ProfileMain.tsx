@@ -17,7 +17,7 @@ const Payment = dynamic(() => import("../profilePayment/Payment"), {
   ssr: false,
 });
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default function ProfileMain({ cookies }: any) {
+export default function ProfileMain() {
   const searchParams = useSearchParams();
   const history = searchParams.get("history");
   const locale = useLocale();
@@ -27,12 +27,10 @@ export default function ProfileMain({ cookies }: any) {
   const [profileHistory, setProfileHistory] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
   console.log(isLogged);
-  
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    if (cookies) {
-      const token = cookies;
-
+    if (token) {
       axios
         .get(`${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-profileInfo`, {
           withCredentials: true,
@@ -51,9 +49,7 @@ export default function ProfileMain({ cookies }: any) {
   }, []);
   //   history
   useEffect(() => {
-    if (cookies) {
-      const token = cookies;
-
+    if (token) {
       axios
         .get(
           `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-bookings-history?locale=${locale}`,
@@ -96,11 +92,11 @@ export default function ProfileMain({ cookies }: any) {
         {/* body */}
         <div className={styles.profilePartition}>
           {selected === "Profile" && (
-            <Account account={profileData} cookies={cookies} />
+            <Account account={profileData} token={token} />
           )}
           {selected === "Pyment Methods" && <Payment />}
           {selected === "History" && (
-            <History history={profileHistory} cookies={cookies as string} />
+            <History history={profileHistory} token={token as string} />
           )}
         </div>
       </section>

@@ -57,7 +57,7 @@ const Register = () => {
       );
 
       if (response.status >= 200 && response.status < 300) {
-        router.push("/login");
+        router.push(`/${locale}/login`);
       }
     } catch (error) {
       setErrorMessage("Failed to register. Please try again.");

@@ -11,13 +11,13 @@ interface Props {
   type: "submit" | "button" | "reset" | undefined;
   text: string | any;
   response: any;
-  cookies: any;
+  // cookies: any;
   token: string;
 }
 
 export default function ProfileBtn(props: Props) {
   const profile = props.response;
-  const cookies = props.cookies;
+  // const cookies = props.cookies;
 
   const locale = useLocale();
 
@@ -29,8 +29,7 @@ export default function ProfileBtn(props: Props) {
   };
   const handleLogout = async () => {
     // console.log(cookies);
-    
-    cookies.delete("jwt");
+    localStorage.removeItem("token");
   };
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

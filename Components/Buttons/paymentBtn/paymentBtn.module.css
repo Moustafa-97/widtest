@@ -19,6 +19,14 @@
   -ms-transition: all 0.4s;
   -o-transition: all 0.4s;
 }
+.linkButton {
+  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+}
 .link:hover,
 .button:hover {
   background: var(--lightGreen);

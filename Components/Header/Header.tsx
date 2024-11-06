@@ -15,10 +15,10 @@ import ar from "./ar.svg";
 import en from "./en.svg";
 
 export default function Header({
-  cookies,
+  // cookies,
   token,
 }: {
-  cookies: string | any;
+  // cookies: string | any;
   token: string | any;
 }) {
   const t = useTranslations("Header");
@@ -188,7 +188,7 @@ export default function Header({
                     text={response?.firstName}
                     response={response}
                     token={token}
-                    cookies={cookies}
+                    // cookies={cookies}
                   />
                 )}
               </li>
@@ -201,7 +201,7 @@ export default function Header({
             pathname={pathname}
             searchParams={searchParams}
             locale={locale}
-            cookies={cookies}
+            // cookies={cookies}
             token={token}
             isLogged={isLogged}
             t={t}

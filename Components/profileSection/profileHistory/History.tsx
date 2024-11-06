@@ -8,7 +8,7 @@ import { useLocale } from "next-intl";
 export default async function History({
   history,
 }: {
-  cookies: string | any;
+  token: string | any;
   history:
     | {
         id: string;

@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "./account.module.css";
 
 export default function Account({
   account,
-  cookies,
+  token,
 }: {
   account:
     | {
@@ -14,9 +15,8 @@ export default function Account({
         lastName: string;
         phoneNumber: string;
       }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     | any;
-  cookies: string | undefined;
+  token: string | any;
 }) {
   const [isEditing, setIsEditing] = useState({
     email: false,
@@ -43,7 +43,6 @@ export default function Account({
   };
 
   const handleSubmit = async (field: string, edited: string) => {
-    const token = cookies;
     console.log(field);
 
     try {

@@ -1,7 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "../modalBtn.module.css";
 import style from "./reviewModal.module.css";
+import axios from "axios";
 
 interface ApiButtonProps {
   method: "POST" | "GET" | "DELETE";
@@ -10,16 +13,64 @@ interface ApiButtonProps {
   data?: any;
   text: string;
   width: string;
+  locale: string | undefined;
+  id?: string | any;
 }
+type History = [
+  {
+    Apartment: {
+      id: string;
+    };
+  }
+];
 
-const ReviewModal = ({ method, endpoint, data, text }: ApiButtonProps) => {
+const ReviewModal = ({
+  method,
+  endpoint,
+  data,
+  text,
+  locale,
+  id,
+}: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [response, setResponse] = useState<any>(null);
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   console.log(response);
-  
+  const [history, setHistory] = useState<History | null>();
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+    try {
+      axios
+        .get(
+          `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-bookings-history?locale=${locale}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          setHistory(res.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  const isHistory = history?.filter((item: any) => item?.Apartment?.id === id);
+
+  console.log(isHistory);
 
   const handleClick = async () => {
     setLoading(true);
@@ -36,7 +87,10 @@ const ReviewModal = ({ method, endpoint, data, text }: ApiButtonProps) => {
         options.body = JSON.stringify(data);
       }
 
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint}`, options);
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint}`,
+        options
+      );
 
       if (!res.ok) {
         throw new Error(`HTTP error! status: ${res.status}`);
@@ -51,7 +105,6 @@ const ReviewModal = ({ method, endpoint, data, text }: ApiButtonProps) => {
       setLoading(false);
     }
   };
-
 
   // Close modal when clicking outside of it
   const handleClickOutside = (event: MouseEvent) => {
@@ -74,16 +127,18 @@ const ReviewModal = ({ method, endpoint, data, text }: ApiButtonProps) => {
 
   return (
     <>
-      <div>
-        <button
-          onClick={() => {
-            setShowModal(true);
-          }}
-          className={styles.button}
-        >
-          {loading ? "..." : `${text}`}
-        </button>
-      </div>
+      {isHistory && isHistory.length > 0 ? (
+        <div>
+          <button
+            onClick={() => {
+              setShowModal(true);
+            }}
+            className={styles.button}
+          >
+            {loading ? "..." : `${text}`}
+          </button>
+        </div>
+      ) : null}
 
       {/* Modal */}
       {showModal && (

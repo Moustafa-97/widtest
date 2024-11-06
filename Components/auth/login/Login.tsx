@@ -24,6 +24,7 @@ const Login = () => {
   const locale = useLocale();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
+  // const [resData, setResData] = useState(null);
 
   const {
     register,
@@ -44,6 +45,8 @@ const Login = () => {
         }
       );
       if (response.status === 200) {
+        // setResData(response.data);
+        localStorage.setItem("token", response.data.token);
         router.push(`/${locale}`);
       }
     } catch (error) {

@@ -20,12 +20,13 @@ const ApiButton = ({
   data,
   icon,
   id,
-  token,
+  // token,
 }: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<any>(null);
   const [wished, setWished] = useState<{ id: string }[]>();
   const locale = useLocale();
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (!token) {
