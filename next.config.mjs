@@ -17,6 +17,14 @@ const nextConfig = {
       "cdn-icons-png.flaticon.com",
     ], // Add your domain here
   },
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "https://api.widresidences.com/:path*",
+      },
+    ];
+  },
 };
 
 export default withNextIntl(nextConfig);
