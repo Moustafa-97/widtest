@@ -62,6 +62,10 @@ const Carousel = (props: Props) => {
   // Calculate the number of dots to display: cards.length - perView
   const dotsCount = Math.max(0, cards.length - perView) + 1;
 
+  const handleDotClick = (index: number) => {
+    instanceRef.current?.moveToIdx(index);
+  };
+
   return (
     <div className={styles.carouselContainer}>
       <div ref={sliderRef} className={`${styles.keenSlider} keen-slider`}>
@@ -90,6 +94,7 @@ const Carousel = (props: Props) => {
               className={`${styles.dot} ${
                 currentSlide === idx ? styles.active : ""
               }`}
+              onClick={() => handleDotClick(idx)} // Handle dot click
             ></div>
           ))}
         </div>

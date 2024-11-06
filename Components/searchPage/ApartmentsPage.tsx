@@ -244,8 +244,8 @@ export default function ApartmentsPage({
             setErrorMessage(data);
             setApartments(null);
           }
-        } catch ( error : any) {
-          setErrorMessage(error.message);
+        } catch (error: any) {
+          setErrorMessage(error?.message);
         } finally {
           setLoading(false);
         }
@@ -484,7 +484,15 @@ export default function ApartmentsPage({
             ) : (
               <NoApartmentsAvailable />
             )
-          ) : null}
+          ) : pathname === `/${locale}` ? null : (
+            <div className={styles.Placecontainer}>
+              <div className={styles.Placebox}>
+                <h1 className={styles.Placemessage}>
+                  Please add search fields
+                </h1>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </>
