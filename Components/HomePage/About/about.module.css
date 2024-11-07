@@ -6,7 +6,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(auto, 1fr);
   margin: auto;
-  margin-bottom: 40px;
+  /* margin-bottom: 40px; */
 }
 
 .Textheader {
@@ -78,6 +78,7 @@
   .Textheader {
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
+    line-height: 15px;
   }
 
   .AboutUsTextbody {

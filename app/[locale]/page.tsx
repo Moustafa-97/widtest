@@ -118,15 +118,15 @@ export default async function HomePage() {
           loading="eager"
           placeholder="blur"
           className={styles.topImage}
-          
         />
       </div>
 
       <section className={`${styles.homePage}`}>
         <ApartmentsPage />
         <main className={styles.main}>
-          <AboutHome />
-
+          <div className={styles.AboutUs}>
+            <AboutHome />
+          </div>
           {/* Top Rated Section */}
           <div className={styles.topRated}>
             <div className={styles.topRatedHeader}>
@@ -142,9 +142,7 @@ export default async function HomePage() {
           </div>
 
           {/* Offers Section */}
-          <div
-            className={`${locale === "ar" ? "rtl" : "ltr"} ${styles.offer}`}
-          >
+          <div className={`${locale === "ar" ? "rtl" : "ltr"} ${styles.offer}`}>
             <Offer />
           </div>
 

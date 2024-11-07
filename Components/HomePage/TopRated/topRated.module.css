@@ -2,6 +2,7 @@
   position: relative;
   width: 100%;
   height: 100%;
+  margin: auto;
   min-height: fit-content;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

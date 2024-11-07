@@ -34,6 +34,11 @@
   align-items: center;
   margin: auto;
 }
+.AboutUs {
+  width: 100%;
+  min-height: fit-content;
+  margin: 50px auto;
+}
 /* top rated */
 .topRated {
   width: 100%;
@@ -216,6 +221,6 @@
     margin: auto;
   }
   .suggestedCarousel {
-  max-height: 408px;
+    max-height: 408px;
   }
 }
