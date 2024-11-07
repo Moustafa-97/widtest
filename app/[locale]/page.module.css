@@ -37,6 +37,7 @@
 /* top rated */
 .topRated {
   width: 100%;
+  height: 510px;
   min-height: fit-content;
   margin: 50px auto;
 }
@@ -44,6 +45,7 @@
 .topRatedHeader {
   width: 100%;
   height: fit-content;
+  min-height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -216,6 +218,9 @@
   .main {
     width: 92%;
     margin: auto;
+  }
+  .topRated{
+    margin: 25px auto;
   }
   .suggestedCarousel {
   max-height: 408px;

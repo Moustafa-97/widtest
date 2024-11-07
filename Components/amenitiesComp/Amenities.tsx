@@ -88,7 +88,7 @@ export default function Amenities(props: Props) {
     : amenitiesArray.slice(0, 8);
 
   return (
-    <div style={{ height: "216px", minHeight: "fit-content" }}>
+    <div className={styles.container}>
       <ul className={styles.amenitiesList}>
         {displayedAmenities.map(([key, value], index) => (
           <li key={index} className={styles.amenityItem}>
