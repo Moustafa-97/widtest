@@ -13,9 +13,7 @@ export default async function MiddleAbout() {
           </div>
           <div className={styles.descContainer}>
             <h5>{(await t)("enjoy")}</h5>
-            <p>
-              {(await t)("services")}
-            </p>
+            <p>{(await t)("services")}</p>
           </div>
           <div className={styles.cardsContainer}>
             <div className={styles.cardS}>
@@ -52,7 +50,9 @@ export default async function MiddleAbout() {
                     </defs>
                   </svg>
                 </div>
-                <h6 className={styles.cardH6}>{(await t)("customerSupport")}</h6>
+                <h6 className={styles.cardH6}>
+                  {(await t)("customerSupport")}
+                </h6>
                 <p className={styles.cardPara}>
                   {(await t)("customerSupportText")}
                 </p>
@@ -87,9 +87,7 @@ export default async function MiddleAbout() {
                 </svg>
               </div>
               <h6 className={styles.cardH6}>{(await t)("trusted")}</h6>
-              <p className={styles.cardPara}>
-                {(await t)("trustedText")}
-              </p>
+              <p className={styles.cardPara}>{(await t)("trustedText")}</p>
               {/* --------- */}
             </div>
             <div className={styles.cardE}>

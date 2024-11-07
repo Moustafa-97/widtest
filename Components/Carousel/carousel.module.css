@@ -8,7 +8,7 @@
   display: flex;
   width: 100%;
   height: 100%;
-  margin: auto;
+  /* margin: auto; */
 }
 
 .card {
@@ -26,7 +26,7 @@
 .dots {
   display: flex;
   justify-content: center;
-  margin-top: 2vh;
+  margin-top: 10px;
 }
 
 .dot {

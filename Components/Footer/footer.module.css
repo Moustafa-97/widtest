@@ -1,18 +1,37 @@
 /* all footer */
 .allFooter {
   width: 100%;
-  height: fit-content;
+  height: 775px;
+  min-height: fit-content;
   position: relative;
   overflow: hidden;
 }
-
-/* start regular footer styling */
-.footer {
+.topFooter {
+  position: absolute;
+  bottom: 40%;
+  left: 50%;
   width: 100%;
-  height: fit-content;
-  min-height: 367px;
+  z-index: 100;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+.bottomFooter {
+  position: absolute;
+  bottom: 0;
+}
+
+.footer {
+  grid-area: footer;
+  grid-column: 1 / span 11;
+  grid-row: 2 / span 4;
+  width: 100%;
+  min-height: fit-content;
+  height: 367px;
   padding: 20px;
-  padding-top: 60px;
+  padding-top: 80px;
   background-color: var(--green);
   color: white;
   margin: auto;
@@ -25,7 +44,6 @@
     "follow"
     "rights contact";
 }
-
 .logoContainer {
   grid-area: logo;
   grid-column: 1 / span 3;
@@ -37,7 +55,7 @@
   margin-bottom: 0.5vh;
 }
 .logoF {
-  width: 50%;
+  /* width: 50%; */
   height: auto;
 }
 .logoContainer p {
@@ -157,12 +175,21 @@
   margin: 0 0 auto auto;
 }
 
-@media (min-width: 150px) and (max-width: 770px) {
+@media (min-width: 150px) and (max-width: 850px) {
   /* lower footer style responsive */
-
+  .allFooter {
+    height: 707px;
+    min-height: fit-content;
+  }
+  .topFooter{
+    bottom: 62%;
+  }
   .footer {
     padding: 10px;
     padding-top: 100px;
+    height: 498px;
+    min-height: fit-content;
+    max-height: fit-content;
     grid-template-areas:
       "logo"
       "comp know"
@@ -182,9 +209,11 @@
   .logo {
     margin-bottom: 2px;
   }
-  .logoF {
-    width: 60%;
+  .logoF{
+    height: 53px;
+    width: 57px;
   }
+  
   .footerCompanyLinks {
     grid-area: comp;
     grid-column: 1 / span 3;
@@ -194,7 +223,6 @@
     grid-area: know;
     grid-column: 5 / span 4;
     grid-row: 3 / span 1;
-    /* border-top: #d2ecee 1px solid; */
   }
 
   .footerKnowLinks h4,
@@ -230,7 +258,6 @@
   }
   .follow a {
     font-size: 18px;
-
     margin: 0 0.5vw;
   }
 
@@ -239,7 +266,6 @@
     grid-column: 1 / span 12;
     grid-row-start: 5;
     grid-row: 5 / span 1;
-    margin: 2vh 0;
     text-align: center;
   }
   .contactInfo {
@@ -249,8 +275,8 @@
     grid-column: 1 / span 12;
     grid-row-start: 4;
     grid-row: 4 / span 1;
-    margin: 2vh 0;
-    padding: 2vh 0;
+    margin: 10px 0;
+    padding: 10px 0;
     border-bottom: 1px solid #d2ecee;
     border-top: 1px solid #d2ecee;
   }

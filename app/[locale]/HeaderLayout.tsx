@@ -8,18 +8,14 @@ import MobileAppFooter from "@/Components/Footer/Footer";
 export default function HeaderLayout({
   children,
   locale,
-}: // token,
-// cookies,
+}: 
 {
   children: React.ReactNode;
   locale: string;
-  // token: string | any;
-  // cookies: string | any;
 }) {
   const pathname = usePathname();
 
   const token = localStorage.getItem("token");
-  console.log(token);
 
   const headerRoutes = [
     `/${locale}/login`,
@@ -34,7 +30,6 @@ export default function HeaderLayout({
       {!headerRoutes.includes(pathname) && (
         <header>
           <Header
-            // cookies={cookies}
             token={token}
           />
         </header>

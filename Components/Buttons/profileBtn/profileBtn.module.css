@@ -10,6 +10,8 @@
   cursor: pointer;
 }
 .button img {
+  width: 20%;
+  height: 20%;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
@@ -17,7 +19,7 @@
   -o-border-radius: 50%;
 }
 .button p {
-  width: 100%;
+  width: 80%;
   height: 100%;
   text-align: center;
   padding: 10px;

@@ -33,7 +33,7 @@ export default async function aboutPage() {
               exceptional comfort and service.
             </p>
           </div>
-          <div className={styles.reviewCarousel}>
+          <div className={styles.reviewsCarousel}>
             <Reviews />
           </div>
         </div>

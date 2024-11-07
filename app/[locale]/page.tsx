@@ -11,7 +11,13 @@ const AboutHome = dynamic(
   {
     ssr: false,
     loading: () => (
-      <OrbitProgress style={{ margin: "auto" }} variant="dotted" dense color={"#47b3c5"} size="large" />
+      <OrbitProgress
+        style={{ margin: "auto" }}
+        variant="dotted"
+        dense
+        color={"#47b3c5"}
+        size="large"
+      />
     ),
   }
 );
@@ -19,7 +25,13 @@ const AboutHome = dynamic(
 const Offer = dynamic(() => import("@/Components/HomePage/Offer/Offer"), {
   ssr: false,
   loading: () => (
-    <OrbitProgress style={{ margin: "auto" }} variant="dotted" dense color={"#47b3c5"} size="large" />
+    <OrbitProgress
+      style={{ margin: "auto" }}
+      variant="dotted"
+      dense
+      color={"#47b3c5"}
+      size="large"
+    />
   ),
 });
 const ApartmentsPage = dynamic(
@@ -27,7 +39,13 @@ const ApartmentsPage = dynamic(
   {
     ssr: true,
     loading: () => (
-      <OrbitProgress style={{ margin: "auto" }} variant="dotted" dense color={"#47b3c5"} size="large" />
+      <OrbitProgress
+        style={{ margin: "auto" }}
+        variant="dotted"
+        dense
+        color={"#47b3c5"}
+        size="large"
+      />
     ),
   }
 );
@@ -36,7 +54,13 @@ const TopRated = dynamic(
   {
     ssr: true,
     loading: () => (
-      <OrbitProgress style={{ margin: "auto" }} variant="dotted" dense color={"#47b3c5"} size="large" />
+      <OrbitProgress
+        style={{ margin: "auto" }}
+        variant="dotted"
+        dense
+        color={"#47b3c5"}
+        size="large"
+      />
     ),
   }
 );
@@ -45,14 +69,26 @@ const Suggested = dynamic(
   {
     ssr: true,
     loading: () => (
-      <OrbitProgress style={{ margin: "auto" }} variant="dotted" dense color={"#47b3c5"} size="large" />
+      <OrbitProgress
+        style={{ margin: "auto" }}
+        variant="dotted"
+        dense
+        color={"#47b3c5"}
+        size="large"
+      />
     ),
   }
 );
 const Reviews = dynamic(() => import("@/Components/HomePage/Reviews/Reviews"), {
   ssr: true,
   loading: () => (
-    <OrbitProgress style={{ margin: "auto" }} variant="dotted" dense color={"#47b3c5"} size="large" />
+    <OrbitProgress
+      style={{ margin: "auto" }}
+      variant="dotted"
+      dense
+      color={"#47b3c5"}
+      size="large"
+    />
   ),
 });
 
@@ -64,19 +100,27 @@ export default async function HomePage() {
   return (
     <>
       {/* Optimized Image for the Home Page Header */}
-      <Image
-        src={topHome}
-        width={1000}
-        height={1000}
-        alt="home"
-        loading="eager"
-        placeholder="blur"
+      <div
         style={{
           width: "100vw",
-          height: "auto",
-          objectFit: "cover",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          margin: "auto",
         }}
-      />
+        className={styles.topImageContainer}
+      >
+        <Image
+          src={topHome}
+          width={1000}
+          height={1000}
+          alt="home"
+          loading="eager"
+          placeholder="blur"
+          className={styles.topImage}
+          
+        />
+      </div>
 
       <section className={`${styles.homePage}`}>
         <ApartmentsPage />
@@ -99,13 +143,7 @@ export default async function HomePage() {
 
           {/* Offers Section */}
           <div
-            style={{
-              width: "100vw",
-              marginBottom: "10vh",
-              marginTop: "10vh",
-              minHeight: "150px",
-            }}
-            className={locale === "ar" ? "rtl" : "ltr"}
+            className={`${locale === "ar" ? "rtl" : "ltr"} ${styles.offer}`}
           >
             <Offer />
           </div>

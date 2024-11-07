@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
-import logo from "../../public/LOGO.png";
+import logo from "./logo.svg";
 import Link from "next/link";
 import styles from "./header.module.css";
 import Button from "../Buttons/Button";
@@ -14,13 +14,7 @@ import ProfileBtn from "../Buttons/profileBtn/ProfileBtn";
 import ar from "./ar.svg";
 import en from "./en.svg";
 
-export default function Header({
-  // cookies,
-  token,
-}: {
-  // cookies: string | any;
-  token: string | any;
-}) {
+export default function Header({ token }: { token: string | any }) {
   const t = useTranslations("Header");
 
   const pathname = usePathname();
@@ -50,8 +44,6 @@ export default function Header({
 
   useEffect(() => {
     if (token) {
-      // const token = cookies;
-
       axios
         .get(`${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-profileInfo`, {
           withCredentials: true,
@@ -67,7 +59,7 @@ export default function Header({
         })
         .catch((err) => console.log(err));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const navBar1 = [
@@ -105,18 +97,21 @@ export default function Header({
             </div>
             <li
               className={`${styles.navbarLogo} ${styles.navbarLi}`}
-              style={{ width: "40vw", height: "90px" }}
+              style={{ width: "35vw" }}
             >
               <Link href={`/${locale}`} prefetch={true}>
-                <Image
-                  width={500}
-                  height={500}
-                  loading="eager"
-                  src={logo}
-                  alt="logo"
-                  placeholder="blur"
-                  style={{ width: "100%", height: "auto" }}
-                />
+                <div className={styles.logo}>
+                  <Image
+                    width={500}
+                    height={500}
+                    loading="eager"
+                    src={logo}
+                    alt="logo"
+                    placeholder="empty"
+                    style={{ width: "100%" }}
+                    className={styles.image}
+                  />
+                </div>
               </Link>
             </li>
             <div className={styles.navbardiv}>
@@ -140,7 +135,11 @@ export default function Header({
                         alt="ar"
                         width={100}
                         height={100}
-                        style={{ width: "30%", height: "auto" }}
+                        style={{
+                          width: "30%",
+                          minWidth: "30px",
+                          height: "auto",
+                        }}
                       />
                     ) : (
                       <Image
@@ -148,7 +147,11 @@ export default function Header({
                         alt="ar"
                         width={100}
                         height={100}
-                        style={{ width: "30%", height: "auto" }}
+                        style={{
+                          width: "30%",
+                          minWidth: "30px",
+                          height: "auto",
+                        }}
                       />
                     )}
                   </div>
@@ -188,7 +191,6 @@ export default function Header({
                     text={response?.firstName}
                     response={response}
                     token={token}
-                    // cookies={cookies}
                   />
                 )}
               </li>

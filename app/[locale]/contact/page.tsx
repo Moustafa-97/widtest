@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import Image from "next/image";
-import contact from "@/public/HomePage/contact.png";
+import contact from "./contact.svg";
 import styles from "./contact.module.css";
 import { FaClock, FaLocationArrow, FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -60,9 +60,12 @@ export default async function contactPage() {
         loading="eager"
         placeholder="empty"
         alt="contact"
+        quality={100}
         style={{
           width: "100vw",
-          height: "auto",
+          minWidth: "100vw",
+          height: "909px",
+          maxHeight: "909px",
           objectFit: "cover",
         }}
       />

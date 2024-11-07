@@ -88,27 +88,29 @@ export default function Amenities(props: Props) {
     : amenitiesArray.slice(0, 8);
 
   return (
-    <ul className={styles.amenitiesList}>
-      {displayedAmenities.map(([key, value], index) => (
-        <li key={index} className={styles.amenityItem}>
-          {value ? (
-            <Image
-              src={amenityImages[key]} // Use the mapped image
-              alt={key}
-              width={15}
-              height={15}
-              className={styles.icon}
-            />
-          ) : (
-            "No"
-          )}{" "}
-          {key.replace("has", "").replace(/([A-Z])/g, " $1")}{" "}
-          {/* Clean key name */}
+    <div style={{ height: "216px", minHeight: "fit-content" }}>
+      <ul className={styles.amenitiesList}>
+        {displayedAmenities.map(([key, value], index) => (
+          <li key={index} className={styles.amenityItem}>
+            {value ? (
+              <Image
+                src={amenityImages[key]} // Use the mapped image
+                alt={key}
+                width={15}
+                height={15}
+                className={styles.icon}
+              />
+            ) : (
+              "No"
+            )}{" "}
+            {key.replace("has", "").replace(/([A-Z])/g, " $1")}{" "}
+            {/* Clean key name */}
+          </li>
+        ))}
+        <li className={styles.showMore} onClick={handleShowAll}>
+          {showAll ? "Show Less" : "Show All"}
         </li>
-      ))}
-      <li className={styles.showMore} onClick={handleShowAll}>
-        {showAll ? "Show Less" : "Show All"}
-      </li>
-    </ul>
+      </ul>
+    </div>
   );
 }

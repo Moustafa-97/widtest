@@ -11,13 +11,11 @@ interface Props {
   type: "submit" | "button" | "reset" | undefined;
   text: string | any;
   response: any;
-  // cookies: any;
   token: string;
 }
 
 export default function ProfileBtn(props: Props) {
   const profile = props.response;
-  // const cookies = props.cookies;
 
   const locale = useLocale();
 
@@ -56,7 +54,7 @@ export default function ProfileBtn(props: Props) {
           loading="lazy"
           placeholder="empty"
         />
-        <p>{profile.firstName}</p>
+        <p>{profile.firstName.slice(0, 3)}.</p>
       </div>
       {isOpen && (
         <div ref={profileRef} className={styles.dropdown}>

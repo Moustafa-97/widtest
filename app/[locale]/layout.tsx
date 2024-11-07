@@ -35,13 +35,7 @@ export default async function LocaleLayout({
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body className={montserrat.className}>
         <NextIntlClientProvider messages={messages}>
-          {/* Render the client-side header layout */}
-          <HeaderLayout 
-          // cookies={cookiez} 
-          // token={token} 
-          locale={locale}>
-            {children}
-          </HeaderLayout>
+          <HeaderLayout locale={locale}>{children}</HeaderLayout>
         </NextIntlClientProvider>
       </body>
     </html>

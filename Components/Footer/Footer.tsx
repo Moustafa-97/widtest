@@ -8,7 +8,7 @@ import {
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa6";
-import logoFooter from "../../public/logoFooter.png";
+import logoFooter from "./logo.svg";
 import { TbDeviceLandlinePhone } from "react-icons/tb";
 import Link from "next/link";
 import React from "react";
@@ -18,8 +18,13 @@ export default function MobileAppFooter() {
   return (
     <>
       <section className={styles.allFooter}>
-        <TopFooter />
-        <Footer />
+        <div className={styles.topFooter}>
+          <TopFooter />
+        </div>
+
+        <div className={styles.bottomFooter}>
+          <Footer />
+        </div>
       </section>
     </>
   );
@@ -33,7 +38,10 @@ function Footer() {
     <>
       <footer className={styles.footer}>
         {/* top */}
-
+        {/* <div className={styles.footerTop}>
+          <TopFooter />
+        </div> */}
+        {/* <div className={styles.footerBottom}> */}
         <div className={styles.logoContainer}>
           <div className={styles.logo}>
             <Image
@@ -78,7 +86,7 @@ function Footer() {
         {/* </section> */}
 
         {/* bottom */}
-       
+
         <div className={styles.follow}>
           <p>{t("follow")}</p>
           <div className={styles.followIcons}>
@@ -111,6 +119,7 @@ function Footer() {
             416 454 6536 | @ hello@gmail.com
           </p>
         </div>
+        {/* </div> */}
         {/* </section> */}
       </footer>
     </>

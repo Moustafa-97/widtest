@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import styles from "./topfooter.module.css";
+// import prototype from "./footerbg.svg";
+// import Image from "next/image";
 import { FaApple, FaGooglePlay } from "react-icons/fa6";
 import Link from "next/link";
 export default function TopFooter() {
