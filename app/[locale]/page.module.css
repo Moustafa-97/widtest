@@ -37,7 +37,6 @@
 /* top rated */
 .topRated {
   width: 100%;
-  height: 510px;
   min-height: fit-content;
   margin: 50px auto;
 }
@@ -79,7 +78,7 @@
   font-weight: 500;
   line-height: clamp(17px, 4vw, 19.5px);
   height: auto;
-  margin-bottom: 4vh;
+  margin-bottom: 15px;
 }
 .topRatedHeader .TextBody::before {
   content: "";
@@ -218,9 +217,6 @@
   .main {
     width: 92%;
     margin: auto;
-  }
-  .topRated{
-    margin: 25px auto;
   }
   .suggestedCarousel {
   max-height: 408px;
