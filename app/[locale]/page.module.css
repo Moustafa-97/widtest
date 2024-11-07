@@ -43,13 +43,12 @@
 
 .topRatedHeader {
   width: 100%;
-  height: fit-content;
-  min-height: fit-content;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 1vh;
+  gap: 20px;
+  margin-bottom: 5vh;
 }
 .topRatedHeader .Textheader {
   font-size: clamp(14px, 4vw, 24px);
@@ -77,8 +76,6 @@
   font-size: clamp(14px, 4vw, 16px);
   font-weight: 500;
   line-height: clamp(17px, 4vw, 19.5px);
-  height: auto;
-  margin-bottom: 15px;
 }
 .topRatedHeader .TextBody::before {
   content: "";
