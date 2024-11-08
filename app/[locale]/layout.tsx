@@ -6,7 +6,6 @@ import HeaderLayout from "./HeaderLayout"; // Import the new client-side header 
 import { Metadata } from "next";
 // import { cookies } from "next/headers";
 import { Montserrat } from "next/font/google";
-import Head from "next/head";
 import Script from "next/script";
 
 const montserrat = Montserrat({
