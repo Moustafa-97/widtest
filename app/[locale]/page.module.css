@@ -223,4 +223,7 @@
   .suggestedCarousel {
     max-height: 408px;
   }
+  .AboutUs {
+    margin: 0px auto 25px auto;
+  }
 }
