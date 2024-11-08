@@ -136,15 +136,107 @@
 
 // /////////////////////////////////////////////////////////////
 
+// "use client";
+// import React, { useEffect } from "react";
+
+// declare global {
+//   interface Window {
+//     Paytabs: any;
+//   }
+// }
+
+// interface PaymentProps {
+//   merchantEmail: string;
+//   secretKey: string;
+//   siteUrl: string;
+//   returnUrl: string;
+//   amount: number;
+//   currency: string;
+//   customerEmail: string;
+//   customerPhone: string;
+//   orderId: string;
+//   productTitle: string;
+//   productDescription: string;
+// }
+
+// const PaymentBtn: React.FC<PaymentProps> = ({
+//   merchantEmail,
+//   secretKey,
+//   siteUrl,
+//   returnUrl,
+//   amount,
+//   currency,
+//   customerEmail,
+//   customerPhone,
+//   orderId,
+//   productTitle,
+// }) => {
+//   useEffect(() => {
+//     if (!window.Paytabs) {
+//       console.log("PayTabs SDK not loaded");
+//       return;
+//     }
+//   }, []);
+
+//   const handlePayment = () => {
+//     if (window.Paytabs) {
+//       window.Paytabs.openPaymentPage({
+//         merchant_email: merchantEmail,
+//         secret_key: secretKey,
+//         site_url: siteUrl,
+//         return_url: returnUrl,
+//         title: productTitle,
+//         cc_first_name: "Customer",
+//         cc_last_name: "Name",
+//         cc_phone_number: customerPhone,
+//         phone_number: customerPhone,
+//         email: customerEmail,
+//         products_per_title: productTitle,
+//         unit_price: amount.toString(),
+//         quantity: "1",
+//         other_charges: "0",
+//         amount: amount.toString(),
+//         discount: "0",
+//         currency,
+//         reference_no: orderId,
+//         ip_customer: "customer_ip",
+//         ip_merchant: "merchant_ip",
+//         billing_address: "123 Billing St",
+//         city: "City",
+//         state: "State",
+//         postal_code: "12345",
+//         country: "Country",
+//         shipping_first_name: "Customer",
+//         shipping_last_name: "Name",
+//         address_shipping: "123 Shipping St",
+//         state_shipping: "Shipping State",
+//         city_shipping: "Shipping City",
+//         postal_code_shipping: "12345",
+//         country_shipping: "Shipping Country",
+//         msg_lang: "en",
+//         cms_with_version: "Next.js 13.4",
+//       });
+//     }
+//   };
+
+//   return (
+//     <div>
+//       <button onClick={handlePayment}>Pay Now</button>
+//     </div>
+//   );
+// };
+
+// export default PaymentBtn;
+// /////////////////////////////
+
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 declare global {
   interface Window {
     Paytabs: any;
   }
 }
-
 interface PaymentProps {
   merchantEmail: string;
   secretKey: string;
@@ -171,15 +263,27 @@ const PaymentBtn: React.FC<PaymentProps> = ({
   orderId,
   productTitle,
 }) => {
+  const [isPayTabsLoaded, setIsPayTabsLoaded] = useState(false);
+
   useEffect(() => {
+    const loadPayTabsSDK = () => {
+      const script = document.createElement("script");
+      script.src = "https://www.paytabs.com/js/paylib.js";
+      script.async = true;
+      script.onload = () => setIsPayTabsLoaded(true);
+      script.onerror = () => console.error("Failed to load PayTabs SDK");
+      document.body.appendChild(script);
+    };
+
     if (!window.Paytabs) {
-      console.log("PayTabs SDK not loaded");
-      return;
+      loadPayTabsSDK();
+    } else {
+      setIsPayTabsLoaded(true);
     }
   }, []);
 
   const handlePayment = () => {
-    if (window.Paytabs) {
+    if (window.Paytabs && isPayTabsLoaded) {
       window.Paytabs.openPaymentPage({
         merchant_email: merchantEmail,
         secret_key: secretKey,
@@ -216,12 +320,16 @@ const PaymentBtn: React.FC<PaymentProps> = ({
         msg_lang: "en",
         cms_with_version: "Next.js 13.4",
       });
+    } else {
+      console.error("PayTabs SDK is not loaded.");
     }
   };
 
   return (
     <div>
-      <button onClick={handlePayment}>Pay Now</button>
+      <button onClick={handlePayment} disabled={!isPayTabsLoaded}>
+        {isPayTabsLoaded ? "Pay Now" : "Loading..."}
+      </button>
     </div>
   );
 };
