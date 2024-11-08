@@ -26,16 +26,15 @@ export default async function LocaleLayout({
 }) {
   // Fetch messages server-side
   const messages = await getMessages(locale as any);
-  // const cookiez = cookies();
-  // const token = cookiez.get("jwt")?.value;
 
-  // const token = localStorage.getItem("token");
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
       <body className={montserrat.className}>
         <NextIntlClientProvider messages={messages}>
-          <HeaderLayout locale={locale}>{children}</HeaderLayout>
+          
+            <HeaderLayout locale={locale}>{children}</HeaderLayout>
+          
         </NextIntlClientProvider>
       </body>
     </html>

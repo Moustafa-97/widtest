@@ -37,7 +37,7 @@
 .AboutUs {
   width: 100%;
   min-height: fit-content;
-  margin: 50px auto;
+  margin: 0px auto 50px auto;
 }
 /* top rated */
 .topRated {
