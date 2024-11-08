@@ -281,7 +281,6 @@ const PaymentBtn: React.FC<PaymentProps> = ({
       setIsPayTabsLoaded(true);
     }
   }, []);
-
   const handlePayment = () => {
     if (window.Paytabs && isPayTabsLoaded) {
       window.Paytabs.openPaymentPage({
