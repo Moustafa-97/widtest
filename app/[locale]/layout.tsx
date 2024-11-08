@@ -30,14 +30,14 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <Script
-        src="https://www.paytabs.com/js/paylib.js"
-        strategy="afterInteractive"
-      />
       <body className={montserrat.className}>
         <NextIntlClientProvider messages={messages}>
           <HeaderLayout locale={locale}>{children}</HeaderLayout>
         </NextIntlClientProvider>
+        <Script
+          src="https://www.paytabs.com/js/paylib.js"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );

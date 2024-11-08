@@ -134,11 +134,10 @@
 
 // export default PaymentBtn;
 
-
 // /////////////////////////////////////////////////////////////
 
-'use client';
-import React, { useEffect } from 'react';
+"use client";
+import React, { useEffect } from "react";
 
 declare global {
   interface Window {
@@ -174,7 +173,7 @@ const PaymentBtn: React.FC<PaymentProps> = ({
 }) => {
   useEffect(() => {
     if (!window.Paytabs) {
-      console.error('PayTabs SDK not loaded');
+      console.error("PayTabs SDK not loaded");
       return;
     }
   }, []);
@@ -187,35 +186,35 @@ const PaymentBtn: React.FC<PaymentProps> = ({
         site_url: siteUrl,
         return_url: returnUrl,
         title: productTitle,
-        cc_first_name: 'Customer',
-        cc_last_name: 'Name',
+        cc_first_name: "Customer",
+        cc_last_name: "Name",
         cc_phone_number: customerPhone,
         phone_number: customerPhone,
         email: customerEmail,
         products_per_title: productTitle,
         unit_price: amount.toString(),
-        quantity: '1',
-        other_charges: '0',
+        quantity: "1",
+        other_charges: "0",
         amount: amount.toString(),
-        discount: '0',
+        discount: "0",
         currency,
         reference_no: orderId,
-        ip_customer: 'customer_ip',
-        ip_merchant: 'merchant_ip',
-        billing_address: '123 Billing St',
-        city: 'City',
-        state: 'State',
-        postal_code: '12345',
-        country: 'Country',
-        shipping_first_name: 'Customer',
-        shipping_last_name: 'Name',
-        address_shipping: '123 Shipping St',
-        state_shipping: 'Shipping State',
-        city_shipping: 'Shipping City',
-        postal_code_shipping: '12345',
-        country_shipping: 'Shipping Country',
-        msg_lang: 'en',
-        cms_with_version: 'Next.js 13.4',
+        ip_customer: "customer_ip",
+        ip_merchant: "merchant_ip",
+        billing_address: "123 Billing St",
+        city: "City",
+        state: "State",
+        postal_code: "12345",
+        country: "Country",
+        shipping_first_name: "Customer",
+        shipping_last_name: "Name",
+        address_shipping: "123 Shipping St",
+        state_shipping: "Shipping State",
+        city_shipping: "Shipping City",
+        postal_code_shipping: "12345",
+        country_shipping: "Shipping Country",
+        msg_lang: "en",
+        cms_with_version: "Next.js 13.4",
       });
     }
   };
