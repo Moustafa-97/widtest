@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import React from "react";
 import err from "@/public/error.svg";
+import styles from "./notFound.module.css";
 
 export default function NotFound() {
   return (
@@ -26,9 +27,15 @@ export default function NotFound() {
           width={200}
           height={200}
         />
-        <Link href="/" style={{ color: "blue", textDecoration: "underline" }}>
-          Go back to the homepage
-        </Link>
+        <div className={styles.button}>
+          <Link
+            className={styles.link}
+            href="/"
+            style={{ }}
+          >
+            Go back to the homepage
+          </Link>
+        </div>
       </div>
     </>
   );

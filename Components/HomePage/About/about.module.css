@@ -73,6 +73,7 @@
   .AboutUs {
     display: grid;
     grid-template-columns: 1fr;
+    min-height: fit-content;
   }
 
   .Textheader {
@@ -92,14 +93,16 @@
     grid-column: 1 / span 1;
     grid-row: 3 / span 3;
     justify-self: center;
+    margin: 35px auto auto auto;
   }
   .AboutUsImg img {
     align-self: center;
+    margin-bottom: 25px;
   }
   .AboutUsBtn {
     grid-column: 1 / span 1;
     grid-row: 7 / span 1;
-    margin-top: 2vh;
+    margin-top: 35px;
     width: 100%;
   }
 }

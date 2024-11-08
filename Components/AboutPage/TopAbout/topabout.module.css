@@ -26,8 +26,8 @@
 .topSection .story h4,
 .topSection .reliable h4 {
   font-size: calc(3vw + 10px);
-  font-weight: 400;
-  line-height: 60px;
+  font-weight: 300;
+  line-height: 65px;
   padding-bottom: 30px;
 }
 .topSection .story h4 span,

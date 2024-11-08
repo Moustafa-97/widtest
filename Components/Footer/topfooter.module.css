@@ -138,6 +138,7 @@
     width: 98%;
     height: 259px;
     min-height: fit-content;
+    background-image: url("../../public/footer/footerR.png");
   }
   .subContainer {
     width: 80%;

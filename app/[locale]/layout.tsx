@@ -2,9 +2,8 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "./globals.css";
-import HeaderLayout from "./HeaderLayout"; // Import the new client-side header component
+import HeaderLayout from "./HeaderLayout";
 import { Metadata } from "next";
-// import { cookies } from "next/headers";
 import { Montserrat } from "next/font/google";
 import Script from "next/script";
 

@@ -288,7 +288,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
                   <ApartmentReviews rate={bill?.Apartment?.avgRating} />
                 </div>
                 <div className={styles.roomProtection}>
-                  <p>Your booking is protected by Trevala</p>
+                  <p>your booking protected by wid</p>
                 </div>
               </div>
               <div className={styles.chechoutCardBill}>
@@ -331,7 +331,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
             <Visa />
           </section>
           <section className={styles.pay}>
-            <PaymentBtn
+            {/* <PaymentBtn
               merchantEmail="moustafa@me.com"
               secretKey="SBJ9NJR2GL-JJZBL9WTTR-K6ZJHGN2K6"
               siteUrl="https://widresideces.com"
@@ -343,8 +343,8 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
               orderId="123456"
               productTitle="Your Product"
               productDescription="Product description goes here"
-            />
-            {/* <PaymentBtn
+            /> */}
+            <PaymentBtn
               text="Pay Now"
               method="POST"
               data={{ checkInDate: start_date, checkOutDate: end_date }}
@@ -353,7 +353,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
               width="100%"
               token={token}
               locale={locale}
-            /> */}
+            />
           </section>
         </div>
       </div>

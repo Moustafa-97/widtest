@@ -24,7 +24,7 @@
   "About": {
     "whyUs": "Why Choose Us?",
     "enjoy": "Enjoy Our Excellent Service",
-    "services": "We offer various services",
+    "services": "Experience service like never before with a focus on quality, reliability, and support. Our team is here around the clock to assist you, backed by trusted reviews from satisfied clients and a selection of premium properties designed to meet all your needs. We’re committed to making your experience seamless and enjoyable, every step of the way",
     "customerSupport": "24/7 Customer Support",
     "customerSupportText": "We offer 24 hours support during all week",
     "trusted": "Trusted Reviews",
@@ -46,7 +46,7 @@
   },
   "Payment": {
     "title": "Price Details",
-    "payNow": "ادفع الان",
+    "payNow": "Pay Now",
     "paymentError": "هناك خطأ في عملية الدفع. الرجاء المحاولة مرة اخرى",
     "paymentSuccess": "تمت عملية الدفع بنجاح",
     "paymentFailed": "عذرا، فشل الدفع. الرجاء المحاولة مرة اخرى",
