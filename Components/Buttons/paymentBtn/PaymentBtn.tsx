@@ -268,7 +268,7 @@ const PaymentBtn: React.FC<PaymentProps> = ({
   useEffect(() => {
     const loadPayTabsSDK = () => {
       const script = document.createElement("script");
-      script.src = "https://www.paytabs.com/js/paylib.js";
+      script.src = "https://secure-egypt.PayTabs.com/payment/js/paylib.js";
       script.async = true;
       script.onload = () => setIsPayTabsLoaded(true);
       script.onerror = () => console.error("Failed to load PayTabs SDK");
