@@ -173,7 +173,7 @@ const PaymentBtn: React.FC<PaymentProps> = ({
 }) => {
   useEffect(() => {
     if (!window.Paytabs) {
-      console.error("PayTabs SDK not loaded");
+      console.log("PayTabs SDK not loaded");
       return;
     }
   }, []);

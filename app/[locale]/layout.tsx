@@ -34,10 +34,7 @@ export default async function LocaleLayout({
         <NextIntlClientProvider messages={messages}>
           <HeaderLayout locale={locale}>{children}</HeaderLayout>
         </NextIntlClientProvider>
-        <Script
-          src="https://www.paytabs.com/js/paylib.js"
-          strategy="afterInteractive"
-        />
+        <Script src="https://www.paytabs.com/js/paylib.js" />
       </body>
     </html>
   );
