@@ -17,9 +17,9 @@ export const metadata = {
   description:
     "Discover and book your ideal apartment with ease using Wid Residences.",
   icons: {
-    icon: "/logo.svg",
-    shortcut: "/logo.svg",
-    apple: "/logo.svg",
+    icon: "/logo.svg",  // Regular favicon
+    shortcut: "/logo.svg",  // Shortcut icon (used in bookmarks)
+    apple: "/logo.svg",  // Apple Touch icon
   },
   keywords: [
     "apartment booking",
@@ -53,8 +53,28 @@ export const metadata = {
   },
   metadataBase: new URL("https://widresidences.com"),
   additionalMetaTags: [
-    // Custom Meta Tags for Facebook
+    // Facebook (Open Graph)
     { property: "fb:app_id", content: "YOUR_FACEBOOK_APP_ID" },
+    { property: "og:locale", content: "en_US" },
+    { property: "og:type", content: "website" },
+    { property: "og:site_name", content: "Wid Residences" },
+    { property: "og:image", content: "https://widresidences.com/logo.svg" },
+    { property: "og:image:alt", content: "Wid Residences cover image" },
+
+    // Slack (Uses Open Graph)
+    { property: "og:image", content: "https://widresidences.com/logo.svg" },
+    { property: "og:image:type", content: "image/svg+xml" },
+    { property: "og:image:width", content: "800" },
+    { property: "og:image:height", content: "600" },
+
+    // WhatsApp (Uses Open Graph)
+    { property: "og:image", content: "https://widresidences.com/logo.svg" },
+
+    // Snapchat (Uses Open Graph)
+    { property: "og:image", content: "https://widresidences.com/logo.svg" },
+    { property: "og:image:width", content: "1200" },
+    { property: "og:image:height", content: "630" },
+
     // Robots Meta Tags
     { name: "robots", content: "index, follow, nocache" },
     {
@@ -64,6 +84,7 @@ export const metadata = {
     },
   ],
 };
+
 
 export default async function LocaleLayout({
   children,
