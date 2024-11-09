@@ -26,7 +26,6 @@ export default function ProfileBtn(props: Props) {
     setIsOpen(!isOpen);
   };
   const handleLogout = async () => {
-    // console.log(cookies);
     localStorage.removeItem("token");
   };
   useEffect(() => {

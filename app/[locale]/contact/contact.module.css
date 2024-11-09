@@ -2,18 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 4vw;
-  height: 100vh;
-  width: 82vw;
-  overflow: hidden;
-  margin: auto;
-}
-.text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2vw;
-  height: fit-content;
+  gap: 65px;
+  min-height: fit-content;
+  padding: 117px 0;
   width: 82vw;
   overflow: hidden;
   margin: auto;
@@ -24,13 +15,31 @@
   align-items: center;
   justify-content: flex-start;
   width: 100%;
-  height: 40%;
-  padding: 5%;
+  min-width: fit-content;
+  height: 376px;
+  min-height: fit-content;
+  padding: 15px;
+  position: relative;
   box-shadow: 0px 4px 16px 0px #0000000a;
 }
+.textBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0 15px;
+  height: 262px;
+  min-width: fit-content;
+  position: absolute;
+  bottom: 15px;
+  left:0;
+}
 .card .icon {
-  margin-bottom: 2vh;
-  align-self: flex-end;
+
+  position: absolute;
+  top: 15px;
+  right: 15px;
 }
 .card .icon svg {
   font-size: clamp(35px, 4vw, 60px);
@@ -61,11 +70,11 @@
   background-color: var(--lightGreen);
   bottom: 0;
   left: 0;
-  border-radius:20px ;
-  -webkit-border-radius:20px ;
-  -moz-border-radius:20px ;
-  -ms-border-radius:20px ;
-  -o-border-radius:20px ;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
 }
 .card .contact {
   font-size: clamp(10px, 4vw, 18px);
@@ -74,6 +83,18 @@
   padding-top: 2vh;
   margin-bottom: 2vh;
   align-self: flex-start;
+}
+.text{
+  width: 100%;
+  text-wrap: wrap;
+  word-wrap: break-word;
+}
+.contactWork{
+  font-size: clamp(10px, 4vw, 18px);
+  font-weight: 400;
+  color: var(--green);
+  align-self: flex-end;
+  text-wrap: wrap;
 }
 /*  */
 .text .icon {
@@ -110,10 +131,10 @@
     height: fit-content;
     width: 92vw;
   }
-  .text {
+  /* .text {
     flex-direction: column;
     height: fit-content;
     width: 92vw;
     text-align: center;
-  }
+  } */
 }

@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import contact from "./contact.svg";
 import styles from "./contact.module.css";
-import { FaClock, FaLocationArrow, FaPhoneAlt } from "react-icons/fa";
+import { FaLocationArrow, FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import axios from "axios";
 import { getLocale } from "next-intl/server";
@@ -40,7 +40,7 @@ export default async function contactPage() {
     {
       id: 2,
       icon: <MdEmail />,
-      type: "Email",
+      type: "Email Address",
       contact: company.companyEmail,
     },
     {
@@ -64,7 +64,7 @@ export default async function contactPage() {
         style={{
           width: "100vw",
           minWidth: "100vw",
-          height: "909px",
+          height: "auto",
           maxHeight: "909px",
           objectFit: "cover",
         }}
@@ -73,24 +73,27 @@ export default async function contactPage() {
         {contacts.map((contact, index) => (
           <div key={index} className={styles.card}>
             <div className={styles.icon}>{contact.icon}</div>
-            <div className={styles.type}>{contact.type}</div>
-            <div className={styles.contact}>{contact.contact}</div>
+            <div className={styles.textBox}>
+              <div className={styles.textBoxM}>
+                <div className={styles.type}>{contact.type}</div>
+                <div className={styles.contact}>{contact.contact}</div>
+              </div>
+              <div className={styles.text}>
+                {/* <div className={styles.type}>Working</div> */}
+                <div className={styles.contactWork}>
+                  <p>{`Assistance hours: `}</p>
+                  <p>
+                    {`${company.startWeekDays} - ${company.endWeekDays},`}
+                  </p>
+                  <p>
+                    {`${company.startWorkingHours} to ${company.endWorkingHours}`}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         ))}
       </section>
-        <section className={styles.text}>
-          <div className={styles.icon}>
-            <FaClock />
-          </div>
-          <div className={styles.type}>
-            Working
-          </div>
-          <div className={styles.contact}>
-            
-              {`From ${company.startWeekDays} to ${company.endWeekDays}, ${company.startWorkingHours} to ${company.endWorkingHours}`}
-    
-          </div>
-        </section>
     </>
   );
 }

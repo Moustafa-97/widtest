@@ -19,8 +19,7 @@ const ModalButton = ({
   data,
   text,
   token,
-}: // locale,
-ApiButtonProps) => {
+}: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [response, setResponse] = useState<any>(null);
@@ -30,8 +29,6 @@ ApiButtonProps) => {
   const handleClick = async () => {
     setLoading(true);
     try {
-      console.log(token);
-
       const options: RequestInit = {
         method,
         credentials: "include",
@@ -42,8 +39,6 @@ ApiButtonProps) => {
       };
 
       if (method !== "GET" && data) {
-        console.log(method);
-
         options.body = JSON.stringify(data);
       }
 
@@ -51,8 +46,6 @@ ApiButtonProps) => {
         `${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint}`,
         options
       );
-
-      console.log(res);
 
       if (res.ok) {
         console.log("ok");

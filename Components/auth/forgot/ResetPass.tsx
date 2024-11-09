@@ -53,7 +53,7 @@ const ResetPass = () => {
       );
 
       if (response.status === 200) {
-        console.log("Password reset successful:", response.data);
+        // console.log("Password reset successful:", response.data);
         router.push(`/${locale}/login`);
       }
     } catch (error) {

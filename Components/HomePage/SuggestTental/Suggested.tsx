@@ -68,7 +68,9 @@ export default async function Suggested() {
             alt={item.name}
             width={1000}
             height={1000}
-            className={styles.apartmentImage}
+            className={styles.apartmentImage}            
+            priority
+
           />
           <div className={styles.likeButton}>
             <LikeBtn

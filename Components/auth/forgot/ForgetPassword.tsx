@@ -40,7 +40,7 @@ const ForgetPassword = () => {
       );
 
       if (response.status === 200) {
-        console.log("OTP sent to email:", response.data);
+        // console.log("OTP sent to email:", response.data);
         router.push(`/${locale}/otp`); // Navigate to OTP input page
       }
     } catch (error) {

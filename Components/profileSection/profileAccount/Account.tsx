@@ -43,7 +43,6 @@ export default function Account({
   };
 
   const handleSubmit = async (field: string, edited: string) => {
-    console.log(field);
 
     try {
       const response = await axios.put(

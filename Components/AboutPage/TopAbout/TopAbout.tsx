@@ -43,11 +43,8 @@ export default function TopAbout() {
         );
         const data = await response.json();
         setAbout(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
-      } finally {
-        console.log("finally");
       }
     };
 

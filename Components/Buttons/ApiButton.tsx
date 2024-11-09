@@ -82,7 +82,7 @@ ApiButtonProps) => {
 
       const result = await res.json();
       setResponse(result);
-      console.log("API response:", result);
+      // console.log("API response:", result);
     } catch (error) {
       console.error("API request failed:", error);
     } finally {

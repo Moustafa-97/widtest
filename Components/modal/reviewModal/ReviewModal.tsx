@@ -70,8 +70,6 @@ const ReviewModal = ({
 
   const isHistory = history?.filter((item: any) => item?.Apartment?.id === id);
 
-  console.log(isHistory);
-
   const handleClick = async () => {
     setLoading(true);
     try {

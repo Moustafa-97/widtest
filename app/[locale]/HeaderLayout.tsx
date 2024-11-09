@@ -8,8 +8,7 @@ import MobileAppFooter from "@/Components/Footer/Footer";
 export default function HeaderLayout({
   children,
   locale,
-}: 
-{
+}: {
   children: React.ReactNode;
   locale: string;
 }) {
@@ -29,9 +28,7 @@ export default function HeaderLayout({
     <>
       {!headerRoutes.includes(pathname) && (
         <header>
-          <Header
-            token={token}
-          />
+          <Header token={token} />
         </header>
       )}
       {children}
