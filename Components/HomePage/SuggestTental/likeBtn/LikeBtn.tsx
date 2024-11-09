@@ -2,23 +2,26 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import styles from "./apiButton.module.css";
+import styles from "./likeBtn.module.css";
 import { useLocale } from "next-intl";
+import Image from "next/image";
+import liked from "../liked.svg";
+import unliked from "../unliked.svg";
 
 interface ApiButtonProps {
   method: "POST" | "GET" | "DELETE";
   endpoint: string;
   data?: any;
-  icon: React.ReactNode;
+  //   icon: React.ReactNode;
   id?: string | number;
   token?: string;
 }
 
-const ApiButton = ({
+const LikeBtn = ({
   method,
   endpoint,
   data,
-  icon,
+  //   icon,
   id,
 }: // token,
 ApiButtonProps) => {
@@ -92,16 +95,17 @@ ApiButtonProps) => {
 
   return (
     <>
-      <div
-        className={`${styles.favorite} ${response ? styles.added : ""} ${
-          wished?.find((apartment) => apartment.id === id) ? styles.added : ""
-        }`}
-        onClick={handleClick}
-      >
-        {loading ? "..." : icon}
+      <div className={`${styles.favorite} `} onClick={handleClick}>
+        {loading && wished?.find((apartment) => apartment.id === id) ? (
+          <Image src={liked} alt="like" width={100} height={100} />
+        ) : response ? (
+          <Image src={liked} alt="like" width={100} height={100} />
+        ) : (
+          <Image src={unliked} alt="like" width={100} height={100} />
+        )}
       </div>
     </>
   );
 };
 
-export default ApiButton;
+export default LikeBtn;

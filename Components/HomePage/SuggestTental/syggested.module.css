@@ -4,6 +4,7 @@
   min-height: fit-content;
   margin: auto;
   overflow: hidden;
+  z-index: 10;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-decoration: none;
   border-radius: 8px;
@@ -29,6 +30,10 @@
 .apartmentImage {
   width: 100%;
   height: 100%;
+}
+.apartmentImage .AapartmentImage {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -36,17 +41,23 @@
   position: absolute;
   top: 10px;
   right: 10px;
+  width: 60px;
+  height: 60px;
+  z-index: 9999;
   background-color: transparent;
   border: none;
   padding: 8px;
   border-radius: 50%;
   cursor: pointer;
   font-size: 35px;
-  color: var(--green);
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
   -o-border-radius: 50%;
+}
+.likeButton img {
+  width: 100%;
+  height: 100%;
 }
 
 .details {
@@ -55,6 +66,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 1vh;
+  text-decoration: none;
   height: 30%;
   width: 100%;
 }
@@ -76,8 +88,9 @@
 .rating {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   margin-top: 8px;
-  gap: 3vw;
+  gap: 10px;
   font-size: 14px;
   font-weight: 500;
   line-height: 17.07px;
@@ -85,9 +98,17 @@
 
 .supply {
   color: var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.supply svg {
+  font-size: 20px;
 }
 .supply span {
-  padding: 0 0.4vw;
+  padding: 0 5px;
+  margin: auto;
 }
 
 .reviewCount {

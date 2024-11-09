@@ -127,7 +127,8 @@
 .bottomSection {
   width: 85.5%;
   height: fit-content;
-  margin: 50px auto;
+  padding: 50px auto;
+  margin: auto;
 }
 .textContainer h4 {
   font-size: clamp(12px, 4vw, 24px);
@@ -331,6 +332,7 @@
   justify-content: flex-start;
   margin: 50px auto;
 }
+
 .amenitiesContainer h4 {
   font-size: clamp(12px, 4vw, 24px);
   font-weight: 600;

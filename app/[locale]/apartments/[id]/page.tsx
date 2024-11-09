@@ -197,7 +197,6 @@ export default async function ApartmentPageId({
                 icon={<CiHeart />}
                 method={"POST"}
                 endpoint={`/v1/wishlist/toggle-wish/${id}`}
-                // token={token}
                 id={data?.data.id}
               />
             </div>
@@ -206,7 +205,6 @@ export default async function ApartmentPageId({
                 icon={<IoMdShare />}
                 method={"POST"}
                 endpoint={`/v1/wishlist/toggle-wish/${id}`}
-                // token={token}
               />
             </div>
             <div className={styles.viewBtn}>
