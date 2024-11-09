@@ -26,17 +26,15 @@ function Error() {
           width={200}
           height={200}
         />
-        <Link
-          href="/"
-          style={{
-            color: "white",
-            textDecoration: "none",
-            width: "60%",
-            backgroundColor: "var(--green)",
-          }}
-        >
-          Go back to the homepage
-        </Link>
+        <div className={"button"}>
+          <Link
+            className={"link"}
+            href="/"
+            style={{ }}
+          >
+            Go back to the homepage
+          </Link>
+        </div>
       </div>
     </>
   );

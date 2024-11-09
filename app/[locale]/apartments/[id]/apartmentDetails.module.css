@@ -163,7 +163,7 @@
   align-items: flex-end;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 1.5%;
+  padding: 10px;
   background: linear-gradient(135.27deg, #4f8f92 -8.06%, #014751 112.41%);
   box-shadow: 24px 30px 51px 0px #0000000d;
   border-radius: 8px;
@@ -448,7 +448,10 @@
     grid-column: 1 / span 5;
     grid-row: 6 / span 1;
   }
-
+  .card {
+    height: 100px;
+    min-height: fit-content;
+  }
   .viewBtn {
     width: 100%;
     height: 100%;
