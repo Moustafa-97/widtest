@@ -26,7 +26,6 @@ export default function ProfileMain() {
   const [profileData, setProfileData] = useState({});
   const [profileHistory, setProfileHistory] = useState([]);
   const [isLogged, setIsLogged] = useState(false);
-  console.log(isLogged);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -49,7 +48,7 @@ export default function ProfileMain() {
   }, []);
   //   history
   useEffect(() => {
-    if (token) {
+    if (isLogged && token) {
       axios
         .get(
           `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-bookings-history?locale=${locale}`,
@@ -94,7 +93,7 @@ export default function ProfileMain() {
           {selected === "Profile" && (
             <Account account={profileData} token={token} />
           )}
-          {selected === "Pyment Methods" && <Payment />}
+          {selected === "Payment Methods" && <Payment />}
           {selected === "History" && (
             <History history={profileHistory} token={token as string} />
           )}

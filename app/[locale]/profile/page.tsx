@@ -1,3 +1,4 @@
+"use client"
 // import { cookies } from "next/headers";
 import React from "react";
 import dynamic from "next/dynamic";
@@ -22,15 +23,14 @@ type Data = {
 export default async function profilePage() {
   // const cookiez = await cookies();
   // const token = await cookiez.get("jwt")?.value;
-  // const token = process.env.NEXT_PUBLIC_TESTTOKEN;
+  const token = localStorage.getItem("token");
   const getProfileData = async () => {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-profileInfo`,
       {
         withCredentials: true,
         headers: {
-          // Authorization: `Bearer ${token}`,
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_TESTTOKEN}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );

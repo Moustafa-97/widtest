@@ -1,6 +1,6 @@
 "use client";
 
-import bgheader from "@/public/LOGO.png";
+import bgheader from "@/public/logo.svg";
 import { useLocale } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -20,7 +20,12 @@ export default function RoomsLayout({
             height={1000}
             src={bgheader}
             alt="logo"
-            style={{ width: "10%", height: "auto", position: "fixed" }}
+            style={{
+              width: "5%",
+              minWidth: "60px",
+              height: "auto",
+              position: "fixed",
+            }}
           />
         </Link>
       </header>
