@@ -3,7 +3,6 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "./globals.css";
 import HeaderLayout from "./HeaderLayout";
-import { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 
 const montserrat = Montserrat({
@@ -12,11 +11,16 @@ const montserrat = Montserrat({
   style: ["normal", "italic"],
   display: "swap",
 });
-// app/page.tsx or app/page.js (if it's your main page)
-export const metadata: Metadata = {
+
+export const metadata = {
   title: "WID - Apartment Booking",
   description:
     "Discover and book your ideal apartment with ease using Wid Residences.",
+  icons: {
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
+  },
   keywords: [
     "apartment booking",
     "holiday rentals",
@@ -31,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "Wid Residences",
     images: [
       {
-        url: "../../public/logo.svg",
+        url: "/logo.svg", // Direct path from public folder
         width: 800,
         height: 600,
         alt: "Wid Residences cover image",
@@ -45,26 +49,20 @@ export const metadata: Metadata = {
     title: "WID - Apartment Booking",
     description:
       "Book top-rated apartments for short-term or long-term stays with Wid Residences.",
-    images: ["../../public/logo.svg"],
+    images: ["/logo.svg"], // Direct path from public folder
   },
-  // Additional Custom Meta Tags
   metadataBase: new URL("https://widresidences.com"),
-  facebook: {
-    appId: "YOUR_FACEBOOK_APP_ID",
+  additionalMetaTags: [
+    // Custom Meta Tags for Facebook
+    { property: "fb:app_id", content: "YOUR_FACEBOOK_APP_ID" },
+    // Robots Meta Tags
+    { name: "robots", content: "index, follow, nocache" },
+    {
+      name: "googlebot",
+      content:
+        "index, follow, noimageindex, max-video-preview:-1, max-image-preview:large, max-snippet:-1",
     },
-  robots: {
-    index: true,
-    follow: true,
-    nocache: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      noimageindex: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  ],
 };
 
 export default async function LocaleLayout({

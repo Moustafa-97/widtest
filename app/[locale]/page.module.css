@@ -163,8 +163,8 @@
 
 .suggestedCarousel {
   height: 72vh;
-  min-height: fit-content;
-  max-height: 558px;
+  min-height: 558px;
+  /* max-height: 558px; */
 }
 /* review */
 .reviews {
