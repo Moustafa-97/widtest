@@ -59,7 +59,6 @@ export default async function Suggested() {
   const cards = () => {
     return offers.map((item) => (
       <div
-        // href={`${awaitLocale}/apartments/${item.id}`}
         key={item.id}
         className={styles.card}
       >

@@ -17,14 +17,7 @@ interface ApiButtonProps {
   token?: string;
 }
 
-const LikeBtn = ({
-  method,
-  endpoint,
-  data,
-  //   icon,
-  id,
-}: // token,
-ApiButtonProps) => {
+const LikeBtn = ({ method, endpoint, data, id }: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<any>(null);
   const [wished, setWished] = useState<{ id: string }[]>();
@@ -92,16 +85,17 @@ ApiButtonProps) => {
       setLoading(false);
     }
   };
+  const wishedApartment = wished?.find((apartment) => apartment.id === id)?.id;
 
   return (
     <>
       <div className={`${styles.favorite} `} onClick={handleClick}>
-        {loading && wished?.find((apartment) => apartment.id === id) ? (
+        {wishedApartment === id ? (
           <Image src={liked} alt="like" width={100} height={100} />
         ) : response ? (
           <Image src={liked} alt="like" width={100} height={100} />
         ) : (
-          <Image src={unliked} alt="like" width={100} height={100} />
+          <Image src={unliked} alt="unlike" width={100} height={100} />
         )}
       </div>
     </>
