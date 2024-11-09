@@ -92,7 +92,7 @@ const LikeBtn = ({ method, endpoint, data, id }: ApiButtonProps) => {
       <div className={`${styles.favorite} `} onClick={handleClick}>
         {wishedApartment === id ? (
           <Image src={liked} alt="like" width={100} height={100} />
-        ) : response ? (
+        ) : loading || response ? (
           <Image src={liked} alt="like" width={100} height={100} />
         ) : (
           <Image src={unliked} alt="unlike" width={100} height={100} />
