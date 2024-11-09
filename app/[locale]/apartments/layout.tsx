@@ -1,4 +1,4 @@
-"use client";
+
 import Breadcrumb from "@/Components/breadCrumb/BreadCrumb";
 
 export const metadata = async ({ params }: { params: { id: string } }) => {
