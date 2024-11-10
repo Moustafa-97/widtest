@@ -27,7 +27,7 @@
   height: 80px;
   padding: 16px 24px 16px 24px;
   border-radius: 12px 12px 0px 0px;
-  opacity: 0px;
+  /* opacity: 0px; */
 }
 .profileHeader ul .list {
   text-align: start;
