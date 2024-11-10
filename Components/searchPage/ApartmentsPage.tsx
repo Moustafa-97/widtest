@@ -378,6 +378,7 @@ any) {
                             key={index}
                             onClick={() => {
                               setSelectedcity(city);
+                              setShowCity(!showCity);
                             }}
                           >
                             <FaLocationDot className={styles.listIcon} />
@@ -427,6 +428,7 @@ any) {
                             key={index}
                             onClick={() => {
                               setSelectedDistrict(dist);
+                              setShowDistrict(!showDistrict);
                             }}
                             className={styles.cityList}
                           >

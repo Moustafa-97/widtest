@@ -214,8 +214,8 @@
   gap: 10px;
 }
 .listIcon {
-  width: 30%;
-  height: 30%;
+  width: 30px;
+  height: 30px;
   font-weight: 500;
   line-height: 24px;
   text-align: center;
@@ -340,8 +340,8 @@
     -o-transform: translateX(-50%);
   }
   .listIcon {
-    width: 15%;
-    height: 15%;
+    width: 30px;
+    height: 30px;
     font-weight: 400;
   }
   .calendarContainer {
