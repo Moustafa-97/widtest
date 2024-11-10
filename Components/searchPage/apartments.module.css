@@ -18,7 +18,7 @@
 
 .cardAp {
   margin-bottom: 20px;
-  min-heigth: fit-content;
+  min-height: fit-content;
   position: relative;
   z-index: 1;
 }
