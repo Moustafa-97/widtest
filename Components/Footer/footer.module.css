@@ -183,7 +183,7 @@
     height: 725px;
     min-height: fit-content;
   }
-  .topFooter{
+  .topFooter {
     bottom: 64%;
   }
   .footer {
@@ -206,20 +206,22 @@
     grid-column: 1 / span 8;
     grid-row: 1 / span 2;
     max-width: 100%;
+    padding-bottom: 10px;
   }
 
   .logo {
     margin-bottom: 2px;
   }
-  .logoF{
+  .logoF {
     height: 53px;
     width: 57px;
   }
-  
+
   .footerCompanyLinks {
     grid-area: comp;
     grid-column: 1 / span 3;
     grid-row: 3 / span 1;
+    justify-self: auto;
   }
   .footerKnowLinks {
     grid-area: know;

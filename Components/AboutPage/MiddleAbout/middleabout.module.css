@@ -211,6 +211,8 @@
   }
   .cardsContainer {
     flex-direction: column;
+    height: 1048px;
+    min-height: fit-content;
   }
   .descContainer h5 {
     width: 40%;
@@ -220,7 +222,8 @@
   }
   .descContainer p {
     width: 60%;
-    font-size: 7px;
+    font-size: 10px;
+    line-height: 15px;
   }
   .cardsContainer .cardE {
     height: 336px;
