@@ -83,7 +83,7 @@ export default function ProfileMain() {
                   styles.list
                 }`}
               >
-                {section}
+                <p>{section}</p>
               </li>
             ))}
           </ul>
