@@ -11,7 +11,7 @@ import { addDays } from "date-fns";
 import { useLocale, useTranslations } from "next-intl";
 import { FaBed, FaLocationDot } from "react-icons/fa6";
 import { FaCalendarAlt, FaLocationArrow } from "react-icons/fa";
-import { OrbitProgress } from "react-loading-indicators";
+// import { OrbitProgress } from "react-loading-indicators";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import NoApartmentsAvailable from "./noApartment/NoApartmentsAvailable";
@@ -20,15 +20,6 @@ const CardAp = dynamic(
   () => import("@/Components/Cards/ApartmentCard/CardAp"),
   {
     ssr: false,
-    loading: () => (
-      <OrbitProgress
-        style={{ margin: "auto" }}
-        variant="dotted"
-        dense
-        color={"#47b3c5"}
-        size="large"
-      />
-    ),
   }
 );
 
@@ -134,7 +125,7 @@ any) {
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  }, [showCity, showCal, showDistrict]);
 
   // ------------------------------------------
 
@@ -244,7 +235,7 @@ any) {
             setErrorMessage(data);
             setApartments(null);
           }
-        } catch (error : any) {
+        } catch (error:any) {
           setErrorMessage(error?.message);
         } finally {
           setLoading(false);
@@ -253,7 +244,7 @@ any) {
     };
 
     fetchApartments();
-  }, [pathname, start_date, end_date, city, district, locale]);
+  }, [start_date, end_date, city, district, locale]);
 
   const handleSearch = async (event: any) => {
     event.preventDefault();
@@ -454,8 +445,7 @@ any) {
             </button>
           </div>
         </section>
-        {/* <div className={styles.cards}>Rooms</div> */}
-        <div className={styles.cards} style={{}}>
+        <div className={styles.cards}>
           {loading ? (
             <div className={styles.loader}>
               <span></span>

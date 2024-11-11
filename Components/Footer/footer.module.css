@@ -232,7 +232,17 @@
   .footerKnowLinks h4,
   .footerCompanyLinks h4 {
     font-size: 16px;
+    font-weight: 600;
+    line-height: 19.5px;
   }
+  .footerKnowLinks a,
+.footerCompanyLinks a {
+  color: white;
+  opacity: 0.7;
+  font-size: 14px;
+  font-weight: 400;
+  text-decoration: none;
+}
 
   .follow {
     grid-area: follow;
@@ -253,6 +263,7 @@
   .follow p {
     font-size: 16px;
     font-weight: 600;
+    line-height: 19.5px;
   }
   .follow .followIcons {
     display: flex;

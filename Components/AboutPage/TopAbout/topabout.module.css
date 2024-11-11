@@ -87,10 +87,6 @@
     padding-bottom: 5px;
     text-align: start;
   }
-  .topSection .story h4 span,
-  .topSection .reliable h4 span {
-    color: var(--green);
-  }
   .topSection .story p,
   .topSection .reliable p {
     font-size: calc(1vw + 5px);
@@ -106,8 +102,9 @@
     content: "";
     position: absolute;
     width: 100%;
-    height: 3px;
+    height: 1.5px;
     background: var(--green);
+    opacity: 0.5;
     bottom: 0;
     left: 0;
     border-radius: 10px;
