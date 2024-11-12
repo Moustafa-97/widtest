@@ -65,7 +65,8 @@ ApiButtonProps) => {
 
       const result = await res.json();
       if (result.redirect_url) {
-        window.location.href = result.redirect_url;
+        // window.location.href = result.redirect_url;
+        console.log(result);
       }
       setResponse(result);
       setShowModal(true);
@@ -106,7 +107,10 @@ ApiButtonProps) => {
           </div>
         ) : (
           <div>
-            <Link href={`/${locale}/login`} className={`${styles.button} ${styles.linkButton} `}>
+            <Link
+              href={`/${locale}/login`}
+              className={`${styles.button} ${styles.linkButton} `}
+            >
               Login
             </Link>
           </div>
