@@ -1,4 +1,18 @@
 /* Button styling */
+.logo{
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: transparent;
+  border: none;
+  padding: 10px;
+  /* font-size: 24px; */
+  cursor: pointer;
+  z-index: 1010;
+  display: flex;
+
+
+}
 .menuButton {
   position: absolute;
   top: 20px;

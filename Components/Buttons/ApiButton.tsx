@@ -20,7 +20,7 @@ const ApiButton = ({
   data,
   icon,
   id,
-}: // token,
+}:
 ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<any>(null);

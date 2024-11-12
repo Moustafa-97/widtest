@@ -1,5 +1,7 @@
 .apartmentSearchPage {
   width: 100%;
+  min-height: fit-content;
+  height: 100%;
 
 }
 .cards {
@@ -92,16 +94,15 @@
 .selectDistrictArea,
 .selectDateArea {
   position: relative;
-  /* width: 100%; */
 }
 .selectButton {
   width: fit-content;
-  border-right: 2px solid var(--green);
-  padding: 10px 20px;
+  border-right: 0.5px solid var(--green);
+  padding: 10px;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 5px;
   transition: all 0.4s;
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -130,13 +131,16 @@
   align-items: flex-start;
   gap: 10px;
 }
+.selectButton .selectButtonIconSpan {
+  padding: 10px 0;
+}
 .selectButton p .selectText {
   font-size: clamp(13px, 4vw, 20px);
   font-weight: 600;
 }
 .selectButtonIcon {
-  color: var(--green);
-  font-size: clamp(14px, 4vw, 20px);
+  color: var(--lightGreen);
+  font-size: clamp(16px, 4vw, 30px);
 }
 
 /* calendar */

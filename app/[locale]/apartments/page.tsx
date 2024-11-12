@@ -43,7 +43,6 @@ export default async function ApartmentPage({
           end_date={end_date || ""}
           city={city || ""}
           district={district || ""}
-          // token={token || ""}
         />
       </section>
     </>

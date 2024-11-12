@@ -97,12 +97,12 @@ export default async function LocaleLayout({
   const messages = await getMessages(locale as any);
 
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
-      <body className={montserrat.className}>
+    <main lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+      <div className={montserrat.className}>
         <NextIntlClientProvider messages={messages}>
           <HeaderLayout locale={locale}>{children}</HeaderLayout>
         </NextIntlClientProvider>
-      </body>
-    </html>
+      </div>
+    </main>
   );
 }

@@ -6,11 +6,11 @@ import Link from "next/link";
 import Button from "@/Components/Buttons/Button";
 import ar from "../ar.svg";
 import en from "../en.svg";
+import logo from "../logo.svg";
 import Image from "next/image";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ResponsiveHeader = ({
   pathname,
-  // cookies,
   searchParams,
   locale,
   isLogged,
@@ -57,105 +57,121 @@ const ResponsiveHeader = ({
 
   return (
     <>
-      <div ref={menuRef}>
-        <button
-          className={styles.menuButton}
-          onClick={toggleMenu}
-          style={isOpen ? { color: "black" } : { color: "#fff" }}
-        >
-          ☰
-        </button>
-        <div className={`${styles.menuContainer} ${isOpen ? styles.open : ""}`}>
-          <div className={`${styles.menu}`}>
-            <ul>
-              <li>
-                <Link
-                  href={
-                    locale === "en"
-                      ? `/ar/${pathname.slice(4)}?${
-                          searchParams ? searchParams : ""
-                        }`
-                      : `/en/${pathname.slice(4)}?${
-                          searchParams ? searchParams : ""
-                        }`
-                  }
-                  onClick={() => setIsOpen(false)}
-                  prefetch={true}
-                >
-                  <div className={styles.languageSwitch}>
-                    {locale === "en" ? (
-                      <Image
-                        src={en}
-                        alt="ar"
-                        width={100}
-                        height={100}
-                        style={{ width: "10%", height: "auto" }}
-                      />
-                    ) : (
-                      <Image
-                        src={ar}
-                        alt="ar"
-                        width={100}
-                        height={100}
-                        style={{ width: "10%", height: "auto" }}
-                      />
-                    )}
-                  </div>
-                </Link>{" "}
-              </li>
-              <li>
-                {navBar1.map(
-                  (
-                    el: { href: string; name: string },
-                    ind: React.Key | null | undefined
-                  ) => (
-                    <li key={ind}>
-                      <Link
-                        href={`${el.href}`}
-                        prefetch={true}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {el.name}
-                      </Link>
-                    </li>
-                  )
-                )}
-              </li>
-              <li>
-                {!isLogged ? (
+      <div className={styles.container}>
+        <div className={styles.logo}>
+          <Image
+            src={logo}
+            alt="Logo"
+            width={500}
+            height={500}
+            style={{
+              width: "50px",
+              height: "50px",
+            }}
+          />
+        </div>
+        <div ref={menuRef}>
+          <button
+            className={styles.menuButton}
+            onClick={toggleMenu}
+            style={isOpen ? { color: "black" } : { color: "#fff" }}
+          >
+            ☰
+          </button>
+          <div
+            className={`${styles.menuContainer} ${isOpen ? styles.open : ""}`}
+          >
+            <div className={`${styles.menu}`}>
+              <ul>
+                <li>
                   <Link
-                    href={`/${locale}/register`}
-                    prefetch={true}
+                    href={
+                      locale === "en"
+                        ? `/ar/${pathname.slice(4)}?${
+                            searchParams ? searchParams : ""
+                          }`
+                        : `/en/${pathname.slice(4)}?${
+                            searchParams ? searchParams : ""
+                          }`
+                    }
                     onClick={() => setIsOpen(false)}
-                  >
-                    {t("SIGNUP")}
-                  </Link>
-                ) : (
-                  <Link
-                    href={`/${locale}/history`}
                     prefetch={true}
-                    onClick={() => setIsOpen(false)}
                   >
-                    {t("HISTORY")}
-                  </Link>
-                )}
-              </li>
-              <li>
-                {!isLogged ? (
-                  <Button
-                    onClicks={`/${locale}/login`}
-                    type={undefined}
-                    text={t("LOGIN")}
-                  />
-                ) : (
-                  <Button
-                    onClicks={`/${locale}/profile`}
-                    type={undefined}
-                    text={response?.firstName}
-                  />
-                )}
-              </li>
-            </ul>
+                    <div className={styles.languageSwitch}>
+                      {locale === "en" ? (
+                        <Image
+                          src={en}
+                          alt="ar"
+                          width={100}
+                          height={100}
+                          style={{ width: "10%", height: "auto" }}
+                        />
+                      ) : (
+                        <Image
+                          src={ar}
+                          alt="ar"
+                          width={100}
+                          height={100}
+                          style={{ width: "10%", height: "auto" }}
+                        />
+                      )}
+                    </div>
+                  </Link>{" "}
+                </li>
+                <li>
+                  {navBar1.map(
+                    (
+                      el: { href: string; name: string },
+                      ind: React.Key | null | undefined
+                    ) => (
+                      <li key={ind}>
+                        <Link
+                          href={`${el.href}`}
+                          prefetch={true}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {el.name}
+                        </Link>
+                      </li>
+                    )
+                  )}
+                </li>
+                <li>
+                  {!isLogged ? (
+                    <Link
+                      href={`/${locale}/register`}
+                      prefetch={true}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {t("SIGNUP")}
+                    </Link>
+                  ) : (
+                    <Link
+                      href={`/${locale}/history`}
+                      prefetch={true}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {t("HISTORY")}
+                    </Link>
+                  )}
+                </li>
+                <li>
+                  {!isLogged ? (
+                    <Button
+                      onClicks={`/${locale}/login`}
+                      type={undefined}
+                      text={t("LOGIN")}
+                    />
+                  ) : (
+                    <Button
+                      onClicks={`/${locale}/profile`}
+                      type={undefined}
+                      text={response?.firstName}
+                    />
+                  )}
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

@@ -9,13 +9,14 @@ import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { addDays } from "date-fns";
 import { useLocale, useTranslations } from "next-intl";
-import { FaBed, FaLocationDot } from "react-icons/fa6";
-import { FaCalendarAlt, FaLocationArrow } from "react-icons/fa";
+import { FaBed } from "react-icons/fa6";
 // import { OrbitProgress } from "react-loading-indicators";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import NoApartmentsAvailable from "./noApartment/NoApartmentsAvailable";
-
+import { IoLocationOutline } from "react-icons/io5";
+import { CiCalendarDate } from "react-icons/ci";
+// import CardAp from "@/Components/Cards/ApartmentCard/CardAp";
 const CardAp = dynamic(
   () => import("@/Components/Cards/ApartmentCard/CardAp"),
   {
@@ -47,13 +48,11 @@ export default function ApartmentsPage({
   end_date,
   city,
   district,
-}: // token,
-any) {
+}: any) {
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("SearchPage");
-  const token = localStorage.getItem("token");
-  // screen width handling
+  // start screen width handling
   const [screenWidth, setScreenWidth] = useState<number>(0);
 
   useEffect(() => {
@@ -75,6 +74,7 @@ any) {
     return () => window.removeEventListener("resize", handleResize);
   }, [screenWidth]);
   const isMobile = screenWidth <= 800;
+  // end screen width handling
 
   const [loading, setLoading] = useState<boolean>(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -134,19 +134,17 @@ any) {
   const [cities, setCities] = useState<CityList>();
   const cityList = useMemo(() => cities, [cities]);
 
-  const [districtF, setDistrictF] = useState<DistrictList | null>(null);
+  const [districtF, setDistrictF] = useState<DistrictList | null>();
   const districtList = useMemo(() => districtF, [districtF]);
-  const [apartments, setApartments] = useState<Data[] | null>(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [apartments, setApartments] = useState<Data[] | null>();
+  const [errorMessage, setErrorMessage] = useState<any>();
 
   // selection handling 🔽
   // city
-  const [selectedStart, setSelectedStart] = useState<string | null>(null);
-  const [selectedEnd, setSelectedEnd] = useState<string | null>(null);
-  const [selectedcity, setSelectedcity] = useState<City | null>(null);
-  const [selectedDistrict, setSelectedDistrict] = useState<District | null>(
-    null
-  );
+  const [selectedStart, setSelectedStart] = useState<string | null>();
+  const [selectedEnd, setSelectedEnd] = useState<string | null>();
+  const [selectedcity, setSelectedcity] = useState<City | null>();
+  const [selectedDistrict, setSelectedDistrict] = useState<District | null>();
 
   const handleSelect = (ranges: RangeKeyDict | any) => {
     const selectedStartDate: string | any = ranges.selection.startDate;
@@ -209,12 +207,11 @@ any) {
 
   // Fetch apartments
   // handleSearch
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
   useEffect(() => {
     const fetchApartments = async () => {
       if (
-        pathname === `/${await locale}/apartments` &&
+        pathname === `/${locale}/apartments` &&
         start_date &&
         end_date &&
         city &&
@@ -235,8 +232,8 @@ any) {
             setErrorMessage(data);
             setApartments(null);
           }
-        } catch (error:any) {
-          setErrorMessage(error?.message);
+        } catch (error) {
+          setErrorMessage(error);
         } finally {
           setLoading(false);
         }
@@ -295,18 +292,131 @@ any) {
           </div>
           <div className={styles.searchingArea}>
             <div className={styles.searchingItems}>
+              {/* city */}
+              <div className={styles.selectCityArea}>
+                <div
+                  className={styles.selectButton}
+                  onClick={() => setShowCity(!showCity)}
+                >
+                  <span className={styles.selectButtonIconSpan}>
+                    <IoLocationOutline className={styles.selectButtonIcon} />
+                  </span>
+                  <p>
+                    <span className={styles.selectText}>{t("city")}</span>
+                    <span
+                      style={{
+                        fontSize: "clamp(12px, 4vw, 16px)",
+                        fontWeight: "400",
+                      }}
+                    >
+                      {" "}
+                      {selectedcity && selectedcity
+                        ? `${selectedcity.name}`
+                        : t("selectCity")}
+                    </span>
+                  </p>
+                </div>
+                {showCity && (
+                  <div ref={cityRef} className={styles.selectionContainer}>
+                    <ul>
+                      {cityList &&
+                        cityList?.cities.map((city, index) => (
+                          <li
+                            key={index}
+                            onClick={() => {
+                              setSelectedcity(city);
+                              setShowCity(!showCity);
+                            }}
+                          >
+                            <IoLocationOutline className={styles.listIcon} />
+                            <p>{city.name}</p>
+                          </li>
+                        ))}
+                    </ul>
+                    <button
+                      onClick={() => {
+                        setShowCity(false);
+                      }}
+                      className={styles.applyButton}
+                    >
+                      {t("apply")}
+                    </button>
+                  </div>
+                )}
+              </div>
+              {/* district */}
+              <div className={styles.selectDistrictArea}>
+                <div
+                  className={styles.selectButton}
+                  onClick={() => setShowDistrict(!showDistrict)}
+                >
+                  <span className={styles.selectButtonIconSpan}>
+                    <IoLocationOutline className={styles.selectButtonIcon} />
+                  </span>
+                  <p>
+                    <span className={styles.selectText}>{t("district")}</span>
+                    <span
+                      style={{
+                        fontSize: "clamp(12px, 4vw, 16px)",
+                        fontWeight: "400",
+                      }}
+                    >
+                      {selectedDistrict && selectedDistrict
+                        ? `${selectedDistrict.name}`
+                        : t("selectDistrict")}
+                    </span>
+                  </p>
+                </div>
+                {showDistrict && (
+                  <div
+                    ref={districtRef}
+                    className={styles.selectionContainer}
+                    style={{ zIndex: "9999" }}
+                  >
+                    <ul>
+                      {districtList &&
+                        districtList?.districts.map((dist, index) => (
+                          <li
+                            key={index}
+                            onClick={() => {
+                              setSelectedDistrict(dist);
+                              setShowDistrict(!showDistrict);
+                            }}
+                            className={styles.cityList}
+                          >
+                            <IoLocationOutline className={styles.listIcon} />
+                            <p>{dist.name}</p>
+                          </li>
+                        ))}
+                    </ul>
+                    <button
+                      onClick={() => {
+                        setShowDistrict(false);
+                      }}
+                      className={styles.applyButton}
+                    >
+                      {t("apply")}
+                    </button>
+                  </div>
+                )}
+              </div>
               {/* calendar */}
               <div className={styles.selectDateArea}>
                 <div
                   className={styles.selectButton}
                   onClick={() => setShowCal(!showCal)}
                 >
-                  <span>
-                    <FaCalendarAlt className={styles.selectButtonIcon} />
+                  <span className={styles.selectButtonIconSpan}>
+                    <CiCalendarDate className={styles.selectButtonIcon} />
                   </span>
                   <p>
                     <span className={styles.selectText}>{t("date")}</span>
-                    <span style={{ fontSize: "clamp(12px, 4vw, 20px)" }}>
+                    <span
+                      style={{
+                        fontSize: "clamp(12px, 4vw, 16px)",
+                        fontWeight: "400",
+                      }}
+                    >
                       {selectedStart && selectedEnd
                         ? `${selectedStart} - ${selectedEnd}`
                         : t("selectDate")}
@@ -334,103 +444,6 @@ any) {
                     <button
                       onClick={() => {
                         setShowCal(!showCal);
-                      }}
-                      className={styles.applyButton}
-                    >
-                      {t("apply")}
-                    </button>
-                  </div>
-                )}
-              </div>
-              {/* city */}
-              <div className={styles.selectCityArea}>
-                <div
-                  className={styles.selectButton}
-                  onClick={() => setShowCity(!showCity)}
-                >
-                  <span>
-                    <FaLocationArrow className={styles.selectButtonIcon} />
-                  </span>
-                  <p>
-                    <span className={styles.selectText}>{t("city")}</span>
-                    <span style={{ fontSize: "clamp(12px, 4vw, 20px)" }}>
-                      {selectedcity && selectedcity
-                        ? `${selectedcity.name}`
-                        : t("selectCity")}
-                    </span>
-                  </p>
-                </div>
-                {showCity && (
-                  <div ref={cityRef} className={styles.selectionContainer}>
-                    <ul>
-                      {cityList &&
-                        cityList?.cities.map((city, index) => (
-                          <li
-                            key={index}
-                            onClick={() => {
-                              setSelectedcity(city);
-                              setShowCity(!showCity);
-                            }}
-                          >
-                            <FaLocationDot className={styles.listIcon} />
-                            <p>{city.name}</p>
-                          </li>
-                        ))}
-                    </ul>
-                    <button
-                      onClick={() => {
-                        setShowCity(false);
-                      }}
-                      className={styles.applyButton}
-                    >
-                      {t("apply")}
-                    </button>
-                  </div>
-                )}
-              </div>
-              {/* district */}
-              <div className={styles.selectDistrictArea}>
-                <div
-                  className={styles.selectButton}
-                  onClick={() => setShowDistrict(!showDistrict)}
-                >
-                  <span>
-                    <FaLocationArrow className={styles.selectButtonIcon} />
-                  </span>
-                  <p>
-                    <span className={styles.selectText}>{t("district")}</span>
-                    <span style={{ fontSize: "clamp(12px, 4vw, 20px)" }}>
-                      {selectedDistrict && selectedDistrict
-                        ? `${selectedDistrict.name}`
-                        : t("selectDistrict")}
-                    </span>
-                  </p>
-                </div>
-                {showDistrict && (
-                  <div
-                    ref={districtRef}
-                    className={styles.selectionContainer}
-                    style={{ zIndex: "9999" }}
-                  >
-                    <ul>
-                      {districtList &&
-                        districtList?.districts.map((dist, index) => (
-                          <li
-                            key={index}
-                            onClick={() => {
-                              setSelectedDistrict(dist);
-                              setShowDistrict(!showDistrict);
-                            }}
-                            className={styles.cityList}
-                          >
-                            <FaLocationDot className={styles.listIcon} />
-                            <p>{dist.name}</p>
-                          </li>
-                        ))}
-                    </ul>
-                    <button
-                      onClick={() => {
-                        setShowDistrict(false);
                       }}
                       className={styles.applyButton}
                     >
@@ -469,7 +482,6 @@ any) {
                       selectedDistrict?.id ? selectedDistrict?.id : district
                     }`}
                     apartmentData={apartment}
-                    token={token}
                   />
                 </div>
               ))

@@ -40,7 +40,6 @@ type Props = {
         };
       }
     | any;
-  token: string | any;
 };
 type Data =
   | {
@@ -62,7 +61,7 @@ type Data =
 
 export default async function CardAp(props: Props) {
   // const locale = useLocale();
-  const { apartmentData, token } = props;
+  const { apartmentData } = props;
   const t = useTranslations("SearchPage");
 
   const data: Data = apartmentData;
@@ -149,7 +148,6 @@ export default async function CardAp(props: Props) {
                 icon={<CiHeart />}
                 method={"POST"}
                 endpoint={`/v1/wishlist/toggle-wish/${data?.id}`}
-                token={token}
                 id={data?.id}
               />
             </div>

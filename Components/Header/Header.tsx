@@ -199,6 +199,7 @@ export default function Header({ token }: { token: string | any }) {
         </nav>
       ) : (
         <div>
+          
           <ResponsiveHeader
             pathname={pathname}
             searchParams={searchParams}
