@@ -3,8 +3,7 @@ import styles from "./page.module.css";
 import { getLocale, getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-// import topHome from "@/public/HomePage/bbok.png";
-import webbanner from "@/public/HomePage/webBaner.svg";
+import topHome from "@/public/HomePage/bbok.png";
 import { OrbitProgress } from "react-loading-indicators";
 
 const AboutHome = dynamic(
@@ -112,7 +111,7 @@ export default async function HomePage() {
         className={styles.topImageContainer}
       >
         <Image
-          src={webbanner}
+          src={topHome}
           width={1000}
           height={1000}
           alt="home"
