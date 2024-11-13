@@ -1,0 +1,61 @@
+.container {
+  margin: auto;
+  width: 86vw;
+  padding: 15px;
+  height: 775px;
+  min-height: fit-content;
+}
+.container h1 {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 600;
+  line-height: 50px;
+  text-align: left;
+  text-decoration-skip-ink: none;
+  margin-bottom: 74px;
+}
+.container .topP {
+  margin: 74px auto 24px auto;
+}
+.container .lowP {
+  margin: 32px auto 117px auto;
+}
+.container .p1,
+.container .p2 {
+  font-size: clamp(16px, 4vw, 24px);
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+  text-decoration-skip-ink: none;
+}
+.container .p3,
+.container .p4 {
+  font-size: clamp(16px, 4vw, 24px);
+  font-weight: 400;
+  line-height: 31px;
+  text-align: left;
+  text-decoration-skip-ink: none;
+}
+.container ul{
+    padding-left: 30px;
+}
+.container a {
+  color: var(--lightGreen);
+}
+
+@media (min-width: 150px) and (max-width: 770px) {
+  .container {
+    margin: auto;
+    width: 92vw;
+    padding: 15px;
+  }
+  .container .p1,
+  .container .p2 {
+    font-weight: 400;
+    line-height: 20px;
+  }
+  .container .p3,
+  .container .p4 {
+    font-weight: 400;
+    line-height: 20px;
+  }
+}

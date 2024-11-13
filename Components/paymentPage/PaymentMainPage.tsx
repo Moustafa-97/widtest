@@ -195,9 +195,10 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
   const startDate = formatDate(start_date);
   const endDate = formatDate(end_date);
   const bill = billData?.booking?.localizedBookedApartment;
+
   const apartment = apartmentData?.data;
 
-  const [userVisa, setUserVisa] = useState<string>();
+  const [userVisa, setUserVisa] = useState<string | null>(null);
 
   return (
     <section className="g-container" style={{ width: "100vw" }}>
@@ -338,7 +339,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
               text="Pay Now"
               method="POST"
               data={{ checkInDate: start_date, checkOutDate: end_date }}
-              endpoint1={`/v1/booking/pay-with-saved-card/cm3ef55n70034392mf0etm2jt?locale=ar`}
+              endpoint1={`/v1/booking/pay-with-saved-card/${bill?.bookingId}?locale=ar`}
               endpoint2={`/v1/booking/check-availability-and-lock/${apartment?.id}`}
               width="100%"
               token={token}

@@ -76,7 +76,7 @@ function Footer() {
               <Link href={`/${locale}/termsAndConditions`}>{t("terms")}</Link>
             </li>
             <li>
-              <Link href={`/${locale}/privacyAndPolicy`}>{t("terms")}</Link>
+              <Link href={`/${locale}/privacyAndPolicy`}>{t("privacy")}</Link>
             </li>
             <li>
               <Link href={`/${locale}/FAQs`}>{t("faq")}</Link>

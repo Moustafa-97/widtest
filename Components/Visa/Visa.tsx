@@ -58,7 +58,7 @@ export default function Visa({ setUserVisa }: ChildComponentProps) {
                 style={{
                   backgroundColor:
                     selectedVisa === visa.cardToken
-                      ? "var(--green)"
+                      ? "var(--lightGreen)"
                       : "var(--background)",
                   color:
                     selectedVisa === visa.cardToken
