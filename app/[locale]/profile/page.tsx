@@ -25,6 +25,7 @@ export default async function profilePage() {
   // const token = await cookiez.get("jwt")?.value;
   const token = localStorage.getItem("token");
   const getProfileData = async () => {
+    if (!token) return null;
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-profileInfo`,
       {

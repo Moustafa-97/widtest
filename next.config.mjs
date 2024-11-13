@@ -15,6 +15,7 @@ const nextConfig = {
       "www.parisattitude.com",
       "www.apartments.com",
       "cdn-icons-png.flaticon.com",
+      "images.remotePatterns"
     ], // Add your domain here
   },
   async rewrites() {

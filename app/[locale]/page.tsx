@@ -64,21 +64,21 @@ const TopRated = dynamic(
     ),
   }
 );
-// const Suggested = dynamic(
-//   () => import("@/Components/HomePage/SuggestTental/Suggested"),
-//   {
-//     ssr: true,
-//     loading: () => (
-//       <OrbitProgress
-//         style={{ margin: "auto" }}
-//         variant="dotted"
-//         dense
-//         color={"#47b3c5"}
-//         size="large"
-//       />
-//     ),
-//   }
-// );
+const Suggested = dynamic(
+  () => import("@/Components/HomePage/SuggestTental/Suggested"),
+  {
+    ssr: true,
+    loading: () => (
+      <OrbitProgress
+        style={{ margin: "auto" }}
+        variant="dotted"
+        dense
+        color={"#47b3c5"}
+        size="large"
+      />
+    ),
+  }
+);
 const Reviews = dynamic(() => import("@/Components/HomePage/Reviews/Reviews"), {
   ssr: true,
   loading: () => (
@@ -156,7 +156,7 @@ export default async function HomePage() {
               </p>
             </div>
             <div className={styles.suggestedCarousel}>
-              {/* <Suggested /> */}
+              <Suggested />
             </div>
           </div>
 

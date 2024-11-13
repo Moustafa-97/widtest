@@ -13,6 +13,7 @@ export default function ProfileHeader(props: any) {
   );
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const token = localStorage.getItem("token");
 
   // Function to upload the new profile picture
   const uploadProfilePic = async (file: File) => {
@@ -30,7 +31,7 @@ export default function ProfileHeader(props: any) {
           body: formData,
           credentials: "include",
           headers: {
-            Authorization: `Bearer ${process.env.NEXT_PUBLIC_TESTTOKEN}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );

@@ -178,7 +178,7 @@ export default function Account({
         </div>
 
         {/* Phone Number */}
-        <div className={styles.field}>
+        {/* <div className={styles.field}>
           {isEditing.phoneNumber ? (
             <>
               <label>
@@ -221,7 +221,7 @@ export default function Account({
               </button>
             </>
           )}
-        </div>
+        </div> */}
       </section>
     </>
   );
