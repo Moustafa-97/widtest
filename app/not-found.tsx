@@ -14,7 +14,7 @@ export default function NotFound() {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          height: "100vh",
+          height: "775px",
           width: "100%",
           gap: "25px",
           overflow: "hidden",
