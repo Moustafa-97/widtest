@@ -16,6 +16,7 @@ import { usePathname } from "next/navigation";
 import NoApartmentsAvailable from "./noApartment/NoApartmentsAvailable";
 import { IoLocationOutline } from "react-icons/io5";
 import { CiCalendarDate } from "react-icons/ci";
+import NoSearch from "./noSearch/noApartment/NoSearch";
 // import CardAp from "@/Components/Cards/ApartmentCard/CardAp";
 const CardAp = dynamic(
   () => import("@/Components/Cards/ApartmentCard/CardAp"),
@@ -489,13 +490,7 @@ export default function ApartmentsPage({
               <NoApartmentsAvailable />
             )
           ) : pathname === `/${locale}` ? null : (
-            <div className={styles.Placecontainer}>
-              <div className={styles.Placebox}>
-                <h1 className={styles.Placemessage}>
-                  Please add search fields
-                </h1>
-              </div>
-            </div>
+            <NoSearch />
           )}
         </div>
       </section>
