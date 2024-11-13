@@ -50,6 +50,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
+  min-height: fit-content;
   background-color: rgba(0, 0, 0, 0.5); /* Add background hue */
   display: flex;
   justify-content: center;
@@ -60,7 +61,8 @@
 .modal {
   background-color: white;
   width: 40vw;
-  height: 40vh;
+  height: 300px;
+  min-height: fit-content;
   padding: 20px;
   border-radius: 10px;
   position: relative;
@@ -76,6 +78,21 @@
 .modal pre {
   overflow-y: auto;
   max-height: 80%;
+}
+.modalForm{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  width: 90%;
+}
+.modalForm input{
+  width: 100%;
+  padding: 5px;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 5px;
 }
 @media (min-width: 150px) and (max-width: 770px) {
   .modal {

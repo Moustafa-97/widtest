@@ -70,19 +70,12 @@ const PaymentBtn = ({
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
-          credentials: "include",
 
           body: JSON.stringify({
             returnUrl: "https://www.widresidences.com/en",
             token: userVisa,
             customerData: {
-              name: customerData.name,
-              email: customerData.email,
-              street1: customerData.street1,
-              city: customerData.city,
-              state: customerData.state,
-              country: customerData.country,
-              zip: customerData.zip,
+              ...customerData,
             },
           }),
         }
@@ -90,8 +83,10 @@ const PaymentBtn = ({
       const res = await response.json();
       console.log("res", res);
 
-      if (res.ok) {
+      if (res.redirect_url) {
+
         console.log("Form submitted successfully", await res);
+        window.location.href = res.redirect_url;
       } else {
         console.error("Form submission failed", await res);
       }
@@ -148,7 +143,7 @@ const PaymentBtn = ({
             <div className={styles.modal} ref={modalRef}>
               <h2>Please insert the following</h2>
               {/* form */}
-              <form onSubmit={handleSubmit}>
+              <form className={styles.modalForm} onSubmit={handleSubmit}>
                 <input
                   type="text"
                   name="name"

@@ -334,24 +334,11 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
             <Visa setUserVisa={setUserVisa} />
           </section>
           <section className={styles.pay}>
-            {/* <PaymentBtn
-              merchantEmail="moustafa@me.com"
-              secretKey="SBJ9NJR2GL-JJZBL9WTTR-K6ZJHGN2K6"
-              siteUrl="https://widresideces.com"
-              returnUrl="https://widresideces.com"
-              amount={100.0}
-              currency="USD"
-              customerEmail="customer@example.com"
-              customerPhone="123456789"
-              orderId="123456"
-              productTitle="Your Product"
-              productDescription="Product description goes here"
-            /> */}
             <PaymentBtn
               text="Pay Now"
               method="POST"
               data={{ checkInDate: start_date, checkOutDate: end_date }}
-              endpoint1={`/v1/booking/pay-with-saved-card/${apartment?.id}?locale=ar`}
+              endpoint1={`/v1/booking/pay-with-saved-card/cm3ef55n70034392mf0etm2jt?locale=ar`}
               endpoint2={`/v1/booking/check-availability-and-lock/${apartment?.id}`}
               width="100%"
               token={token}
