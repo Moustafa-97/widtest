@@ -15,66 +15,93 @@ interface ApiButtonProps {
   width: string;
   token: string | any;
   locale: string | null;
+  userVisa?: string;
 }
-
+interface CustomerData {
+  name: string;
+  email: string;
+  street1: string;
+  city: string;
+  state: string;
+  country: string;
+  zip: string;
+}
 const PaymentBtn = ({
-  method,
+  // method,
   endpoint1,
-  endpoint2,
-  data,
+  // endpoint2,
+  // data,
   text,
   token,
-}: // locale,
-ApiButtonProps) => {
+  userVisa,
+}: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState<any>(null);
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   const locale = useLocale();
-  const handleClick = async () => {
-    setLoading(true);
+
+  const [customerData, setCustomerData] = useState<CustomerData>({
+    name: "",
+    email: "",
+    street1: "",
+    city: "",
+    state: "",
+    country: "",
+    zip: "",
+  });
+
+  // const returnUrl = "https://widresidences.com";
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCustomerData({ ...customerData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("customerData", { ...customerData });
+
     try {
-      await fetch(`${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint2}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const options: RequestInit = {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-      };
-
-      if (method !== "GET" && data) {
-        options.body = JSON.stringify(data);
-      }
-
-      const res = await fetch(
+      const response = await fetch(
         `${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint1}`,
-        options
+        {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+
+          body: JSON.stringify({
+            returnUrl: "https://www.widresidences.com/en",
+            token: userVisa,
+            customerData: {
+              name: customerData.name,
+              email: customerData.email,
+              street1: customerData.street1,
+              city: customerData.city,
+              state: customerData.state,
+              country: customerData.country,
+              zip: customerData.zip,
+            },
+          }),
+        }
       );
+      const res = await response.json();
+      console.log("res", res);
 
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
+      if (res.ok) {
+        console.log("Form submitted successfully", await res);
+      } else {
+        console.error("Form submission failed", await res);
       }
-
-      const result = await res.json();
-      if (result.redirect_url) {
-        // window.location.href = result.redirect_url;
-        console.log(result);
-      }
-      setResponse(result);
-      setShowModal(true);
     } catch (error) {
-      console.error("API request failed:", error);
-    } finally {
-      setLoading(false);
+      console.error("Error submitting form:", error);
     }
+  };
+  const handleClick = async () => {
+    setLoading(false);
+    setShowModal(true);
   };
 
   // Close modal when clicking outside of it
@@ -119,8 +146,68 @@ ApiButtonProps) => {
         {showModal && (
           <div className={styles.modalOverlay}>
             <div className={styles.modal} ref={modalRef}>
-              <h2>Redirecting</h2>
-              <p>{response.message}</p>
+              <h2>Please insert the following</h2>
+              {/* form */}
+              <form onSubmit={handleSubmit}>
+                <input
+                  type="text"
+                  name="name"
+                  placeholder="Name"
+                  value={customerData.name}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  value={customerData.email}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="text"
+                  name="street1"
+                  placeholder="Street"
+                  value={customerData.street1}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="text"
+                  name="city"
+                  placeholder="City"
+                  value={customerData.city}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="text"
+                  name="state"
+                  placeholder="State"
+                  value={customerData.state}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="text"
+                  name="country"
+                  placeholder="Country"
+                  value={customerData.country}
+                  onChange={handleChange}
+                  required
+                />
+                <input
+                  type="text"
+                  name="zip"
+                  placeholder="Zip Code"
+                  value={customerData.zip}
+                  onChange={handleChange}
+                  required
+                />
+                <button type="submit">Submit</button>
+              </form>
+              {/* <p>{response.message}</p> */}
             </div>
           </div>
         )}
@@ -137,6 +224,51 @@ ApiButtonProps) => {
 };
 
 export default PaymentBtn;
+
+// const handleClick = async () => {
+//   setLoading(false);
+//   // setLoading(true);
+//   // try {
+//   // await fetch(`${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint2}`, {
+//   //   method: "GET",
+//   //   headers: {
+//   //     "Content-Type": "application/json",
+//   //   },
+//   // });
+
+//   // const options: RequestInit = {
+//   //   method,
+//   //   headers: {
+//   //     "Content-Type": "application/json",
+//   //     ...(token ? { Authorization: `Bearer ${token}` } : {}),
+//   //   },
+//   // };
+
+//   // if (method !== "GET" && data) {
+//   // options.body = JSON.stringify(data);
+//   // }
+
+//   // const res = await fetch(
+//   // `${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint1}`,
+//   // options
+//   // );
+
+//   // if (!res.ok) {
+//   //   throw new Error(`HTTP error! status: ${res.status}`);
+//   // }
+
+//   // const result = await res.json();
+//   // if (result.redirect_url) {
+//   // window.location.href = result.redirect_url;
+//   // }
+//   // setResponse(result);
+//   setShowModal(true);
+//   // } catch (error) {
+//   // console.error("API request failed:", error);
+//   // } finally {
+//   // setLoading(false);
+//   // }
+// };
 
 // /////////////////////////////////////////////////////////////
 

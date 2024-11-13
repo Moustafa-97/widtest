@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import React, { useEffect, useState } from "react";
 import styles from "./payment.module.css";
@@ -196,6 +197,8 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
   const bill = billData?.booking?.localizedBookedApartment;
   const apartment = apartmentData?.data;
 
+  const [userVisa, setUserVisa] = useState<string>();
+
   return (
     <section className="g-container" style={{ width: "100vw" }}>
       <div className={styles.paymentCard}>
@@ -328,7 +331,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
           )}
 
           <section className={styles.visa}>
-            <Visa />
+            <Visa setUserVisa={setUserVisa} />
           </section>
           <section className={styles.pay}>
             {/* <PaymentBtn
@@ -348,11 +351,12 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
               text="Pay Now"
               method="POST"
               data={{ checkInDate: start_date, checkOutDate: end_date }}
-              endpoint1={`/v1/booking/create-paytabs-session/${apartment?.id}`}
+              endpoint1={`/v1/booking/pay-with-saved-card/${apartment?.id}?locale=ar`}
               endpoint2={`/v1/booking/check-availability-and-lock/${apartment?.id}`}
               width="100%"
               token={token}
               locale={locale}
+              userVisa={userVisa}
             />
           </section>
         </div>
