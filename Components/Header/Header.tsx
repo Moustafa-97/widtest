@@ -97,7 +97,7 @@ export default function Header({ token }: { token: string | any }) {
             </div>
             <li
               className={`${styles.navbarLogo} ${styles.navbarLi}`}
-              style={{ width: "35vw" }}
+              // style={{ width: "35vw" }}
             >
               <Link href={`/${locale}`} prefetch={true}>
                 <div className={styles.logo}>

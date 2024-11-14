@@ -2,8 +2,11 @@
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import "./globals.css";
-import HeaderLayout from "./HeaderLayout";
 import { Montserrat } from "next/font/google";
+import dynamic from "next/dynamic";
+const HeaderLayout = dynamic(() => import("./HeaderLayout"), {
+  ssr: false,
+});
 
 const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],

@@ -5,12 +5,13 @@
   padding: 0px 10px;
   background-color: #fff;
   border-bottom: 1px solid #ccc;
-  width: 85%;
+  width: 86.1%;
+  /* min-width: fit-content; */
   position: absolute;
   top: 58px;
   left: 50%;
   z-index: 1;
-  height: 60px;
+  height: 72px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   transform: translateX(-50%);
   -webkit-transform: translateX(-50%);
@@ -25,14 +26,14 @@
 }
 .navbar .navbarList {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   list-style: none;
 }
 .navbar .navbarList .navbardiv {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -42,11 +43,11 @@
 }
 .navbar .navbarList .navbarLi {
   cursor: pointer;
-  width: 100%;
+  width: fit-content;
   height: 100%;
   margin: auto;
   text-align: center;
-  padding: 0 2px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -71,8 +72,8 @@
 
 .navbar .navbarList .navbarLi a {
   text-decoration: none;
-  width: 100%;
-  font-size: calc(0.7vw + 10px);
+  width: fit-content;
+  font-size: clamp(10px,4vw,20px);
   font-weight: 500;
   line-height: 30px;
   color: #000;
@@ -86,6 +87,7 @@
   padding: 0;
   cursor: pointer;
   height: 89px;
+  width: 210px;
   background-color: #fff;
   border-radius: 10px;
   -webkit-border-radius: 10px;

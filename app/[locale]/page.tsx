@@ -37,7 +37,7 @@ const Offer = dynamic(() => import("@/Components/HomePage/Offer/Offer"), {
 const ApartmentsPage = dynamic(
   () => import("@/Components/searchPage/ApartmentsPage"),
   {
-    ssr: true,
+    ssr: false,
     loading: () => (
       <OrbitProgress
         style={{ margin: "auto" }}
@@ -52,7 +52,7 @@ const ApartmentsPage = dynamic(
 const TopRated = dynamic(
   () => import("@/Components/HomePage/TopRated/TopRated"),
   {
-    ssr: true,
+    ssr: false,
     loading: () => (
       <OrbitProgress
         style={{ margin: "auto" }}
@@ -67,7 +67,7 @@ const TopRated = dynamic(
 const Suggested = dynamic(
   () => import("@/Components/HomePage/SuggestTental/Suggested"),
   {
-    ssr: true,
+    ssr: false,
     loading: () => (
       <OrbitProgress
         style={{ margin: "auto" }}
@@ -80,7 +80,7 @@ const Suggested = dynamic(
   }
 );
 const Reviews = dynamic(() => import("@/Components/HomePage/Reviews/Reviews"), {
-  ssr: true,
+  ssr: false,
   loading: () => (
     <OrbitProgress
       style={{ margin: "auto" }}

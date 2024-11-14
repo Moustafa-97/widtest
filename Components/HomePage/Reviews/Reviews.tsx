@@ -10,7 +10,6 @@ const Carousel = dynamic(() => import("@/Components/Carousel/Carousel"), {
   ssr: false,
 });
 
-
 export default async function Reviews() {
   const locale: "en" | "ar" | any = getLocale();
   const fetchData = async () => {
@@ -49,15 +48,17 @@ export default async function Reviews() {
                 </div>
               </div>
               <div className={styles.userSection}>
-                <Image
-                  width={500}
-                  height={500}
-                  placeholder="empty"
-                  loading="lazy"
-                  src={item.User.profilePicture}
-                  alt="Apartment"
-                  className={styles.image}
-                />
+                {item.User.profilePicture && (
+                  <Image
+                    width={500}
+                    height={500}
+                    placeholder="empty"
+                    loading="lazy"
+                    src={item.User.profilePicture}
+                    alt="Apartment"
+                    className={styles.image}
+                  />
+                )}
                 <div>
                   <p>
                     {item.User.lastName} {item.User.lastName}
@@ -71,15 +72,17 @@ export default async function Reviews() {
             </div>
 
             <div className={styles.imgSection}>
-              <Image
-                width={500}
-                height={500}
-                placeholder="empty"
-                loading="lazy"
-                src={item.Apartment.ApartmentImage}
-                alt="Apartment"
-                className={styles.image}
-              />
+              {item.Apartment.ApartmentImage && (
+                <Image
+                  width={500}
+                  height={500}
+                  placeholder="empty"
+                  loading="lazy"
+                  src={item.Apartment.ApartmentImage}
+                  alt="Apartment"
+                  className={styles.image}
+                />
+              )}
             </div>
           </div>
         </div>

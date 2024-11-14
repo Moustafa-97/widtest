@@ -32,13 +32,15 @@ export default async function TopRated() {
         index: number
       ) => (
         <div key={index} className={styles.card}>
-          <Image
-            width={1000}
-            height={1000}
-            src={item.ApartmentImage}
-            alt="Apartment"
-            className={styles.image}
-          />
+          {item.ApartmentImage && (
+            <Image
+              width={1000}
+              height={1000}
+              src={item.ApartmentImage}
+              alt="Apartment"
+              className={styles.image}
+            />
+          )}
           <div className={styles.bookParagraph}>
             <p>
               {item.name.length <= 26

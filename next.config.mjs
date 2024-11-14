@@ -5,18 +5,44 @@ const withNextIntl = createNextIntlPlugin();
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "wid-residencies.sgp1.digitaloceanspaces.com",
-      "cdn.sanity.io",
-      "smartrehabcity.co",
-      "dynamic-media-cdn.tripadvisor.com",
-      "images.pexels.com",
-      "cf.bstatic.com",
-      "www.parisattitude.com",
-      "www.apartments.com",
-      "cdn-icons-png.flaticon.com",
-      "images.remotePatterns"
-    ], // Add your domain here
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "wid-residencies.sgp1.digitaloceanspaces.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+      {
+        protocol: "https",
+        hostname: "smartrehabcity.co",
+      },
+      {
+        protocol: "https",
+        hostname: "dynamic-media-cdn.tripadvisor.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cf.bstatic.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.parisattitude.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.apartments.com",
+      },
+      {
+        protocol: "https",
+        hostname: "cdn-icons-png.flaticon.com",
+      },
+    ],
   },
   async rewrites() {
     return [

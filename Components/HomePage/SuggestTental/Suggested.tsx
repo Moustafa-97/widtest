@@ -11,7 +11,6 @@ import { FaRestroom } from "react-icons/fa6";
 const Carousel = dynamic(() => import("@/Components/Carousel/Carousel"), {
   ssr: false,
 });
-import contactimg from "@/public/AboutGarden.png";
 
 import LikeBtn from "./likeBtn/LikeBtn";
 import { MdBedroomParent } from "react-icons/md";
@@ -66,14 +65,16 @@ export default function Suggested() {
       return (
         <div key={item.id} className={styles.card}>
           <div className={styles.imageContainer}>
-            <Image
-              src={item?.ApartmentImage ? item?.ApartmentImage : contactimg}
-              alt={item.name}
-              width={500}
-              height={500}
-              property="lazy"
-              className={styles.apartmentImage}
-            />
+            {item?.ApartmentImage && (
+              <Image
+                src={item?.ApartmentImage}
+                alt={item.name}
+                width={500}
+                height={500}
+                property="lazy"
+                className={styles.apartmentImage}
+              />
+            )}
             <div className={styles.likeButton}>
               <LikeBtn
                 method={"POST"}
