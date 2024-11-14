@@ -25,6 +25,7 @@
 .imageContainer {
   position: relative;
   height: 70%;
+  min-height: 384px;
 }
 
 .apartmentImage {
@@ -103,7 +104,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
 }
 .supply svg {
   font-size: 20px;

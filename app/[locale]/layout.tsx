@@ -17,9 +17,9 @@ export const metadata = {
   description:
     "Discover and book your ideal apartment with ease using Wid Residences.",
   icons: {
-    icon: "/logo.svg",  // Regular favicon
-    shortcut: "/logo.svg",  // Shortcut icon (used in bookmarks)
-    apple: "/logo.svg",  // Apple Touch icon
+    icon: "/logo.svg",
+    shortcut: "/logo.svg",
+    apple: "/logo.svg",
   },
   keywords: [
     "apartment booking",
@@ -84,7 +84,6 @@ export const metadata = {
     },
   ],
 };
-
 
 export default async function LocaleLayout({
   children,
