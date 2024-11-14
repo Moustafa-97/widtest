@@ -63,51 +63,53 @@ export default function Suggested() {
   const cards = () => {
     return offers.map((item) => {
       return (
-        <div key={item.id} className={styles.card}>
-          <div className={styles.imageContainer}>
-            {item?.ApartmentImage && (
-              <Image
-                src={item?.ApartmentImage}
-                alt={item.name}
-                width={500}
-                height={500}
-                property="lazy"
-                className={styles.apartmentImage}
-              />
-            )}
-            <div className={styles.likeButton}>
-              <LikeBtn
-                method={"POST"}
-                endpoint={`/v1/wishlist/toggle-wish/${item.id}`}
-                id={item?.id}
-              />
+        item && (
+          <div key={item.id} className={styles.card}>
+            <div className={styles.imageContainer}>
+              {item?.ApartmentImage && (
+                <Image
+                  src={item?.ApartmentImage}
+                  alt={item.name}
+                  width={500}
+                  height={500}
+                  property="lazy"
+                  className={styles.apartmentImage}
+                />
+              )}
+              <div className={styles.likeButton}>
+                <LikeBtn
+                  method={"POST"}
+                  endpoint={`/v1/wishlist/toggle-wish/${item.id}`}
+                  id={item?.id}
+                />
+              </div>
             </div>
-          </div>
-          <Link
-            href={`${locale}/apartments/${item.id}`}
-            className={styles.details}
-          >
-            <h3 className={styles.name}>{item.name}</h3>
-            <p className={styles.address}>
-              {item.ApartmentAddress.District.name},{" "}
-              {item.ApartmentAddress.District.City.name}
-            </p>
+            <Link
+              href={`${locale}/apartments/${item.id}`}
+              className={styles.details}
+            >
+              <h3 className={styles.name}>{item.name}</h3>
+              <p className={styles.address}>
+                {item.ApartmentAddress.District.name},{" "}
+                {item.ApartmentAddress.District.City.name}
+              </p>
 
-            <div className={styles.rating}>
-              <div className={styles.supply}>
-                <FaBed /> <span>{item.ApartmentDetails.numberOfBeds}</span>
+              <div className={styles.rating}>
+                <div className={styles.supply}>
+                  <FaBed /> <span>{item.ApartmentDetails.numberOfBeds}</span>
+                </div>
+                <div className={styles.supply}>
+                  <MdBedroomParent />{" "}
+                  <span>{item.ApartmentDetails.numberOfBedRooms}</span>
+                </div>
+                <div className={styles.supply}>
+                  <FaRestroom />{" "}
+                  <span>{item.ApartmentDetails.numberOfBathrooms}</span>
+                </div>
               </div>
-              <div className={styles.supply}>
-                <MdBedroomParent />{" "}
-                <span>{item.ApartmentDetails.numberOfBedRooms}</span>
-              </div>
-              <div className={styles.supply}>
-                <FaRestroom />{" "}
-                <span>{item.ApartmentDetails.numberOfBathrooms}</span>
-              </div>
-            </div>
-          </Link>
-        </div>
+            </Link>
+          </div>
+        )
       );
     });
   };

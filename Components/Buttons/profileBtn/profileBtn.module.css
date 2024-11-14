@@ -12,8 +12,8 @@
 .button img {
   width: 20%;
   height: 20%;
-  min-height: 41px;
-  min-width: 41px;
+  min-height: 30px;
+  min-width: 30px;
   border-radius: 50%;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
