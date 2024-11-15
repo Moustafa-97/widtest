@@ -23,6 +23,10 @@ export default function HeaderLayout({
     `/${locale}/otp`,
     `/${locale}/resetPassword`,
   ];
+  const SecondaryheaderRoutes = [
+    `/${locale}/privacyAndPolicy`,
+    `/${locale}/termsAndConditions`,
+  ];
 
   return (
     <>
@@ -32,11 +36,12 @@ export default function HeaderLayout({
         </header>
       )}
       {children}
-      {!headerRoutes.includes(pathname) && (
-        <footer>
-          <MobileAppFooter />
-        </footer>
-      )}
+      {!headerRoutes.includes(pathname) &&
+        !SecondaryheaderRoutes.includes(pathname) && (
+          <footer>
+            <MobileAppFooter />
+          </footer>
+        )}
     </>
   );
 }

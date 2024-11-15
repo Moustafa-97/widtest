@@ -9,7 +9,7 @@ interface ChildComponentProps {
   setUserVisa: React.Dispatch<React.SetStateAction<string>> | any;
 }
 export default function Visa({ setUserVisa }: ChildComponentProps) {
-  // const [select, setSelect] = useState(false);
+
   const [selectedVisa, setSelectedVisa] = useState("Visa");
   setUserVisa(selectedVisa);
   const [visaNumber, setVisaNumber] = useState<any>([]);

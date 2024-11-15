@@ -32,7 +32,6 @@ export default function ProfileMain() {
     if (token) {
       axios
         .get(`${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-profileInfo`, {
-          withCredentials: true,
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -53,7 +52,6 @@ export default function ProfileMain() {
         .get(
           `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-bookings-history?locale=${locale}`,
           {
-            withCredentials: true,
             headers: {
               Authorization: `Bearer ${token}`,
             },

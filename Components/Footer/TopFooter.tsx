@@ -14,8 +14,8 @@ export default function TopFooter() {
             <div className={styles.textContainer}>
               <h2>Ready To Get Started?</h2>
               <p>
-                Risus Habitant Leo Egestas Mauris Diam Eget Morbi Tempus
-                Vulputate.
+                Download the app to book your next stay with ease. Explore,
+                compare, and reserve—all at your fingertips.
               </p>
             </div>
           </section>

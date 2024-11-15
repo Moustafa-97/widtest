@@ -96,14 +96,15 @@
     top: 0%;
     width: 92vw;
     height: fit-content;
-    overflow: visible;
+    min-height: fit-content;
+    /* overflow: visible; */
     margin: auto;
     padding: 1%;
-    transform: translateX(-50%);
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
-    -ms-transform: translateX(-50%);
-    -o-transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50px);
+    -webkit-transform: translateX(-50%) translateY(-50px);
+    -moz-transform: translateX(-50%) translateY(-50px);
+    -ms-transform: translateX(-50%) translateY(-50px);
+    -o-transform: translateX(-50%) translateY(-50px);
   }
   .calendarContainer div {
     width: 100%;

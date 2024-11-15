@@ -8,7 +8,7 @@
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 0.5fr auto;
-  gap: 16px;
+  row-gap: 16px;
   grid-template-areas:
     "image"
     "cards";
@@ -19,6 +19,7 @@
   margin: auto;
   width: 100%;
   height: 40vh;
+  min-height: 522px;
 }
 .image {
   width: 100%;
@@ -37,7 +38,8 @@
   display: grid;
   grid-template-columns: 1.5fr 1fr;
   grid-template-rows: minmax(100px, auto);
-  gap: 16px;
+  row-gap: 16px;
+  column-gap: 23px;
   align-items: start;
   grid-template-areas:
     "card1 card2"
@@ -46,18 +48,18 @@
 
 /* start room details styling */
 
-.detailsSection {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  width: 100%;
-}
 .detailsCard {
   grid-area: card1;
   width: 100%;
   height: fit-content;
-  margin: 0;
-  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  /* align-self: flex-start; */
+  margin: 0 auto;
+  padding: 32px 24px 48px 24px;
   background: #fff;
   border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -71,14 +73,12 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
-  gap: 1.667vw;
   margin: auto;
-  font-weight: 600;
-  margin-bottom: 16px;
 }
 
 .detailsCard .roomDetails .roomDescription {
-  font-size: 20px;
+  font-size: clamp(16px, 4vw, 24px);
+  font-weight: 700;
   width: 60%;
 }
 .detailsCard .roomDetails .roomDetailsPrice {
@@ -87,12 +87,13 @@
   color: var(--peach);
 }
 .detailsCard .roomDetails .roomDetailsPrice p {
-  font-size: clamp(16px, 4vw, 20px);
+  font-size: clamp(16px, 4vw, 32px);
   line-height: 24.38px;
-  font-weight: 600;
+  font-weight: 700;
 }
 .detailsCard .roomDetails .roomDetailsPrice span {
   font-size: clamp(10px, 4vw, 14px);
+  font-weight: 700;
 }
 
 .detailsCard .locationDetails {
@@ -101,9 +102,10 @@
   align-items: center;
   gap: 24px;
   margin: auto;
+  margin-bottom: 16px;
   font-weight: 600;
   border: 1px solid var(--lightGreen);
-  padding: 12px;
+  padding: 16px 32px;
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -147,20 +149,33 @@
   color: var(--notBlack);
   margin-top: 8px;
 }
+.detailsCard .locationDetails .hotelLocation .hotelLocationPin p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.detailsCard .locationDetails .hotelLocation .hotelLocationPin p svg {
+  fill: #000;
+  stroke: #000;
+  transform: translateY(1.2px);
+  -webkit-transform: translateY(1.2px);
+  -moz-transform: translateY(1.2px);
+  -ms-transform: translateY(1.2px);
+  -o-transform: translateY(1.2px);
+}
 
 .detailsCard .bookingTime {
   font-size: clamp(8px, 4vw, 14px);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* flex-wrap: wrap; */
-  margin-top: 40px;
+  width: 100%;
 }
 .detailsCard .noBookingTime {
   border: 0.5px solid var(--lightGreen);
   width: 100%;
   height: fit-content;
-  margin-top: 40px;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -177,6 +192,8 @@
 .detailsCard .bookingTime .bookingCheck {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   gap: 8px;
 }
 .detailsCard .bookingTime .bookingCheck .bookingP {
@@ -216,15 +233,22 @@
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  transform: translateY(-76.6px);
+  -webkit-transform: translateY(-76.6px);
+  -moz-transform: translateY(-76.6px);
+  -ms-transform: translateY(-76.6px);
+  -o-transform: translateY(-76.6px);
 }
 .pay {
   grid-area: pay;
   width: 100%;
+  height: 48px;
   border-radius: 12px;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+  
 }
 
 /* start bill checkout styling */
@@ -234,9 +258,9 @@
 .chechoutCard {
   grid-area: card2;
   width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 16px;
+  min-height: fit-content;
+  margin: 0 auto;
+  padding: 19px 21px 20px 21px;
   background: #fff;
   border-radius: 20px;
   -webkit-border-radius: 20px;
@@ -254,55 +278,46 @@
   font-weight: 600;
   font-size: clamp(8px, 4vw, 14px);
 }
-
+.chechoutCardRoom {
+  width: 100%;
+}
 .chechoutCardRoom .roomOwner {
   width: 75%;
-  font-size: clamp(6px, 4vw, 12px);
+  font-size: clamp(6px, 4vw, 14px);
   line-height: 19.5px;
   font-weight: 500;
   color: var(--notBlack);
+  margin-bottom: 4px;
+  opacity: 75%;
 }
 .chechoutCardRoom .roomDetails {
   width: 85%;
-  font-size: clamp(8px, 4vw, 14px);
+  font-size: clamp(16px, 4vw, 20px);
   line-height: 24.38px;
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-bottom: 16px;
 }
 .chechoutCardRoom .roomRating {
   width: 75%;
-  font-size: clamp(8px, 4vw, 14px);
+  font-size: clamp(8px, 4vw, 12px);
   line-height: 19.5px;
   font-weight: 500;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  margin-bottom: 8px;
+  margin-bottom: 16px;
 }
-.chechoutCardRoom .roomRating .roomRate {
-  border: 1px solid var(--lightGreen);
-  padding: 2px;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-}
-.chechoutCardRoom .roomRating .roomRateDetail {
-  font-size: clamp(6px, 4vw, 12px);
-}
-.chechoutCardRoom .roomRating .roomRateDetail .roomRateEVGP {
-  font-weight: 700;
-}
+
 .chechoutCardRoom .roomProtection {
   width: 100%;
-  font-size: clamp(8px, 4vw, 16px);
+  font-size: clamp(10px, 4vw, 16px);
   line-height: 20px;
   font-weight: 500;
-  padding: 6px 0;
+  padding: 16px 0;
   border-top: 1px solid rgba(0, 0, 0, 0.25);
   border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+  margin-bottom: 16px;
 }
 
 /* start bill */
@@ -311,13 +326,11 @@
   width: 100%;
   height: 100%;
   min-height: fit-content;
-  margin-top: 16px;
-  font-size: clamp(8px, 4vw, 16px);
   line-height: 20px;
-  font-weight: 500;
 }
 .chechoutCardBill .chechoutBillHeader {
   width: 100%;
+  font-size: clamp(8px, 4vw, 16px);
   font-weight: 700;
   margin-bottom: 19px;
 }
@@ -332,7 +345,6 @@
 }
 .chechoutCardBill .chechoutBill ul li {
   width: 100%;
-  font-size: 14px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -342,14 +354,16 @@
 }
 .chechoutCardBill .chechoutBill ul li p {
   font-weight: 500;
+  font-size: 16px;
   line-height: 19.5px;
 }
 .chechoutCardBill .chechoutBill ul li span {
   font-weight: 600;
+  font-size: 16px;
   line-height: 19.5px;
 }
 .chechoutCardBill .chechoutBill ul .chechoutBillTotal {
-  padding: 8px 0;
+  padding: 16.5px 0 0 0;
   border-top: 1px solid rgba(0, 0, 0, 0.25);
 }
 /* end bill checkout styling */
@@ -357,8 +371,8 @@
 @media (min-width: 150px) and (max-width: 770px) {
   .paymentCard {
     width: 92%;
-    overflow-y: hidden;
     margin: auto;
+    margin-bottom: 75px;
   }
   .cardsSection {
     grid-area: cards;
@@ -386,5 +400,6 @@
     -moz-border-radius: 12px;
     -ms-border-radius: 12px;
     -o-border-radius: 12px;
+    transform: translateY(0px);
   }
 }

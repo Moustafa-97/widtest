@@ -2,6 +2,7 @@
 .button {
   background: var(--green);
   width: 100%;
+  height: 100%;
   padding: 10px;
   border: none;
   cursor: pointer;
@@ -44,82 +45,148 @@
 }
 
 /* modal */
-.modalSaveOverlay,
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
-  min-height: fit-content;
-  background-color: rgba(0, 0, 0, 0.5); /* Add background hue */
+
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
-.modalSaveOverlay {
-  z-index: 1005;
-}
-.modalSaveOverlay .modal h2 {
+.modalOverlay .modal h2 {
   margin: auto;
-  padding-bottom: 50px;
+  padding-bottom: 15px;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 46px;
+  text-align: left;
+  color: var(--lightGreen);
+  text-decoration-skip-ink: none;
+}
+.modalOverlay .modal h3 {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 46px;
+  text-align: left;
+  text-decoration-skip-ink: none;
+  margin-bottom: 13px;
 }
 
 .modal {
   background-color: white;
   width: 40vw;
-  height: 300px;
-  min-height: fit-content;
-  padding: 20px;
+  height: 60%;
+  max-height: 80vh;
+  overflow-y: scroll;
+  padding: 47.5px 42px 48px 32px;
   border-radius: 10px;
   position: relative;
   z-index: 1000;
+  margin: auto;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+
+.modalForm {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  margin: auto;
+  flex-direction: column;
+  gap: 5px;
+}
+.formRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+}
+.inputSection {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin: auto;
-}
-
-.modal pre {
-  overflow-y: auto;
-  max-height: 80%;
-}
-.modalForm{
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    margin: auto;
-    flex-direction: column;
-    gap: 5px;
-}
-
-.modalForm input{
+  gap: 13px;
+  align-items: flex-start;
+  justify-content: flex-start;
   width: 100%;
-  padding: 12px 20px;
+}
+
+.modalForm input {
+  width: 100%;
+  padding: 5px 20px;
   margin: 7px auto;
   border-radius: 4px;
-  border: 1px solid #6d7280;
+  border: 1px solid #e0e5f2;
   box-sizing: border-box;
   font-size: 16px;
   font-weight: 400;
   line-height: 26px;
   letter-spacing: -0.02em;
 }
-.modalSaveBtns{
+.modalForm input:focus,
+.modalForm input:focus-visible {
+  border: 1px solid var(--lightGreen);
+}
+.modalForm input::placeholder {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-decoration-skip-ink: none;
+  color: #a3aed0;
+}
+.modalForm label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 14px;
+  letter-spacing: -0.02em;
+  text-align: left;
+  text-decoration-skip-ink: none;
+  color: var(--green);
+}
+.radioSection {
+  border: 1px solid #e0e5f2;
+  height: 40px;
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: row-reverse;
   align-items: center;
-  gap:50px;
-
+  justify-content: flex-end;
+  margin: 0 auto;
+  border: 1px solid #4f8f92;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.formRow .radioSection {
+  margin-top: 23px;
+  background-color: #4b4b4b6e;
+}
+.radioSection input {
+  margin: 0;
+  width: 15%;
+}
+.radioSection label {
+  color: #4b4b4b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: start;
 }
 .button {
   background: var(--green);
   width: 100%;
   padding: 10px;
+  margin-top: 24px;
   border: none;
   cursor: pointer;
   color: #fff;
@@ -146,6 +213,14 @@
 }
 @media (min-width: 150px) and (max-width: 770px) {
   .modal {
-    width: 80vw;
+    width: 92vw;
+    padding: 20px 10px;
+  }
+  .formRow {
+    flex-direction: column;
+    gap: 0;
+  }
+  .inputSection {
+    margin: 7px 0;
   }
 }

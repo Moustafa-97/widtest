@@ -8,25 +8,19 @@ import styles from "./carousel.module.css";
 
 type Props = {
   cards: any[];
-  isFor: string;
 };
 
-const Carousel = (props: Props) => {
-  const { cards, isFor } = props;
+const SuggestedCaro = (props: Props) => {
+  const { cards } = props;
 
-  const [screenWidth, setScreenWidth] = useState<number>(
-    typeof window !== "undefined" ? window.innerWidth : 0
-  );
+  const [screenWidth, setScreenWidth] = useState<number>(typeof window !== "undefined" ? window.innerWidth : 0);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const calculatePerView = (width: number, isFor: string) => {
-    if (width <= 800) return 1;
-    return isFor === "suggest" ? 2 : 3;
-  };
+  const calculatePerView = (width: number) => (width <= 800 ? 1 : 2);
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     slides: {
-      perView: calculatePerView(screenWidth, isFor),
+      perView: calculatePerView(screenWidth),
       spacing: 15,
     },
     slideChanged(slider) {
@@ -39,28 +33,29 @@ const Carousel = (props: Props) => {
       const newWidth = window.innerWidth;
       setScreenWidth(newWidth);
 
+      // Update the KeenSlider settings dynamically on resize
       if (instanceRef.current) {
         instanceRef.current.update({
           slides: {
-            perView: calculatePerView(newWidth, isFor),
+            perView: calculatePerView(newWidth),
             spacing: 15,
           },
         });
       }
     };
 
-    handleResize(); // Set initial values
+    handleResize(); // Set initial screen size and perView
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [instanceRef, isFor]);
+  }, [instanceRef]);
 
   if (!cards || cards.length === 0) {
-    return null; // Graceful fallback for empty cards
+    return null; // Handle empty cards gracefully
   }
 
   // Calculate the number of dots to display
-  const perView = calculatePerView(screenWidth, isFor);
+  const perView = calculatePerView(screenWidth);
   const dotsCount = Math.max(0, cards.length - perView) + 1;
 
   const handleDotClick = (index: number) => {
@@ -73,13 +68,7 @@ const Carousel = (props: Props) => {
         {cards.map((card, index) => (
           <div key={index} className="keen-slider__slide">
             <div
-              style={
-                isFor === "suggest"
-                  ? { backgroundColor: "#fff" }
-                  : isFor === "review"
-                  ? { minHeight: "60.516vh" }
-                  : {}
-              }
+              style={{ backgroundColor: "#fff" }}
               className={`${styles.card} number-slide${index + 1}`}
             >
               {card}
@@ -87,7 +76,7 @@ const Carousel = (props: Props) => {
           </div>
         ))}
       </div>
-      {dotsCount > 1 && (
+      {dotsCount > 1 ? (
         <div className={styles.dots}>
           {Array.from({ length: dotsCount }).map((_, idx) => (
             <div
@@ -99,9 +88,9 @@ const Carousel = (props: Props) => {
             ></div>
           ))}
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
 
-export default Carousel;
+export default SuggestedCaro;

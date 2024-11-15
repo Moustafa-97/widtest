@@ -6,12 +6,12 @@ import pic from "@/public/payment-page-room.jpeg";
 import logo from "@/public/hotelLogo.jpeg";
 import { RiHotelFill } from "react-icons/ri";
 import axios from "axios";
-import { BiLocationPlus } from "react-icons/bi";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import ApartmentReviews from "../ApartmentReviews/ApartmentReviews";
 import PaymentBtn from "../Buttons/paymentBtn/PaymentBtn";
 import { useLocale, useTranslations } from "next-intl";
+import { FaLocationPin } from "react-icons/fa6";
 
 const Visa = dynamic(() => import("@/Components/Visa/Visa"), { ssr: false });
 const DateSelect = dynamic(() => import("./dateSelect/DateSelect"), {
@@ -201,7 +201,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
   const [userVisa, setUserVisa] = useState<string | null>(null);
 
   return (
-    <section className="g-container" style={{ width: "100vw" }}>
+    <section className="g-container" style={{ width: "100vw", minHeight: "fit-content" }}>
       <div className={styles.paymentCard}>
         <section className={styles.paymentCardImage}>
           <Image
@@ -244,9 +244,11 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
                 <div className={styles.hotelLocationPin}>
                   <p>
                     <span>
-                      <BiLocationPlus />
+                      <FaLocationPin />
                     </span>
-                    {`${apartment?.ApartmentAddress.addressLine}, ${apartment?.ApartmentAddress.City.name}, ${apartment?.ApartmentAddress.District.name}`}
+                    <span>
+                      {`${apartment?.ApartmentAddress.addressLine}, ${apartment?.ApartmentAddress.City.name}, ${apartment?.ApartmentAddress.District.name}`}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -292,7 +294,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
                   <ApartmentReviews rate={bill?.Apartment?.avgRating} />
                 </div>
                 <div className={styles.roomProtection}>
-                  <p>your booking protected by wid</p>
+                  <p>Your booking protected by wid</p>
                 </div>
               </div>
               <div className={styles.chechoutCardBill}>

@@ -10,11 +10,13 @@ import { FaBed } from "react-icons/fa";
 import { FaRestroom } from "react-icons/fa6";
 const Carousel = dynamic(() => import("@/Components/Carousel/Carousel"), {
   ssr: false,
+  loading: () => <Loading />,
 });
-
+// import Carousel from "@/Components/Carousel/Carousel";
 import LikeBtn from "./likeBtn/LikeBtn";
 import { MdBedroomParent } from "react-icons/md";
 import { useLocale } from "next-intl";
+import Loading from '../../../app/[locale]/loading';
 
 // Define the TypeScript type for the offer data structure
 type ApartmentOffer = {
@@ -63,53 +65,56 @@ export default function Suggested() {
   const cards = () => {
     return offers.map((item) => {
       return (
-        item && (
-          <div key={item.id} className={styles.card}>
-            <div className={styles.imageContainer}>
-              {item?.ApartmentImage && (
-                <Image
-                  src={item?.ApartmentImage}
-                  alt={item.name}
-                  width={500}
-                  height={500}
-                  property="lazy"
-                  className={styles.apartmentImage}
-                />
-              )}
-              <div className={styles.likeButton}>
-                <LikeBtn
-                  method={"POST"}
-                  endpoint={`/v1/wishlist/toggle-wish/${item.id}`}
-                  id={item?.id}
-                />
+        <div key={item.id} className={styles.card}>
+          <div className={styles.imageContainer}>
+              
+              <Image
+                src={item?.ApartmentImage}
+                alt={item.name}
+                width={1000}
+                height={1000}
+                style={{
+                  width: "100%",
+                  height: "384px",
+                  objectFit: "cover",
+                }}
+                // property="lazy"
+                className={styles.apartmentImage}
+              />
+            
+            <div className={styles.likeButton}>
+              <LikeBtn
+                method={"POST"}
+                endpoint={`/v1/wishlist/toggle-wish/${item.id}`}
+                id={item?.id}
+              />
+            </div>
+          </div>
+          <Link
+            href={`${locale}/apartments/${item.id}`}
+            className={styles.details}
+          >
+            <h3 className={styles.name}>{item.name}</h3>
+            <p className={styles.address}>
+              {item.ApartmentAddress.District.name},{" "}
+              {item.ApartmentAddress.District.City.name}
+            </p>
+
+            <div className={styles.rating}>
+              <div className={styles.supply}>
+                <FaBed /> <span>{item.ApartmentDetails.numberOfBeds}</span>
+              </div>
+              <div className={styles.supply}>
+                <MdBedroomParent />{" "}
+                <span>{item.ApartmentDetails.numberOfBedRooms}</span>
+              </div>
+              <div className={styles.supply}>
+                <FaRestroom />{" "}
+                <span>{item.ApartmentDetails.numberOfBathrooms}</span>
               </div>
             </div>
-            <Link
-              href={`${locale}/apartments/${item.id}`}
-              className={styles.details}
-            >
-              <h3 className={styles.name}>{item.name}</h3>
-              <p className={styles.address}>
-                {item.ApartmentAddress.District.name},{" "}
-                {item.ApartmentAddress.District.City.name}
-              </p>
-
-              <div className={styles.rating}>
-                <div className={styles.supply}>
-                  <FaBed /> <span>{item.ApartmentDetails.numberOfBeds}</span>
-                </div>
-                <div className={styles.supply}>
-                  <MdBedroomParent />{" "}
-                  <span>{item.ApartmentDetails.numberOfBedRooms}</span>
-                </div>
-                <div className={styles.supply}>
-                  <FaRestroom />{" "}
-                  <span>{item.ApartmentDetails.numberOfBathrooms}</span>
-                </div>
-              </div>
-            </Link>
-          </div>
-        )
+          </Link>
+        </div>
       );
     });
   };

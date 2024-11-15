@@ -1,0 +1,37 @@
+.visa{
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+}
+.visaCard{
+    background-color: var(--lightGreen);
+    width: 378px;
+    height: 212px;
+    border-radius: 16px;
+    padding: 16px;
+}
+.visaDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: auto;
+    height: 100%;
+}
+.visaDetails svg{
+    font-size: clamp(35px,4vw,55px);
+    color: #fff;
+}
+.visaDetails span{
+    align-self: flex-end;
+}
+.visaData{
+    font-size: clamp(16px,4vw,24px);
+    color: #fff;
+}
+
+@media (min-width: 150px) and (max-width: 770px) {
+    .visaCard{
+        width: 100%;
+    }
+}

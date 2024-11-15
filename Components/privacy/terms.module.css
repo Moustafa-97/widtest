@@ -2,6 +2,7 @@
   margin: auto;
   width: 86vw;
   padding: 15px;
+  margin-bottom: 150px;
   height: fit-content;
   min-height: fit-content;
 }
@@ -35,8 +36,8 @@
   text-align: left;
   text-decoration-skip-ink: none;
 }
-.container ul{
-    padding-left: 30px;
+.container ul {
+  padding-left: 30px;
 }
 .container a {
   color: var(--lightGreen);
@@ -45,6 +46,7 @@
 @media (min-width: 150px) and (max-width: 770px) {
   .container {
     margin: auto;
+    min-height: fit-content;
     width: 92vw;
     padding: 15px;
   }
