@@ -25,7 +25,7 @@ export default function ProfileMain() {
   const profileSections = ["Profile", "History", "Payment Methods"];
   const [profileData, setProfileData] = useState({});
   const [profileHistory, setProfileHistory] = useState([]);
-  const [isLogged, setIsLogged] = useState(false);
+  // const [isLogged, setIsLogged] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export default function ProfileMain() {
         })
         .then((response) => {
           if (response.status === 200) {
-            setIsLogged(true);
+            // setIsLogged(true);
             setProfileData(response.data);
           }
         })
@@ -47,7 +47,7 @@ export default function ProfileMain() {
   }, []);
   //   history
   useEffect(() => {
-    if (isLogged && token) {
+    if (token) {
       axios
         .get(
           `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-bookings-history?locale=${locale}`,
@@ -59,13 +59,14 @@ export default function ProfileMain() {
         )
         .then((response) => {
           if (response.status === 200) {
-            setIsLogged(true);
+            // setIsLogged(true);
             setProfileHistory(response.data);
           }
         })
         .catch((err) => console.log(err));
     }
   }, []);
+  
 
   return (
     <>
