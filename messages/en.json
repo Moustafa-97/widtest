@@ -39,7 +39,8 @@
     "CONTACT": "CONTACT",
     "LOGIN": "LOGIN",
     "SIGNUP": "SIGNUP",
-    "HISTORY": "HISTORY"
+    "HISTORY": "HISTORY",
+    "LOGOUT": "LOGOUT"
   },
   "Buttons": {
     "bookNow": "BOOK NOW"

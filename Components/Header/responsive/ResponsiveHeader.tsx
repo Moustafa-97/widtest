@@ -170,6 +170,23 @@ const ResponsiveHeader = ({
                     />
                   )}
                 </li>
+                <li>
+                  {!isLogged ? (
+                    ""
+                  ) : (
+                    <Link
+                      href={`#`}
+                      prefetch={true}
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        document.location.reload();
+                        setIsOpen(false);
+                      }}
+                    >
+                      {t("LOGOUT")}
+                    </Link>
+                  )}
+                </li>
               </ul>
             </div>
           </div>

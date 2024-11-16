@@ -11,7 +11,7 @@ interface Props {
   type: "submit" | "button" | "reset" | undefined;
   text: string | any;
   response: any;
-  token: string;
+  token: string | null;
 }
 
 export default function ProfileBtn(props: Props) {
@@ -27,6 +27,7 @@ export default function ProfileBtn(props: Props) {
   };
   const handleLogout = async () => {
     localStorage.removeItem("token");
+    document.location.reload();
   };
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

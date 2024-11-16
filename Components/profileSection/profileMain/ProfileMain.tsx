@@ -25,7 +25,6 @@ export default function ProfileMain() {
   const profileSections = ["Profile", "History", "Payment Methods"];
   const [profileData, setProfileData] = useState({});
   const [profileHistory, setProfileHistory] = useState([]);
-  // const [isLogged, setIsLogged] = useState(false);
   const token = localStorage.getItem("token");
 
   useEffect(() => {

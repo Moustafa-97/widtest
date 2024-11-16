@@ -41,7 +41,9 @@
     "CONTACT": "تواصل معنا",
     "LOGIN": "تسجيل الدخول",
     "SIGNUP": "انشاء حساب",
-    "HISTORY": "السجل"
+    "HISTORY": "السجل",
+    "LOGOUT": "تسجيل الخروج"
+
   },
   "Buttons": {
     "bookNow": "حجز الان"
