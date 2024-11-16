@@ -61,9 +61,9 @@
 .modalOverlay .modal h2 {
   margin: auto;
   padding-bottom: 15px;
-  font-size: 34px;
+  font-size: clamp(24px,4vw,34px);
   font-weight: 700;
-  line-height: 46px;
+  line-height: clamp(26px,4vw,46px);
   text-align: left;
   color: var(--lightGreen);
   text-decoration-skip-ink: none;

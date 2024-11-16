@@ -25,6 +25,8 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 /* start cards styling */
@@ -105,7 +107,7 @@
   margin-bottom: 16px;
   font-weight: 600;
   border: 1px solid var(--lightGreen);
-  padding: 16px 32px;
+  padding: 16px 8px 16px 8px;
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
@@ -113,6 +115,16 @@
   -o-border-radius: 8px;
 }
 .detailsCard .locationDetails .hotelLogo {
+  width: 63px;
+  min-height: 63px;
+  object-fit: cover;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+.detailsCard .locationDetails .hotelLogo .image {
   width: 63px;
   height: 63px;
   object-fit: cover;
@@ -122,28 +134,21 @@
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
 }
-.detailsCard .locationDetails .hotelLogo .image {
-  border-radius: 12px;
-  -webkit-border-radius: 12px;
-  -moz-border-radius: 12px;
-  -ms-border-radius: 12px;
-  -o-border-radius: 12px;
-}
 
 .detailsCard .locationDetails .hotelLocation .hotelName {
-  font-size: clamp(12px, 4vw, 24px);
-  line-height: 24.38px;
+  font-size: 14px;
+  line-height: 17.07px;
   font-weight: 600;
   margin-bottom: 4px;
   color: var(--notBlack);
 }
 .detailsCard .locationDetails .hotelLocation .hotelLocationPin {
-  font-size: clamp(8px, 4vw, 14px);
+  font-size: 12px;
   opacity: 75%;
   display: flex;
   align-items: center;
   gap: 2px;
-  line-height: 17px;
+  line-height: 14px;
   font-weight: 500;
   margin-bottom: 4px;
   color: var(--notBlack);
@@ -233,6 +238,9 @@
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
   -o-border-radius: 12px;
+
+}
+.transform {
   transform: translateY(-76.6px);
   -webkit-transform: translateY(-76.6px);
   -moz-transform: translateY(-76.6px);
@@ -373,6 +381,11 @@
     width: 92%;
     margin: auto;
     margin-bottom: 75px;
+  }
+  .paymentCardImage {
+    grid-area: image;
+    height: 25vh;
+    min-height: 150px;
   }
   .cardsSection {
     grid-area: cards;

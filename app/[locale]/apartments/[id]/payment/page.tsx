@@ -20,7 +20,7 @@ export default async function paymentPage({
 any) {
   return (
     <>
-      <section style={{ height: "fit-content", minHeight: "fit-content"  }}>
+      <section style={{ height: "fit-content", minHeight: "fit-content", paddingBottom: "20px " }}>
         <PaymentMainPage
           id={id}
           start_date={start_date}

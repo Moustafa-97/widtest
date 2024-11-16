@@ -201,7 +201,10 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
   const [userVisa, setUserVisa] = useState<string | null>(null);
 
   return (
-    <section className="g-container" style={{ width: "100vw", minHeight: "fit-content" }}>
+    <section
+      className="g-container"
+      style={{ width: "100vw", minHeight: "fit-content" }}
+    >
       <div className={styles.paymentCard}>
         <section className={styles.paymentCardImage}>
           <Image
@@ -333,7 +336,13 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
             </section>
           )}
 
-          <section className={styles.visa}>
+          <section
+            className={`${styles.visa} ${
+              startDate === "Invalid Date" && endDate === "Invalid Date"
+                ? ""
+                : styles.transform
+            }`}
+          >
             <Visa setUserVisa={setUserVisa} />
           </section>
           <section className={styles.pay}>
