@@ -1,13 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
+"use client";
 import { Metadata } from "next";
-import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "WID not found",
   description: "Booking application",
 };
-export default async function LocaleLayout({
+export default function LocaleLayout({
   children,
   params: { locale: locale },
 }: {
@@ -18,8 +17,7 @@ export default async function LocaleLayout({
     <html lang={locale}>
       <body>
         {children}
-        <Script src="https://secure-egypt.PayTabs.com/payment/js/paylib.js" />
       </body>
-     </html>
+    </html>
   );
 }
