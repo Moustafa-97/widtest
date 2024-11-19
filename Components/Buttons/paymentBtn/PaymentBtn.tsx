@@ -48,10 +48,7 @@ interface CustomerData {
   phoneNumber?: string;
 }
 const PaymentBtn = ({
-  // method,
   endpoint1,
-  // endpoint2,
-  // data,
   text,
   token,
   userVisa,
@@ -188,12 +185,12 @@ const PaymentBtn = ({
         {
           method: "POST",
           headers: {
-            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
 
           body: JSON.stringify({
-            returnUrl: "https://www.widresidences.com",
+            returnUrl: "https://www.widresidences.com/en/success",
             token: userVisa,
             customerData: {
               ...customerData,
