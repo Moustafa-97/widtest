@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// "use client"
+"use client";
 import React, { useMemo } from "react";
 import styles from "./cardap.module.css";
 import image from "../../../public/AboutGarden.png";
@@ -59,12 +59,12 @@ type Data =
     }[]
   | any;
 
-export default async function CardAp(props: Props) {
+export default function CardAp(props: Props) {
   // const locale = useLocale();
   const { apartmentData } = props;
   const t = useTranslations("SearchPage");
 
-  const data: Data = useMemo(() => apartmentData,[apartmentData]);
+  const data: Data = useMemo(() => apartmentData, [apartmentData]);
   return (
     <>
       <section className={styles.cardAp}>
