@@ -2,7 +2,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import dynamic from "next/dynamic";
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  useCallback,
+} from "react";
 import styles from "./apartments.module.css";
 import { DateRange, RangeKeyDict } from "react-date-range";
 import "react-date-range/dist/styles.css";
@@ -18,12 +24,12 @@ import { IoLocationOutline } from "react-icons/io5";
 import { CiCalendarDate } from "react-icons/ci";
 import NoSearch from "./noSearch/noApartment/NoSearch";
 // import CardAp from "@/Components/Cards/ApartmentCard/CardAp";
-const CardAp = dynamic(
+const CardAp = React.memo( dynamic(
   () => import("@/Components/Cards/ApartmentCard/CardAp"),
   {
     ssr: false,
   }
-);
+));
 
 // Define Data type properly
 type City = { id: number; name: string };
@@ -138,6 +144,7 @@ export default function ApartmentsPage({
   const [districtF, setDistrictF] = useState<DistrictList | null>();
   const districtList = useMemo(() => districtF, [districtF]);
   const [apartments, setApartments] = useState<Data[] | null>();
+  const apartmentsList = useMemo(() => apartments, [apartments]);
   const [errorMessage, setErrorMessage] = useState<any>();
 
   // selection handling 🔽
@@ -147,7 +154,7 @@ export default function ApartmentsPage({
   const [selectedcity, setSelectedcity] = useState<City | null>();
   const [selectedDistrict, setSelectedDistrict] = useState<District | null>();
 
-  const handleSelect = (ranges: RangeKeyDict | any) => {
+  const handleSelect = useCallback((ranges: RangeKeyDict | any) => {
     const selectedStartDate: string | any = ranges.selection.startDate;
     const selectedEndDate: string | any = ranges.selection.endDate;
 
@@ -172,7 +179,7 @@ export default function ApartmentsPage({
     setSelectedEnd(utcEnd.toISOString().split("T")[0]);
 
     setRange([ranges.selection]);
-  };
+  }, []);
 
   // fetch cities
   useEffect(() => {
@@ -208,6 +215,20 @@ export default function ApartmentsPage({
 
   // Fetch apartments
   // handleSearch
+  const handleCityClick = useCallback(
+    (city: string | any) => {
+      setSelectedcity(city);
+      setShowCity(false);
+    },
+    [setSelectedcity, setShowCity]
+  );
+  const handleDistrictClick = useCallback(
+    (dist: string | any) => {
+      setSelectedDistrict(dist);
+      setShowDistrict(false);
+    },
+    [setSelectedDistrict, setShowDistrict]
+  );
 
   useEffect(() => {
     const fetchApartments = async () => {
@@ -242,40 +263,48 @@ export default function ApartmentsPage({
     };
 
     fetchApartments();
-  }, [start_date, end_date, city, district, locale]);
+  }, [start_date, end_date, city, district]);
 
-  const handleSearch = async (event: any) => {
-    event.preventDefault();
+  const handleSearch = useCallback(
+    async (event: any) => {
+      event.preventDefault();
 
-    if (!selectedStart || !selectedEnd || !selectedcity || !selectedDistrict) {
-      return;
-    }
-    if (pathname === `/${await locale}`) {
-      router.push(
-        `/${await locale}/apartments?start_date=${selectedStart}&end_date=${selectedEnd}&city=${
-          selectedcity.id
-        }&district=${selectedDistrict.id}`
+      if (
+        !selectedStart ||
+        !selectedEnd ||
+        !selectedcity ||
+        !selectedDistrict
+      ) {
+        return;
+      }
+      if (pathname === `/${await locale}`) {
+        router.push(
+          `/${await locale}/apartments?start_date=${selectedStart}&end_date=${selectedEnd}&city=${
+            selectedcity.id
+          }&district=${selectedDistrict.id}`
+        );
+        return;
+      }
+
+      setLoading(true);
+
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/search/search-apartments?checkInDate=${selectedStart}&checkOutDate=${selectedEnd}&districtId=${selectedDistrict.id}&locale=${locale}`
       );
-      return;
-    }
-
-    setLoading(true);
-
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/search/search-apartments?checkInDate=${selectedStart}&checkOutDate=${selectedEnd}&districtId=${selectedDistrict.id}&locale=${locale}`
-    );
-    const data = await res.json();
-    if (Array.isArray(data)) {
-      setErrorMessage(null);
-      setApartments(data);
-      setLoading(false);
-    } else {
-      setApartments(null);
-      setErrorMessage(data);
-      setApartments(null);
-      setLoading(false);
-    }
-  };
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        setErrorMessage(null);
+        setApartments(data);
+        setLoading(false);
+      } else {
+        setApartments(null);
+        setErrorMessage(data);
+        setApartments(null);
+        setLoading(false);
+      }
+    },
+    [selectedStart, selectedEnd, selectedcity, selectedDistrict]
+  );
 
   // Render the apartments
   return (
@@ -321,12 +350,11 @@ export default function ApartmentsPage({
                   <div ref={cityRef} className={styles.selectionContainer}>
                     <ul>
                       {cityList &&
-                        cityList?.cities.map((city, index) => (
+                        cityList?.cities.map((city) => (
                           <li
-                            key={index}
+                            key={city.id}
                             onClick={() => {
-                              setSelectedcity(city);
-                              setShowCity(!showCity);
+                              handleCityClick(city);
                             }}
                           >
                             <IoLocationOutline className={styles.listIcon} />
@@ -376,13 +404,10 @@ export default function ApartmentsPage({
                   >
                     <ul>
                       {districtList &&
-                        districtList?.districts.map((dist, index) => (
+                        districtList?.districts.map((dist) => (
                           <li
-                            key={index}
-                            onClick={() => {
-                              setSelectedDistrict(dist);
-                              setShowDistrict(!showDistrict);
-                            }}
+                            key={dist.id}
+                            onClick={() => handleDistrictClick(dist)}
                             className={styles.cityList}
                           >
                             <IoLocationOutline className={styles.listIcon} />
@@ -466,12 +491,12 @@ export default function ApartmentsPage({
             </div>
           ) : errorMessage && errorMessage ? (
             <p>Please set feileds correctly...</p>
-          ) : apartments && apartments ? (
-            apartments.length > 0 ? (
-              apartments?.map((apartment, index) => (
+          ) : apartmentsList ? (
+            apartmentsList.length > 0 ? (
+              apartmentsList?.map((apartment) => (
                 <div
-                  key={index}
-                  style={{ zIndex: "1" }}
+                  key={apartment.id}
+                  // style={{ zIndex: "1" }}
                   className={styles.cardAp}
                 >
                   <CardAp

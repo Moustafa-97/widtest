@@ -1,3 +1,4 @@
+"use client";
 import dynamic from "next/dynamic";
 import React from "react";
 import styles from "./appartment.module.css";
@@ -7,7 +8,7 @@ import { OrbitProgress } from "react-loading-indicators";
 // import { cookies } from "next/headers";
 
 // Dynamically load the ApartmentsPage component with no SSR
-const ApartmentsPage = dynamic(
+const ApartmentsPage = React.memo( dynamic(
   () => import("@/Components/searchPage/ApartmentsPage"),
   {
     ssr: false,
@@ -15,7 +16,7 @@ const ApartmentsPage = dynamic(
       <OrbitProgress variant="dotted" dense color={"#47b3c5"} size="large" />
     ),
   }
-);
+));
 
 // Type definition for the searchParams prop
 interface SearchParams {
@@ -25,14 +26,11 @@ interface SearchParams {
   district?: string;
 }
 
-export default async function ApartmentPage({
+export default function ApartmentPage({
   searchParams,
 }: {
   searchParams: SearchParams;
 }) {
-  // const cookiez = await cookies();
-  // const token = cookiez.get("jwt")?.value;
-  // const token = process.env.NEXT_PUBLIC_TESTTOKEN;
   const { start_date, end_date, city, district } = searchParams || {};
 
   return (

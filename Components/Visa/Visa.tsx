@@ -9,7 +9,6 @@ interface ChildComponentProps {
   setUserVisa: React.Dispatch<React.SetStateAction<string>> | any;
 }
 export default function Visa({ setUserVisa }: ChildComponentProps) {
-
   const [selectedVisa, setSelectedVisa] = useState("Visa");
   setUserVisa(selectedVisa);
   const [visaNumber, setVisaNumber] = useState<any>([]);
@@ -47,51 +46,56 @@ export default function Visa({ setUserVisa }: ChildComponentProps) {
     <>
       <div className={styles.visa}>
         <form>
-          {visaNumber?.map(
-            (visa: {
-              cardScheme: string;
-              cardMask: string;
-              cardToken: string;
-            }) => (
-              <label
-                key={Math.random()}
-                style={{
-                  backgroundColor:
-                    selectedVisa === visa.cardToken
-                      ? "var(--lightGreen)"
-                      : "var(--background)",
-                  color:
-                    selectedVisa === visa.cardToken
-                      ? "var(--background)"
-                      : "var(--notBlack)",
-                }}
-                className={styles.visaForm}
-              >
-                <div key={Math.random()} className={styles.visaDetails}>
-                  <span>
-                    {visa.cardScheme === "Visa" ? <SiVisa /> : <SiMastercard />}
-                  </span>
-                  <div className={styles.visaData}>
-                    <span className={styles.visaName}>{visa.cardMask}</span>
-                  </div>
-                </div>
-
-                <input
-                  type="radio"
-                  name="visa"
-                  value={visa.cardToken}
-                  checked={selectedVisa === visa.cardToken}
-                  onChange={handleVisaChange}
+          {visaNumber &&
+            visaNumber?.map(
+              (visa: {
+                cardScheme: string;
+                cardMask: string;
+                cardToken: string;
+              }) => (
+                <label
+                  key={Math.random()}
                   style={{
-                    accentColor:
-                      selectedVisa === visa.cardMask
+                    backgroundColor:
+                      selectedVisa === visa.cardToken
+                        ? "var(--lightGreen)"
+                        : "var(--background)",
+                    color:
+                      selectedVisa === visa.cardToken
                         ? "var(--background)"
                         : "var(--notBlack)",
                   }}
-                />
-              </label>
-            )
-          )}
+                  className={styles.visaForm}
+                >
+                  <div key={Math.random()} className={styles.visaDetails}>
+                    <span>
+                      {visa.cardScheme === "Visa" ? (
+                        <SiVisa />
+                      ) : (
+                        <SiMastercard />
+                      )}
+                    </span>
+                    <div className={styles.visaData}>
+                      <span className={styles.visaName}>{visa.cardMask}</span>
+                    </div>
+                  </div>
+
+                  <input
+                    type="radio"
+                    name="visa"
+                    value={visa.cardToken}
+                    checked={selectedVisa === visa.cardToken}
+                    onChange={handleVisaChange}
+                    style={{
+                      accentColor:
+                        selectedVisa === visa.cardMask
+                          ? "var(--background)"
+                          : "var(--notBlack)",
+                    }}
+                  />
+                </label>
+              )
+            )}
         </form>
       </div>
     </>

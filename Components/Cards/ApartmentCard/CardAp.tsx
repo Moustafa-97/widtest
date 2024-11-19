@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // "use client"
-import React from "react";
+import React, { useMemo } from "react";
 import styles from "./cardap.module.css";
 import image from "../../../public/AboutGarden.png";
 import Button from "@/Components/Buttons/Button";
@@ -64,14 +64,14 @@ export default async function CardAp(props: Props) {
   const { apartmentData } = props;
   const t = useTranslations("SearchPage");
 
-  const data: Data = apartmentData;
+  const data: Data = useMemo(() => apartmentData,[apartmentData]);
   return (
     <>
-      <section style={{ zIndex: "1" }} className={styles.cardAp}>
+      <section className={styles.cardAp}>
         {/* image devision */}
         <div className={styles.cardS}>
           <div className={styles.image}>
-            {data?.ApartmentImage ? (
+            {data && data?.ApartmentImage ? (
               <Image
                 src={data?.ApartmentImage}
                 alt="test"
@@ -133,11 +133,11 @@ export default async function CardAp(props: Props) {
 
             <div className={styles.roomPrice}>
               <div className={styles.priceStart}>
-                <p>{(await t)("startingFrom")}</p>
+                <p>{t("startingFrom")}</p>
               </div>
               <div className={styles.roomDetailsPrice}>
                 <p>${`${data?.nightlyPrice}`}</p>
-                <span>/{(await t)("night")}</span>
+                <span>/{t("night")}</span>
               </div>
             </div>
           </div>
@@ -153,7 +153,7 @@ export default async function CardAp(props: Props) {
             </div>
             <div className={styles.viewBtn}>
               <Button
-                text={(await t)("view")}
+                text={t("view")}
                 onClicks={`apartments/${data?.id}/${props.onClicks}`}
                 type={undefined}
               />

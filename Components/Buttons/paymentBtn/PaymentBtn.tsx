@@ -47,12 +47,7 @@ interface CustomerData {
   zip: string;
   phoneNumber?: string;
 }
-const PaymentBtn = ({
-  endpoint1,
-  text,
-  token,
-  userVisa,
-}: ApiButtonProps) => {
+const PaymentBtn = ({ endpoint1, text, token, userVisa }: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -72,7 +67,6 @@ const PaymentBtn = ({
 
   const [address, setAddress] = useState<CustomerBillingInfoResponse>();
   const CustomerBillingInfo = address?.CustomerBillingInfo[0];
-  console.log(address);
 
   useEffect(() => {
     if (CustomerBillingInfo) {
@@ -90,6 +84,7 @@ const PaymentBtn = ({
   const locale = useLocale();
   useEffect(() => {
     const getUserBillingInfo = async () => {
+      if (!token) return;
       try {
         const response = await fetch(
           `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/user/get-billingInfo`,
@@ -186,11 +181,12 @@ const PaymentBtn = ({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+
             Authorization: `Bearer ${token}`,
           },
 
           body: JSON.stringify({
-            returnUrl: "https://www.widresidences.com/en/success",
+            returnUrl: "https://api.widresidences.com/v1/success",
             token: userVisa,
             customerData: {
               ...customerData,
@@ -355,21 +351,17 @@ const PaymentBtn = ({
                     />
                   </div>
                   <div className={styles.inputSection}>
-                  <div
-                    className={styles.radioSection}
-                  >
-                    <label htmlFor="save">
-                      Save my information
-                    </label>
-                    <input
-                      type="radio"
-                      value="no"
-                      id="save"
-                      checked={save}
-                      unselectable="on"
-                      onClick={() => setSave(!save)}
-                    />
-                  </div>
+                    <div className={styles.radioSection}>
+                      <label htmlFor="save">Save my information</label>
+                      <input
+                        type="radio"
+                        value="no"
+                        id="save"
+                        checked={save}
+                        unselectable="on"
+                        onClick={() => setSave(!save)}
+                      />
+                    </div>
                   </div>
                 </div>
                 <button className={styles.button} type="submit">
