@@ -1,10 +1,14 @@
-"use client"
-import React from 'react'
+"use client";
+import PaymentReturn from "@/Components/aaaasucc/Success";
+import React from "react";
 
 function page() {
   return (
-    <div>page</div>
-  )
+    <>
+      <PaymentReturn />
+      <div>page</div>
+    </>
+  );
 }
 
-export default page
+export default page;
