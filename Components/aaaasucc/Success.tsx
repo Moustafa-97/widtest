@@ -4,13 +4,11 @@
 import { useEffect, useState } from "react";
 
 const PaymentReturn = () => {
-  const [paymentDetails, setPaymentDetails] = useState<{
-    [key: string]: any;
-  } | null>(null);
-
+    const [paymentDetails, setPaymentDetails] = useState<{ [key: string]: any } | null>(null);
+    
   useEffect(() => {
-    // Extract form data from the POST body
-    const form = document.forms[0]; // Get the form PayTabs redirects to
+    // Parse the form data PayTabs sends
+    const form = document.forms[0]; // The auto-populated form
     if (form) {
       const formData = new FormData(form);
       const details: { [key: string]: any } = {};
@@ -19,21 +17,22 @@ const PaymentReturn = () => {
       });
 
       setPaymentDetails(details); // Store payment details in state
-      console.log("Payment Details:", details); // Debugging/logging
-    } else {
-      document.location.reload();
+      console.log("Payment Details:", details);
     }
   }, []);
 
   return (
     <div>
-      <h1>Payment Status</h1>
-      {paymentDetails ? (
-        <pre>{JSON.stringify(paymentDetails, null, 2)}</pre>
-      ) : (
-        <p>Loading payment details...</p>
+      <h1>Processing Payment...</h1>
+      <form method="POST" style={{ display: "none" }}>
+        {/* The form is populated by PayTabs */}
+      </form>
+      {paymentDetails && (
+        <div>
+          <h2>Payment Details</h2>
+          <pre>{JSON.stringify(paymentDetails, null, 2)}</pre>
+        </div>
       )}
-      <form method="POST">{/* PayTabs will populate this form */}</form>
     </div>
   );
 };
