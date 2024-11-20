@@ -4,10 +4,12 @@
 import { useEffect, useState } from "react";
 
 const PaymentReturn = () => {
-    // reload page
-    document.location.href = "/";
-    const [paymentDetails, setPaymentDetails] = useState<{ [key: string]: any } | null>(null);
-    
+  // reload page
+  document.location.href = "/";
+  const [paymentDetails, setPaymentDetails] = useState<{
+    [key: string]: any;
+  } | null>(null);
+
   useEffect(() => {
     // Parse the form data PayTabs sends
     const form = document.forms[0]; // The auto-populated form
@@ -24,18 +26,22 @@ const PaymentReturn = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Processing Payment...</h1>
-      <form method="POST" style={{ display: "none" }}>
-        {/* The form is populated by PayTabs */}
-      </form>
-      {paymentDetails && (
-        <div>
-          <h2>Payment Details</h2>
-          <pre>{JSON.stringify(paymentDetails, null, 2)}</pre>
-        </div>
-      )}
-    </div>
+    <>
+      <div>
+        <h1>Processing Payment...</h1>
+        <form method="POST" action="https://www.widresidences.com/en/success">
+          <input type="hidden" name="payment_reference" value="123456789" />
+          <input type="hidden" name="status" value="success" />
+          <input type="hidden" name="amount" value="100.00" />
+        </form>
+        {paymentDetails && (
+          <div>
+            <h2>Payment Details</h2>
+            <pre>{JSON.stringify(paymentDetails, null, 2)}</pre>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
