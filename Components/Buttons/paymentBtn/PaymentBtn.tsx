@@ -186,7 +186,7 @@ const PaymentBtn = ({ endpoint1, text, token, userVisa }: ApiButtonProps) => {
           },
 
           body: JSON.stringify({
-            returnUrl: "https://www.widresidences.com/en/success",
+            returnUrl: "https://api.widresidences.com/v1/booking/paytabs-success",
             token: userVisa,
             customerData: {
               ...customerData,
