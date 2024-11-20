@@ -92,6 +92,8 @@ const Reviews = dynamic(() => import("@/Components/HomePage/Reviews/Reviews"), {
   ),
 });
 
+
+
 export default async function HomePage() {
   // Fetch translations and locale once, outside the render logic
   const t = await getTranslations("HomePage");

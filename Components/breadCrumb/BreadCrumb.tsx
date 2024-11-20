@@ -10,21 +10,19 @@ const Breadcrumb: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    // Only set to true once the component mounts on the client side
     setIsMounted(true);
   }, []);
 
   if (!isMounted) {
-    return null; // Do not render until mounted
+    return null; 
   }
-  const pathParts = router.split("/").filter(Boolean); // Split path and ignore searchParams
-
+  const pathParts = router.split("/").filter(Boolean); 
   const formatPart = (part: string) => {
-    // Identify ID-like parts and replace with 'Item' or a meaningful label
+
     if (part.length > 10 && !isNaN(Number(part[0])) === false) {
-      return "Item"; // Replace complex IDs with "Item"
+      return "Apartment"; 
     }
-    return part.charAt(0).toUpperCase() + part.slice(1); // Capitalize other parts
+    return part.charAt(0).toUpperCase() + part.slice(1);
   };
   const currentLocation = pathParts.length
     ? formatPart(pathParts[pathParts.length - 1])

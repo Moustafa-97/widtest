@@ -4,8 +4,8 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./paymentBtn.module.css";
-import { useLocale } from "next-intl";
-import Link from "next/link";
+// import { useLocale } from "next-intl";
+// import Link from "next/link";
 
 interface ApiButtonProps {
   method: "POST" | "GET" | "DELETE";
@@ -47,7 +47,13 @@ interface CustomerData {
   zip: string;
   phoneNumber?: string;
 }
-const PaymentBtn = ({ endpoint1, text, token, userVisa }: ApiButtonProps) => {
+const PaymentBtn = ({
+  endpoint1,
+  endpoint2,
+  text,
+  token,
+  userVisa,
+}: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -81,7 +87,7 @@ const PaymentBtn = ({ endpoint1, text, token, userVisa }: ApiButtonProps) => {
       });
     }
   }, [address]);
-  const locale = useLocale();
+  // const locale = useLocale();
   useEffect(() => {
     const getUserBillingInfo = async () => {
       if (!token) return;
@@ -167,12 +173,41 @@ const PaymentBtn = ({ endpoint1, text, token, userVisa }: ApiButtonProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (userVisa === "Visa") {
+    if (token &&userVisa === "Visa") {
       setHeaderText("Please Select a Card");
       return;
     }
     if (save) {
       handleSaveAddress(e);
+    }
+    if (userVisa === "Visa" && !token) {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint2}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              // returnUrl: "https://api.widresidences.com/v1/booking/paytabs-success",
+              customerData: {
+                ...customerData,
+              },
+            }),
+          }
+        );
+        const res = await response.json();
+
+        if (res.redirect_url) {
+          window.location.href = res.redirect_url;
+        } else {
+          console.error("Form submission failed", await res);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      }
     }
     try {
       const response = await fetch(
@@ -186,7 +221,7 @@ const PaymentBtn = ({ endpoint1, text, token, userVisa }: ApiButtonProps) => {
           },
 
           body: JSON.stringify({
-            returnUrl: "https://api.widresidences.com/v1/booking/paytabs-success",
+            // returnUrl: "https://api.widresidences.com/v1/booking/paytabs-success",
             token: userVisa,
             customerData: {
               ...customerData,
@@ -209,17 +244,17 @@ const PaymentBtn = ({ endpoint1, text, token, userVisa }: ApiButtonProps) => {
   return (
     <>
       <>
-        {token && token ? (
-          <div>
-            <button
-              onClick={handleOpenFormModal}
-              style={{ height: "48px" }}
-              className={styles.button}
-            >
-              {loading ? "..." : `${text}`}
-            </button>
-          </div>
-        ) : (
+        {/* {token && token ? ( */}
+        <div>
+          <button
+            onClick={handleOpenFormModal}
+            style={{ height: "48px" }}
+            className={styles.button}
+          >
+            {loading ? "..." : `${text}`}
+          </button>
+        </div>
+        {/* ) : (
           <div>
             <Link
               href={`/${locale}/login`}
@@ -228,7 +263,7 @@ const PaymentBtn = ({ endpoint1, text, token, userVisa }: ApiButtonProps) => {
               Login
             </Link>
           </div>
-        )}
+        )} */}
         {/* Modal */}
         {showModal && (
           <div className={styles.modalOverlay}>
@@ -350,19 +385,21 @@ const PaymentBtn = ({ endpoint1, text, token, userVisa }: ApiButtonProps) => {
                       required
                     />
                   </div>
-                  <div className={styles.inputSection}>
-                    <div className={styles.radioSection}>
-                      <label htmlFor="save">Save my information</label>
-                      <input
-                        type="radio"
-                        value="no"
-                        id="save"
-                        checked={save}
-                        unselectable="on"
-                        onClick={() => setSave(!save)}
-                      />
+                  {token && (
+                    <div className={styles.inputSection}>
+                      <div className={styles.radioSection}>
+                        <label htmlFor="save">Save my information</label>
+                        <input
+                          type="radio"
+                          value="no"
+                          id="save"
+                          checked={save}
+                          unselectable="on"
+                          onClick={() => setSave(!save)}
+                        />
+                      </div>
                     </div>
-                  </div>
+                  )}
                 </div>
                 <button className={styles.button} type="submit">
                   Submit

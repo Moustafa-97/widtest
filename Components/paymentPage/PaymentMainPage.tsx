@@ -350,8 +350,8 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
               text="Pay Now"
               method="POST"
               data={{ checkInDate: start_date, checkOutDate: end_date }}
-              endpoint1={`/v1/booking/pay-with-saved-card/${bill?.bookingId}?locale=ar`}
-              endpoint2={`/v1/booking/check-availability-and-lock/${apartment?.id}`}
+              endpoint1={`/v1/booking/pay-with-saved-card/${bill?.bookingId}?locale=${locale}`}
+              endpoint2={`/v1/booking/create-paytabs-session/cm3pywf1y0000i0m381bhm2tg?locale=${locale}`}
               width="100%"
               token={token}
               locale={locale}

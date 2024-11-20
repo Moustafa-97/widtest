@@ -1,45 +1,35 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+const PaymentReturn = ({
+  bookingId,
+  paidWithSavedCard,
+  data,
+}: {
+  bookingId?: string;
+  paidWithSavedCard?: string;
+  data: {
+    acquirerMessage?: string;
+    acquirerRRN?: string;
+    cartId?: string;
+    customerEmail?: string;
+    respCode?: string;
+    respMessage?: string;
+    respStatus?: string;
+    signature?: string;
+    token?: string;
+    tranRef?: string;
+  };
+}) => {
 
-import { useEffect, useState } from "react";
-
-const PaymentReturn = () => {
-  // reload page
-  document.location.href = "/";
-  const [paymentDetails, setPaymentDetails] = useState<{
-    [key: string]: any;
-  } | null>(null);
-
-  useEffect(() => {
-    // Parse the form data PayTabs sends
-    const form = document.forms[0]; // The auto-populated form
-    if (form) {
-      const formData = new FormData(form);
-      const details: { [key: string]: any } = {};
-      formData.forEach((value, key) => {
-        details[key] = value;
-      });
-
-      setPaymentDetails(details); // Store payment details in state
-      console.log("Payment Details:", details);
-    }
-  }, []);
+  console.log("decodedParams", data);
+  console.log("bookingId", bookingId);
+  console.log("paidWithSavedCard", paidWithSavedCard);
 
   return (
     <>
       <div>
-        <h1>Processing Payment...</h1>
-        <form method="POST" action="https://www.widresidences.com/en/success">
-          <input type="hidden" name="payment_reference" value="123456789" />
-          <input type="hidden" name="status" value="success" />
-          <input type="hidden" name="amount" value="100.00" />
-        </form>
-        {paymentDetails && (
-          <div>
-            <h2>Payment Details</h2>
-            <pre>{JSON.stringify(paymentDetails, null, 2)}</pre>
-          </div>
-        )}
+        <h1>{bookingId}</h1>
+        {paidWithSavedCard === "true" && <h1>{data.customerEmail}</h1>}
       </div>
     </>
   );

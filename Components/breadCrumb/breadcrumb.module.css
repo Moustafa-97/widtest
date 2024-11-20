@@ -13,7 +13,8 @@
   padding: 0;
   margin: 0;
   width: 100%;
-  margin-top: 2vh;
+  margin-top: 20px;
+  
 }
 
 .breadcrumbLi {
@@ -23,6 +24,6 @@
 .breadcrumbLink {
   text-decoration: none;
   color: var(--background);
-  font-size: 16px;
+  font-size: clamp(12px, 10.8576px + 0.3571vw, 16px);
   cursor: pointer;
 }
