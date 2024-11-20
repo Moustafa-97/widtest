@@ -4,8 +4,10 @@
 import { useEffect, useState } from "react";
 
 const PaymentReturn = () => {
-    const [paymentDetails, setPaymentDetails] = useState<{ [key: string]: any } | null>(null);
-    
+  const [paymentDetails, setPaymentDetails] = useState<{
+    [key: string]: any;
+  } | null>(null);
+
   useEffect(() => {
     // Extract form data from the POST body
     const form = document.forms[0]; // Get the form PayTabs redirects to
@@ -18,6 +20,8 @@ const PaymentReturn = () => {
 
       setPaymentDetails(details); // Store payment details in state
       console.log("Payment Details:", details); // Debugging/logging
+    } else {
+      document.location.reload();
     }
   }, []);
 
@@ -29,9 +33,7 @@ const PaymentReturn = () => {
       ) : (
         <p>Loading payment details...</p>
       )}
-      <form method="POST">
-        {/* PayTabs will populate this form */}
-      </form>
+      <form method="POST">{/* PayTabs will populate this form */}</form>
     </div>
   );
 };
