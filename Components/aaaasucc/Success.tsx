@@ -4,6 +4,8 @@
 import { useEffect, useState } from "react";
 
 const PaymentReturn = () => {
+    // reload page
+    document.location.reload();
     const [paymentDetails, setPaymentDetails] = useState<{ [key: string]: any } | null>(null);
     
   useEffect(() => {
