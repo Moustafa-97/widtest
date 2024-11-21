@@ -40,7 +40,8 @@
     "LOGIN": "LOGIN",
     "SIGNUP": "SIGNUP",
     "HISTORY": "HISTORY",
-    "LOGOUT": "LOGOUT"
+    "LOGOUT": "LOGOUT",
+    "PROFILE": "PROFILE"
   },
   "Buttons": {
     "bookNow": "BOOK NOW"

@@ -8,6 +8,11 @@ import ar from "../ar.svg";
 import en from "../en.svg";
 import logo from "../logo.svg";
 import Image from "next/image";
+import homeIcon from "@/public/navbar/home.svg";
+import aboutIcon from "@/public/navbar/about.svg";
+import apartmentIcon from "@/public/navbar/apartments.svg";
+import contactIcon from "@/public/navbar/contact.svg";
+import profileIcon from "@/public/navbar/profile.svg";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const ResponsiveHeader = ({
   pathname,
@@ -15,8 +20,6 @@ const ResponsiveHeader = ({
   locale,
   isLogged,
   t,
-  navBar1,
-  response,
 }:
   | {
       cookies: string | any;
@@ -54,6 +57,30 @@ const ResponsiveHeader = ({
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  const navbarElements = [
+    {
+      name: t("HOME"),
+      href: "/",
+      icon: <Image src={homeIcon} alt="home icon" width={20} height={20} />,
+    },
+    {
+      name: t("ABOUT"),
+      href: `/${locale}/about`,
+      icon: <Image src={aboutIcon} alt="home icon" width={20} height={20} />,
+    },
+    {
+      name: t("APARTMENTS"),
+      href: `/${locale}/apartments`,
+      icon: (
+        <Image src={apartmentIcon} alt="home icon" width={20} height={20} />
+      ),
+    },
+    {
+      name: t("CONTACT"),
+      href: `/${locale}/contact`,
+      icon: <Image src={contactIcon} alt="home icon" width={20} height={20} />,
+    },
+  ];
 
   return (
     <>
@@ -119,9 +146,9 @@ const ResponsiveHeader = ({
                   </Link>{" "}
                 </li>
                 <li>
-                  {navBar1.map(
+                  {navbarElements.map(
                     (
-                      el: { href: string; name: string },
+                      el: { href: string; name: string; icon: any },
                       ind: React.Key | null | undefined
                     ) => (
                       <li key={ind}>
@@ -130,7 +157,17 @@ const ResponsiveHeader = ({
                           prefetch={true}
                           onClick={() => setIsOpen(false)}
                         >
-                          {el.name}
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "flex-start",
+                              alignItems: "center",
+                              gap: "10px",
+                            }}
+                          >
+                            {el.icon}
+                            <p>{el.name}</p>
+                          </div>
                         </Link>
                       </li>
                     )
@@ -163,17 +200,32 @@ const ResponsiveHeader = ({
                       text={t("LOGIN")}
                     />
                   ) : (
-                    <Button
-                      onClicks={`/${locale}/profile`}
-                      type={undefined}
-                      text={response?.firstName}
-                    />
+                    <Link
+                      href={`/$${locale}/profile`}
+                      prefetch={true}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "flex-start",
+                          alignItems: "center",
+                          gap: "10px",
+                        }}
+                      >
+                        <Image
+                          src={profileIcon}
+                          alt="home icon"
+                          width={20}
+                          height={20}
+                        />
+                        <p>{t("PROFILE")}</p>
+                      </div>
+                    </Link>
                   )}
                 </li>
                 <li>
-                  {!isLogged ? (
-                    ""
-                  ) : (
+                  {isLogged &&(
                     <Link
                       href={`#`}
                       prefetch={true}
