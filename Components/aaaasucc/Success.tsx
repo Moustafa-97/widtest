@@ -20,7 +20,6 @@ const PaymentReturn = ({
     tranRef?: string;
   };
 }) => {
-
   console.log("decodedParams", data);
   console.log("bookingId", bookingId);
   console.log("paidWithSavedCard", paidWithSavedCard);
@@ -28,7 +27,8 @@ const PaymentReturn = ({
   return (
     <>
       <div>
-        <h1>{bookingId}</h1>
+        <h1>Success</h1>
+        <h2>{bookingId}</h2>
         {paidWithSavedCard === "true" && <h1>{data.customerEmail}</h1>}
       </div>
     </>

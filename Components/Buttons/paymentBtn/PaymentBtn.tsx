@@ -59,7 +59,7 @@ const PaymentBtn = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const [save, setSave] = useState(false);
 
-  const [headerText, setHeaderText] = useState("Complete registration payment");
+  // const [headerText, setHeaderText] = useState("Complete registration payment");
 
   const [customerData, setCustomerData] = useState<CustomerData>({
     name: "",
@@ -173,10 +173,10 @@ const PaymentBtn = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (token &&userVisa === "Visa") {
-      setHeaderText("Please Select a Card");
-      return;
-    }
+    // if (token && userVisa === "Visa") {
+    //   setHeaderText("Please Select a Card");
+    //   return;
+    // }
     if (save) {
       handleSaveAddress(e);
     }
@@ -191,7 +191,6 @@ const PaymentBtn = ({
             },
 
             body: JSON.stringify({
-              // returnUrl: "https://api.widresidences.com/v1/booking/paytabs-success",
               customerData: {
                 ...customerData,
               },
@@ -221,8 +220,7 @@ const PaymentBtn = ({
           },
 
           body: JSON.stringify({
-            // returnUrl: "https://api.widresidences.com/v1/booking/paytabs-success",
-            token: userVisa,
+            token: userVisa === "Visa" ? "" : userVisa,
             customerData: {
               ...customerData,
             },
@@ -269,11 +267,12 @@ const PaymentBtn = ({
           <div className={styles.modalOverlay}>
             <div className={styles.modal} ref={modalRef}>
               <h2
-                style={
-                  headerText === "Please Select a Card" ? { color: "red" } : {}
-                }
+                // style={
+                //   headerText === "Please Select a Card" ? { color: "red" } : {}
+                // }
               >
-                {headerText}
+                {/* {headerText} */}
+                Complete registration payment
               </h2>
               <h3>Personal details</h3>
 
