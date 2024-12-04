@@ -341,7 +341,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
               startDate === "Invalid Date" && endDate === "Invalid Date"
                 ? ""
                 : styles.transform
-            }`}
+            } ${userVisa==="Visa" ? styles.noVisa : ""}`}
           >
             <Visa setUserVisa={setUserVisa} />
           </section>
