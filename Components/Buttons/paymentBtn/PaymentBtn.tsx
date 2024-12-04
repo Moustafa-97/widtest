@@ -173,10 +173,36 @@ const PaymentBtn = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // if (token && userVisa === "Visa") {
-    //   setHeaderText("Please Select a Card");
-    //   return;
-    // }
+    if (token && userVisa === "Visa") {
+      // setHeaderText("Please Select a Card");
+      // return;
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint2}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+
+            body: JSON.stringify({
+              customerData: {
+                ...customerData,
+              },
+            }),
+          }
+        );
+        const res = await response.json();
+
+        if (res.redirect_url) {
+          window.location.href = res.redirect_url;
+        } else {
+          console.error("Form submission failed", await res);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      }
+    }
     if (save) {
       handleSaveAddress(e);
     }
@@ -267,9 +293,9 @@ const PaymentBtn = ({
           <div className={styles.modalOverlay}>
             <div className={styles.modal} ref={modalRef}>
               <h2
-                // style={
-                //   headerText === "Please Select a Card" ? { color: "red" } : {}
-                // }
+              // style={
+              //   headerText === "Please Select a Card" ? { color: "red" } : {}
+              // }
               >
                 {/* {headerText} */}
                 Complete registration payment
