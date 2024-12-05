@@ -23,14 +23,16 @@ type ApiResponse = {
     localizedBookedApartment: {
       bookingId: string;
       totalPrice: number;
-      cleaningFee: number;
       vat: number;
       checkInDate: string;
       checkOutDate: string;
       numberOfNights: number;
+      payableNights: number;
       isOfferApplied: boolean;
       totalNightsPrice: number;
       bookingStatus: string;
+      bookingAddons: any[]; // If the structure of addons is known, replace `any[]` with a specific type
+      addOnsTotalPrice: number;
       Apartment: {
         name: string;
         nightlyPrice: number;
@@ -46,14 +48,14 @@ type ApiResponse = {
             };
           };
         };
+        ApartmentAddOns: {
+          id: string;
+          type: string;
+          price: number;
+        }[];
       };
     };
-    priceWithoutOffer: {
-      NightsPrice: number;
-      cleaningFee: number;
-      vat: number;
-      total: number;
-    };
+    priceWithoutOffer: any; // Replace `any` with the type if its structure is known
   };
   userBillingDetails: {
     id: string;
@@ -157,7 +159,6 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
         console.error("Failed to fetch billing data", err);
       }
     };
-
     const fetchApartmentData = async () => {
       try {
         const res = await axios.get(
@@ -180,6 +181,37 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
     fetchApartmentData();
   }, [start_date, end_date, id, locale, token]);
 
+  // manage addOns
+  const isApartmentAddOns =
+    billData?.booking.localizedBookedApartment.bookingAddons;
+  console.log(
+    isApartmentAddOns?.filter(
+      (apartmentAddon) => apartmentAddon.id === "cm49y1kln000j14jm02lzgfso"
+    )
+  );
+  const addAddOn = async (id: string) => {
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/booking/${
+          isApartmentAddOns &&
+          isApartmentAddOns?.filter(
+            (apartmentAddon: { id: string }) => apartmentAddon?.id === `${id}`
+          ).length > 0
+            ? "remove-addon-from-booking"
+            : "add-addon-to-booking"
+        }/${billData?.booking.localizedBookedApartment.bookingId}`,
+        {
+          addOnId: id,
+        }
+      );
+      setBillData(res.data);
+    } catch (err) {
+      console.error("Failed to fetch apartment data", err);
+    }
+  };
+
+  //end manage addOns
+
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       weekday: "long",
@@ -197,6 +229,8 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
   const bill = billData?.booking?.localizedBookedApartment;
 
   const apartment = apartmentData?.data;
+  const apartmentAddOns =
+    billData?.booking.localizedBookedApartment.Apartment.ApartmentAddOns;
 
   const [userVisa, setUserVisa] = useState<string | null>(null);
 
@@ -297,7 +331,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
                   <ApartmentReviews rate={bill?.Apartment?.avgRating} />
                 </div>
                 <div className={styles.roomProtection}>
-                  <p>Your booking protected by wid</p>
+                  <p>{t("widProtection")}</p>
                 </div>
               </div>
               <div className={styles.chechoutCardBill}>
@@ -308,22 +342,64 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
                 <div className={styles.chechoutBill}>
                   <ul>
                     <li>
-                      <p>Base Fare</p>
+                      <p>{t("baseFare")}</p>
                       <span> $ {bill?.totalNightsPrice}</span>
                     </li>
 
                     <li>
-                      <p>Cleaning fee</p>
-                      <span> $ {bill?.cleaningFee}</span>
-                    </li>
-
-                    <li>
-                      <p>Taxes (VAT. 15%)</p>
+                      <p>{t("taxes")}</p>
                       <span> $ {bill?.vat}</span>
                     </li>
-
+                    {/* add-on */}
+                    {apartmentAddOns && apartmentAddOns.length > 0 ? (
+                      apartmentAddOns.map((addon: any, index: number) => (
+                        <li key={index}>
+                          <div
+                            style={{ cursor: "pointer" }}
+                            className={styles.inputSection}
+                          >
+                            <div className={styles.radioSection}>
+                              <div
+                                style={{
+                                  cursor: "pointer",
+                                  width: "100%",
+                                  display: "flex",
+                                  alignItems: "center",
+                                  justifyContent: "space-between",
+                                  paddingRight: "10px",
+                                  paddingLeft: "10px",
+                                }}
+                              >
+                                <label htmlFor="save">{addon.type}</label>
+                                <span> $ {addon.price}</span>
+                              </div>
+                              <input
+                                type="radio"
+                                value="no"
+                                id="save"
+                                checked={
+                                  isApartmentAddOns &&
+                                  isApartmentAddOns?.filter(
+                                    (apartmentAddon: { id: string }) =>
+                                      apartmentAddon?.id === `${addon?.id}`
+                                  ).length > 0
+                                }
+                                unselectable="on"
+                                onClick={() => addAddOn(addon.id)}
+                              />
+                            </div>
+                          </div>
+                        </li>
+                      ))
+                    ) : (
+                      <div></div>
+                    )}
                     <li className={styles.chechoutBillTotal}>
-                      <p>Total</p>
+                      <p>{t("servicesCost")}</p>
+                      <span> $ {bill?.addOnsTotalPrice}</span>
+                    </li>
+                    <li className={styles.chechoutBillTotal}>
+                      <p>{t("total")}</p>
                       <span> $ {bill?.totalPrice}</span>
                     </li>
                   </ul>
@@ -332,7 +408,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
             </section>
           ) : (
             <section className={styles.chechoutCard}>
-              <div className={styles.noDate}>Please select a date</div>
+              <div className={styles.noDate}>{t("selectADate")}</div>
             </section>
           )}
 
@@ -341,7 +417,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
               startDate === "Invalid Date" && endDate === "Invalid Date"
                 ? ""
                 : styles.transform
-            } ${userVisa==="Visa" ? styles.noVisa : ""}`}
+            } ${userVisa === "Visa" ? styles.noVisa : ""}`}
           >
             <Visa setUserVisa={setUserVisa} />
           </section>

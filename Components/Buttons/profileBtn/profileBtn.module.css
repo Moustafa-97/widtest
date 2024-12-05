@@ -34,7 +34,6 @@
 .dropdown {
   position: absolute;
   top: 100%;
-  right: 0;
   background: #fff;
   width: 20vw;
   height: 22vh;
@@ -44,6 +43,12 @@
   -moz-border-radius: 6px;
   -ms-border-radius: 6px;
   -o-border-radius: 6px;
+}
+.right{
+  right: 0;
+}
+.left{
+  left: 0;
 }
 .dropdown ul {
   width: 100%;

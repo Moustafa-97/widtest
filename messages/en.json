@@ -40,21 +40,26 @@
     "LOGIN": "LOGIN",
     "SIGNUP": "SIGNUP",
     "HISTORY": "HISTORY",
-    "LOGOUT": "LOGOUT",
-    "PROFILE": "PROFILE"
+    "LOGOUT": "Logout",
+    "PROFILE": "PROFILE",
+    "account": "My Account",
+    "payment":"Payments"
+
   },
   "Buttons": {
     "bookNow": "BOOK NOW"
   },
   "Payment": {
+    "pageTitle": "Payment",
     "title": "Price Details",
     "payNow": "Pay Now",
-    "paymentError": "هناك خطأ في عملية الدفع. الرجاء المحاولة مرة اخرى",
-    "paymentSuccess": "تمت عملية الدفع بنجاح",
-    "paymentFailed": "عذرا، فشل الدفع. الرجاء المحاولة مرة اخرى",
-    "paymentDone": "تمت عملية الدفع بنجاح",
-    "paymentPending": "تمت عملية الدفع بنجاح",
-    "paymentCanceled": "تم الغاء عملية الدفع"
+    "widProtection": "Your booking protected by wid",
+    "priceDetails": "Price Details",
+    "baseFare": "Base Fare",
+    "taxes": "Taxes (VAT 14%)",
+    "servicesCost": "Services Cost",
+    "total": "Total",
+    "selectADate":"Please select a date"
   },
   "Footer": {
     "rights": " All Rights Reserved",

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./profileBtn.module.css";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
 
 interface Props {
@@ -16,7 +16,7 @@ interface Props {
 
 export default function ProfileBtn(props: Props) {
   const profile = props.response;
-
+  const t = useTranslations("Header");
   const locale = useLocale();
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -57,14 +57,20 @@ export default function ProfileBtn(props: Props) {
         <p>{profile.firstName.slice(0, 3)}.</p>
       </div>
       {isOpen && (
-        <div ref={profileRef} className={styles.dropdown}>
+        <div
+          dir="rtl"
+          ref={profileRef}
+          className={`${styles.dropdown} ${
+            locale === "ar" ? styles.left : styles.right
+          }`}
+        >
           <ul>
             <li>
               <Link
                 onClick={() => setIsOpen(false)}
                 href={`/${locale}/profile`}
               >
-                My account
+                {t("account")}
               </Link>
             </li>
             <li>
@@ -72,7 +78,7 @@ export default function ProfileBtn(props: Props) {
                 onClick={() => setIsOpen(false)}
                 href={`/${locale}/profile?history=History`}
               >
-                Payments
+                {t("payment")}
               </Link>
             </li>
             <li>
@@ -83,7 +89,7 @@ export default function ProfileBtn(props: Props) {
                 }}
                 href={`/${locale}`}
               >
-                Logout
+                {t("LOGOUT")}
               </Link>
             </li>
           </ul>

@@ -423,3 +423,42 @@
     transform: translateY(0px);
   }
 }
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+}
+.radioSection {
+  border: 1px solid #e0e5f2;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 auto;
+  border: 1px solid #4f8f92;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+}
+.radioSection {
+  margin-top: 23px;
+  background-color: #4b4b4b6e;
+}
+.radioSection input {
+  margin: 0;
+  width: 15%;
+}
+.radioSection label {
+  color: #4b4b4b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: start;
+}

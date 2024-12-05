@@ -43,21 +43,24 @@
     "SIGNUP": "انشاء حساب",
     "HISTORY": "السجل",
     "LOGOUT": "تسجيل الخروج",
-    "PROFILE": "الملف الشخصي"
-
+    "PROFILE": "الملف الشخصي",
+    "account": "حسابي",
+    "payment":"المدفوعات"
   },
   "Buttons": {
     "bookNow": "حجز الان"
   },
   "Payment": {
-    "title": "تفاصيل الدفع",
-    "payNow": "ادفع الان",
-    "paymentError": "هناك خطأ في عملية الدفع. الرجاء المحاولة مرة اخرى",
-    "paymentSuccess": "تمت عملية الدفع بنجاح",
-    "paymentFailed": "عذرا، فشل الدفع. الرجاء المحاولة مرة اخرى",
-    "paymentDone": "تمت عملية الدفع بنجاح",
-    "paymentPending": "تمت عملية الدفع بنجاح",
-    "paymentCanceled": "تم الغاء عملية الدفع"
+    "pageTitle": "الدفع",
+    "title": "تفاصيل السعر",
+    "payNow": "ادفع الآن",
+    "widProtection": "حجزك محمي بواسطة Wid",
+    "priceDetails": "تفاصيل السعر",
+    "baseFare": "الأجرة الأساسية",
+    "taxes": "الضرائب (ضريبة القيمة المضافة 14%)",
+    "servicesCost": "تكلفة الخدمات",
+    "total": "الإجمالي",
+    "selectADate": "الرجاء اختيار تاريخ"
   },
   "Footer": {
     "rights": "جميع الحقوق محفوظة",
