@@ -29,7 +29,7 @@ const PaymentReturn = ({
   console.log("decodedParams", data);
   console.log("bookingId", bookingId);
   console.log("paidWithSavedCard", paidWithSavedCard);
-  const token = localStorage.getItem("token");
+  const usertoken = localStorage.getItem("token");
   const router = useRouter();
   const handleGoBackHome = () => {
     router.push("/");
@@ -42,10 +42,10 @@ const PaymentReturn = ({
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${usertoken}`,
           },
           body: JSON.stringify({
-            token: data.token,
+            token:data.token
           }),
         }
       );
@@ -70,7 +70,7 @@ const PaymentReturn = ({
           />
         </div>
         <div className={styles.buttonContainer}>
-          {token && paidWithSavedCard === "false" && (
+          {usertoken && paidWithSavedCard === "false" && (
             <button className={styles.button} onClick={handleSaveCard}>
               Save Card
             </button>
