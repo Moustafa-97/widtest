@@ -33,6 +33,8 @@ export default function Payment() {
 
     fetchData();
   }, []);
+  console.log("visaNumber", visaNumber);
+  
   return (
     <>
       <div className={styles.visa}>
@@ -47,6 +49,7 @@ export default function Payment() {
                 <div key={Math.random()} className={styles.visaDetails}>
                   <div className={styles.visaData}>
                     <span className={styles.visaName}>{visa.cardMask}</span>
+                    <span className={styles.visaDelete}>x</span>
                   </div>
                   <span>
                     {visa.cardScheme === "Visa" ? <SiVisa /> : <SiMastercard />}

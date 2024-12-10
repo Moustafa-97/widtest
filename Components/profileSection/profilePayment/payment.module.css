@@ -28,6 +28,12 @@
 .visaData{
     font-size: clamp(16px,4vw,24px);
     color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.visaDelete{
+    cursor: pointer;
 }
 
 @media (min-width: 150px) and (max-width: 770px) {

@@ -37,7 +37,7 @@ const PaymentReturn = ({
   const handleSaveCard = async () => {
     try {
       await fetch(
-        `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/booking/user/save-card`,
+        `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/booking/user/save-card-web`,
         {
           method: "POST",
           headers: {
