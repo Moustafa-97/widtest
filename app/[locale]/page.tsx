@@ -92,8 +92,6 @@ const Reviews = dynamic(() => import("@/Components/HomePage/Reviews/Reviews"), {
   ),
 });
 
-
-
 export default async function HomePage() {
   // Fetch translations and locale once, outside the render logic
   const t = await getTranslations("HomePage");
@@ -129,6 +127,7 @@ export default async function HomePage() {
           <div className={styles.AboutUs}>
             <AboutHome />
           </div>
+          
           {/* Top Rated Section */}
           <div className={styles.topRated}>
             <div className={styles.topRatedHeader}>
