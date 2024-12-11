@@ -56,7 +56,7 @@ const Carousel = (props: Props) => {
   }, [instanceRef, isFor]);
 
   if (!cards || cards.length === 0) {
-    return null; // Graceful fallback for empty cards
+    return null;
   }
 
   // Calculate the number of dots to display
@@ -73,13 +73,7 @@ const Carousel = (props: Props) => {
         {cards.map((card, index) => (
           <div key={index} className="keen-slider__slide">
             <div
-              style={
-                isFor === "suggest"
-                  ? { backgroundColor: "#fff" }
-                  : isFor === "review"
-                  ? { minHeight: "60.516vh" }
-                  : {}
-              }
+              style={isFor === "suggest" ? { backgroundColor: "#fff" } : {}}
               className={`${styles.card} number-slide${index + 1}`}
             >
               {card}

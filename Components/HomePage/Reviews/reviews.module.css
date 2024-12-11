@@ -26,14 +26,14 @@
   height: 50%;
 }
 .name {
-  font-size: clamp(16px, 4vw, 20px);
+  font-size: clamp(20px, 4vw, 16px);
   font-weight: 500;
   line-height: 24.38px;
   margin-bottom: 7px;
   min-height: 47px;
 }
 .review {
-  font-size: clamp(12px, 4vw, 14px);
+  font-size: clamp(14px, 4vw, 12px);
   font-weight: 400;
   line-height: 17.07px;
   color: #112211;

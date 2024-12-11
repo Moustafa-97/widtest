@@ -131,3 +131,9 @@
 .btn{
   max-width: 80px;
 }
+
+@media screen and (max-width:950px){
+  .navbar{
+    width:94%;
+  }
+}

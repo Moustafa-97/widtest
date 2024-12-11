@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import axios from "axios";
+
 import { getLocale } from "next-intl/server";
 import React from "react";
 import styles from "./reviews.module.css";
@@ -13,29 +13,29 @@ const Carousel = dynamic(() => import("@/Components/Carousel/Carousel"), {
 export default async function Reviews() {
   const locale: "en" | "ar" | any = getLocale();
   const fetchData = async () => {
-    const response = await axios.get(
+    const response = await fetch(
       `${
         process.env.NEXT_PUBLIC_BACKENDAPI
       }/v1/home/apartments-reviews?limit=5&page=1&locale=${await locale}`
     );
 
-    return response.data;
+    return response.json();
   };
 
   const data = await fetchData();
 
   const Card = () => {
     return data.map(async (item: any, index: number) => (
-      <>
+      
         <div key={index} className={styles.card}>
-          <div key={index} className={styles.subCard}>
+          <div className={styles.subCard}>
             <div className={styles.textSection}>
               <h4 className={styles.name}>{item.Apartment.ApartmentName}</h4>
               <p className={styles.review}>{item.review}</p>
               <div className={styles.starSection}>
                 <div className={styles.starRating}>
-                  {[...Array(5)].map((_, index) => {
-                    const starValue = index + 1;
+                  {[...Array(5)].map((_, ind) => {
+                    const starValue = ind + 1;
                     return (
                       <FaStar
                         key={starValue}
@@ -86,7 +86,7 @@ export default async function Reviews() {
             </div>
           </div>
         </div>
-      </>
+      
     ));
   };
 

@@ -69,6 +69,24 @@
   overflow-y: auto;
   max-height: 80%;
 }
+.modalButtons{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap:20px;
+}
+.modalButtons div{
+  cursor: pointer;
+  color: #fff;
+  padding: 10px 20px;
+  background-color: var(--green);
+border-radius: 10px;
+transition: all 0.4s;
+}
+.modalButtons div:hover {
+  background-color: var(--lightGreen);
+transition: all 0.4s;
+}
 @media (min-width: 150px) and (max-width: 770px) {
   .modal {
     width: 80vw;

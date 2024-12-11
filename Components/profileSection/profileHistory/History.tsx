@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 import styles from "./history.module.css";
 import { useLocale } from "next-intl";
+import ModalButton from "@/Components/modal/ModalBtn";
 
 export default async function History({
   history,
@@ -36,9 +37,10 @@ export default async function History({
       }[]
     | null
     | any;
-
 }) {
   const locale: "en" | "ar" | unknown = useLocale();
+  // console.log(history);
+
   return (
     <>
       <section className={styles.card}>
@@ -75,13 +77,21 @@ export default async function History({
                   </div>
                   {/* view apartment button */}
                   <div className={styles.viewButton}>
-                    <Button
-                      text="View Apartment"
-                      onClicks={`/${await locale}/apartments/${
-                        history.Apartment.id
-                      }`}
-                      type={undefined}
-                    />
+                    <div style={{ width: "50%" }}>
+                      <ModalButton
+                        text="Cancel"
+                        endpoint={`/v1/booking/${history.id}/cancel-booking`}
+                      />
+                    </div>
+                    <div style={{ width: "50%" }}>
+                      <Button
+                        text="View"
+                        onClicks={`/${await locale}/apartments/${
+                          history.Apartment.id
+                        }`}
+                        type={undefined}
+                      />
+                    </div>
                   </div>
                 </li>
               </>
