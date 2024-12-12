@@ -77,12 +77,41 @@ export default async function History({
                   </div>
                   {/* view apartment button */}
                   <div className={styles.viewButton}>
-                    <div style={{ width: "50%" }}>
-                      <ModalButton
-                        text="Cancel"
-                        endpoint={`/v1/booking/${history.id}/cancel-booking`}
-                      />
-                    </div>
+                    {history.Apartment.CancellationPolicy.cancellationType !==
+                    "NON_REFUNDABLE" ? (
+                      history.bookingStatus === "CONFIRMED" ? (
+                        <div style={{ width: "50%" }}>
+                          <ModalButton
+                            text="Cancel"
+                            endpoint={`/v1/booking/${history.id}/cancel-booking`}
+                            policy={
+                              history.Apartment.CancellationPolicy
+                                .cancellationType
+                            }
+                          />
+                        </div>
+                      ) : (
+                        <div
+                          style={{
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            color: "red",
+                          }}
+                        >
+                          {history.bookingStatus}
+                        </div>
+                      )
+                    ) : (
+                      <div
+                        style={{
+                          fontSize: "12px",
+                          fontWeight: "600",
+                          color: "red",
+                        }}
+                      >
+                        No Refund
+                      </div>
+                    )}
                     <div style={{ width: "50%" }}>
                       <Button
                         text="View"

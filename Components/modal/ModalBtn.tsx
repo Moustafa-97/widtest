@@ -10,9 +10,10 @@ interface ApiButtonProps {
   text: string;
   width?: string;
   locale?: string | null;
+  policy?: string;
 }
 
-const ModalButton = ({ endpoint, text }: ApiButtonProps) => {
+const ModalButton = ({ endpoint, text, policy }: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [response, setResponse] = useState<any>(null);
@@ -42,6 +43,7 @@ console.log(response);
       if (result) {
         setResponse(result);
         setShowModal(false);
+        window.location.reload();
       }
     } catch (error) {
       console.error("API request failed:", error);
@@ -85,6 +87,7 @@ console.log(response);
             <div className={styles.modal} ref={modalRef}>
               <h2>Are you sure</h2>
               <p>you want to cancel this booking?</p>
+              <p style={{ color: "red", fontWeight: "bold", fontSize: "12px" }}>{policy}</p>
               <div className={styles.modalButtons}>
                 <div onClick={handleConfirm} className={styles.yes}>
                   {loading ? "..." : "yes"}
