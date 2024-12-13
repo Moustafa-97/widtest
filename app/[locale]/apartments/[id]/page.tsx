@@ -312,7 +312,7 @@ export default async function ApartmentPageId({
 
           <ReviewModal
             method="POST"
-            endpoint=""
+            endpoint={`/v1/reviews/review/${data?.data.id}`}
             data=""
             text="Add review"
             width="100%"

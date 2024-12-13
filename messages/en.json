@@ -1,4 +1,9 @@
 {
+  "aboutHome": {
+    "title": "About us",
+    "descriptionBlack": "We assist you in finding your ",
+    "descriptionGreen": "dream homes."
+  },
   "HomePage": {
     "title": "About us",
     "about": "We assist you in finding your dream homes.",
@@ -43,8 +48,7 @@
     "LOGOUT": "Logout",
     "PROFILE": "PROFILE",
     "account": "My Account",
-    "payment":"Payments"
-
+    "payment": "Payments"
   },
   "Buttons": {
     "bookNow": "BOOK NOW"
@@ -59,7 +63,7 @@
     "taxes": "Taxes (VAT 14%)",
     "servicesCost": "Services Cost",
     "total": "Total",
-    "selectADate":"Please select a date"
+    "selectADate": "Please select a date"
   },
   "Footer": {
     "rights": " All Rights Reserved",

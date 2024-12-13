@@ -99,35 +99,28 @@ export default async function HomePage() {
 
   return (
     <>
-      {/* Optimized Image for the Home Page Header */}
-      <div
-        style={{
-          width: "100vw",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          margin: "auto",
-        }}
-        className={styles.topImageContainer}
-      >
+      {/* start Image for the Home Page Header */}
+      <div className={styles.topImageContainer}>
         <Image
           src={topHome}
-          width={1000}
-          height={1000}
+          width={500}
+          height={500}
           alt="home"
           loading="eager"
           placeholder="blur"
           className={styles.topImage}
         />
       </div>
-
+      {/* end Image for the Home Page Header */}
       <section className={`${styles.homePage}`}>
-        <ApartmentsPage />
+        <div className={styles.SearchContainer}>
+          <ApartmentsPage />
+        </div>
         <main className={styles.main}>
           <div className={styles.AboutUs}>
             <AboutHome />
           </div>
-          
+
           {/* Top Rated Section */}
           <div className={styles.topRated}>
             <div className={styles.topRatedHeader}>

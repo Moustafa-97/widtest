@@ -5,11 +5,12 @@ import React, { useState, useRef, useEffect } from "react";
 import styles from "../modalBtn.module.css";
 import style from "./reviewModal.module.css";
 import axios from "axios";
+import { Bounce, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ApiButtonProps {
-  method: "POST" | "GET" | "DELETE";
-  endpoint: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  method?: "POST" | "GET" | "DELETE";
+  endpoint?: string;
   data?: any;
   text: string;
   width: string;
@@ -24,20 +25,15 @@ type History = [
   }
 ];
 
-const ReviewModal = ({
-  method,
-  endpoint,
-  data,
-  text,
-  locale,
-  id,
-}: ApiButtonProps) => {
+const ReviewModal = ({ endpoint, text, locale, id }: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [response, setResponse] = useState<any>(null);
+  console.log("response", response);
+
   const [showModal, setShowModal] = useState(false);
+  const [review, setReview] = useState("");
+  const [rating, setRating] = useState(0);
   const modalRef = useRef<HTMLDivElement>(null);
-  console.log(response);
   const [history, setHistory] = useState<History | null>();
   const token = localStorage.getItem("token");
 
@@ -70,41 +66,56 @@ const ReviewModal = ({
 
   const isHistory = history?.filter((item: any) => item?.Apartment?.id === id);
 
-  const handleClick = async () => {
+  const handleClick = async (e: React.FormEvent) => {
+    e.preventDefault();
     setLoading(true);
     try {
-      const options: RequestInit = {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-      };
-
-      if (method !== "GET" && data) {
-        options.body = JSON.stringify(data);
-      }
-
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint}`,
-        options
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ review, rating }),
+        }
       );
 
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-
       const result = await res.json();
-      setResponse(result);
-      setShowModal(true);
+      if (result) {
+        setResponse(result);
+        setShowModal(false);
+        toast(`${response.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
     } catch (error) {
       console.error("API request failed:", error);
+      toast(`error`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
     } finally {
       setLoading(false);
     }
   };
 
-  // Close modal when clicking outside of it
   const handleClickOutside = (event: MouseEvent) => {
     if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
       setShowModal(false);
@@ -137,26 +148,36 @@ const ReviewModal = ({
           </button>
         </div>
       ) : null}
-
       {/* Modal */}
       {showModal && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal} ref={modalRef}>
             <h2>Leave your review!</h2>
-            <form
-              onSubmit={handleClick}
-              method="post"
-              action={`${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint}`}
-            >
+            <form onSubmit={handleClick}>
               <textarea
                 className={style.textArea}
                 name="review"
                 id="review"
                 cols={50}
                 rows={10}
-                placeholder="Review"
+                placeholder="Write your review here..."
+                value={review}
+                onChange={(e) => setReview(e.target.value)}
                 required
               ></textarea>
+              <div className={style.rating}>
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    className={
+                      rating >= star ? style.starFilled : style.starEmpty
+                    }
+                    onClick={() => setRating(star)}
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
               <button className={style.button} type="submit">
                 Submit
               </button>

@@ -4,6 +4,7 @@ import { getMessages } from "next-intl/server";
 import "./globals.css";
 import { Montserrat } from "next/font/google";
 import dynamic from "next/dynamic";
+import { ToastContainer, Bounce } from "react-toastify";
 const HeaderLayout = dynamic(() => import("./HeaderLayout"), {
   ssr: false,
 });
@@ -13,7 +14,9 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   style: ["normal", "italic"],
   display: "swap",
+  variable: "--monta",
 });
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "WID - Apartment Booking",
@@ -105,6 +108,19 @@ export default async function LocaleLayout({
           <HeaderLayout locale={locale}>{children}</HeaderLayout>
         </NextIntlClientProvider>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+        transition={Bounce}
+      />
     </main>
   );
 }

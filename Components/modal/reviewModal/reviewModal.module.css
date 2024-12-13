@@ -16,6 +16,13 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   outline: none;
 }
+.starFilled {
+  color: var(--star-filled-color, #f5a623); /* Filled star color */
+}
+
+.starEmpty {
+  color: var(--star-empty-color, #ccc); /* Empty star color */
+}
 
 .button {
     background: var(--green);

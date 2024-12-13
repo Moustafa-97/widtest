@@ -5,7 +5,6 @@ import styles from "./appartment.module.css";
 import "react-date-range/dist/styles.css"; // Date range picker styles
 import "react-date-range/dist/theme/default.css"; // Date range theme
 import { OrbitProgress } from "react-loading-indicators";
-// import { cookies } from "next/headers";
 
 // Dynamically load the ApartmentsPage component with no SSR
 const ApartmentsPage = React.memo( dynamic(

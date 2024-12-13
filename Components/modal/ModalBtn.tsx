@@ -2,9 +2,10 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./modalBtn.module.css";
+import { Bounce, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface ApiButtonProps {
-  method?: "POST" | "GET" | "DELETE";
   endpoint?: string;
   data?: any;
   text: string;
@@ -15,12 +16,10 @@ interface ApiButtonProps {
 
 const ModalButton = ({ endpoint, text, policy }: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [response, setResponse] = useState<any>(null);
   const [showModal, setShowModal] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const token = localStorage.getItem("token");
-console.log(response);
 
   const handleClick = async () => {
     setShowModal(true);
@@ -43,10 +42,39 @@ console.log(response);
       if (result) {
         setResponse(result);
         setShowModal(false);
-        window.location.reload();
+        toast(`${response.message}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+        setTimeout(() => {
+          
+          window.location.reload();
+        }, 5000);
       }
     } catch (error) {
       console.error("API request failed:", error);
+      toast(`Error happened, please contact customer support`, {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      setTimeout(() => {
+          
+        window.location.reload();
+      }, 5000);
     } finally {
       setLoading(false);
     }

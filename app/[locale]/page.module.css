@@ -1,4 +1,10 @@
+/* start Image for the Home Page Header */
 .topImageContainer {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
   transform: translateY(30px);
   -webkit-transform: translateY(30px);
   -moz-transform: translateY(30px);
@@ -17,27 +23,33 @@
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
 }
+/* end Image for the Home Page Header */
 .homePage {
-  transform: translateY(-0.7%);
-  -webkit-transform: translateY(-0.7%);
-  -moz-transform: translateY(-0.7%);
-  -ms-transform: translateY(-0.7%);
-  -o-transform: translateY(-0.7%);
+  transform: translateY(-20px);
+  -webkit-transform: translateY(-20px);
+  -moz-transform: translateY(-20px);
+  -ms-transform: translateY(-20px);
+  -o-transform: translateY(-20px);
 }
+.SearchContainer{
+  position: relative;
+  margin: 0 auto 74px auto;
+}
+
 .main {
-  min-height: 444px;
+  min-height: fit-content;
   height: fit-content;
   width: 86%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: auto;
+  margin:74px auto;
 }
 .AboutUs {
   width: 100%;
   min-height: fit-content;
-  margin: 0px auto 50px auto;
+  margin: 0px auto 113px auto;
 }
 /* top rated */
 .topRated {
@@ -215,7 +227,7 @@
   max-height: 489px;
 }
 /* nedia query */
-@media (min-width: 150px) and (max-width: 770px) {
+@media screen and (max-width: 768px) {
   .main {
     width: 92%;
     margin: auto;
