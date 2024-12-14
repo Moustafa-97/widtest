@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { getLocale } from "next-intl/server";
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./topRated.module.css";
 import dynamic from "next/dynamic";
+import { useLocale } from "next-intl";
 const Button = dynamic(() => import("@/Components/Buttons/Button"), {
   ssr: false,
 });
@@ -11,27 +13,27 @@ const Carousel = dynamic(() => import("@/Components/Carousel/Carousel"), {
   ssr: false,
 });
 
-export default async function TopRated() {
-  const locale: "en" | "ar" | any = getLocale();
-  const fetchData = async () => {
-    const response = await fetch(
-      `${
-        process.env.NEXT_PUBLIC_BACKENDAPI
-      }/v1/home/top-rated-apartments?limit=10&page=1&locale=${await locale}`
-    );
+export default function TopRated() {
+  const locale: "en" | "ar" | any = useLocale();
+  const [data, setData] = React.useState([]);
 
-    return response.json();
-  };
-
-  const data = await fetchData();
+  useEffect(() => {
+      async function fetchOffers(locale: "en" | "ar"): Promise<any[]> {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/home/top-rated-apartments?limit=10&page=1&locale=${await locale}`
+        );
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status}`);
+        }
+        return response.json();
+      }
+      fetchOffers(locale).then((data:any) => setData(data));
+    }, []);
 
   const Card = () => {
     return data.map(
-      async (
-        item: { ApartmentImage: string; name: string; id: string },
-        index: number
-      ) => (
-        <div key={index} className={styles.card}>
+      async (item: { ApartmentImage: string; name: string; id: string }) => (
+        <div key={item.id} className={styles.card}>
           {item.ApartmentImage && (
             <Image
               width={1000}

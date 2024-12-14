@@ -87,7 +87,7 @@ const Carousel = (props: Props) => {
             <div
               key={idx}
               className={`${styles.dot} ${
-                currentSlide === idx ? styles.active : ""
+                currentSlide == idx ? styles.active : ""
               }`}
               onClick={() => handleDotClick(idx)}
             ></div>

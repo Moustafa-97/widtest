@@ -122,18 +122,18 @@ export default async function HomePage() {
           </div>
 
           {/* Top Rated Section */}
-          <div className={styles.topRated}>
-            <div className={styles.topRatedHeader}>
-              <p className={styles.Textheader}>{t("topRatedTitle")}</p>
-              <p className={styles.TextBody}>
-                Browse our top-rated apartments, highly praised by guests for
-                exceptional comfort and service.
-              </p>
+            <div className={styles.topRated}>
+              <div className={styles.topRatedHeader}>
+                <p className={styles.Textheader}>{t("topRatedTitle")}</p>
+                <p className={styles.TextBody}>
+                  Browse our top-rated apartments, highly praised by guests for
+                  exceptional comfort and service.
+                </p>
+              </div>
+              <div className={styles.topRatedCarousel}>
+                <TopRated />
+              </div>
             </div>
-            <div className={styles.topRatedCarousel}>
-              <TopRated />
-            </div>
-          </div>
 
           {/* Offers Section */}
           <div className={`${locale === "ar" ? "rtl" : "ltr"} ${styles.offer}`}>
