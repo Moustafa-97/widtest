@@ -1,5 +1,10 @@
 {
-  "HomePage": {
+  "aboutHome": {
+    "title": "عننا",
+    "descriptionBlack": "نحن نساعدك في العثور على منزل ",
+    "descriptionGreen": "الاحلام الخاص بك"
+  },
+  "HomePage": { 
     "title": "عننا",
     "about": "نحن نساعدك في العثور على منزل الاحلام الخاص بك",
     "topRatedTitle": "الاعلى تقييم",
