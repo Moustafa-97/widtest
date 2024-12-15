@@ -1,21 +1,18 @@
-"use client";
+// "use client";
 import dynamic from "next/dynamic";
 import React from "react";
 import styles from "./appartment.module.css";
-import "react-date-range/dist/styles.css"; // Date range picker styles
-import "react-date-range/dist/theme/default.css"; // Date range theme
 import { OrbitProgress } from "react-loading-indicators";
 
 // Dynamically load the ApartmentsPage component with no SSR
-const ApartmentsPage = React.memo( dynamic(
-  () => import("@/Components/searchPage/ApartmentsPage"),
-  {
+const ApartmentsPage = React.memo(
+  dynamic(() => import("@/Components/searchPage/ApartmentsPage"), {
     ssr: false,
     loading: () => (
       <OrbitProgress variant="dotted" dense color={"#47b3c5"} size="large" />
     ),
-  }
-));
+  })
+);
 
 // Type definition for the searchParams prop
 interface SearchParams {

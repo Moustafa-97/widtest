@@ -23,13 +23,14 @@ import NoApartmentsAvailable from "./noApartment/NoApartmentsAvailable";
 import { IoLocationOutline } from "react-icons/io5";
 import { CiCalendarDate } from "react-icons/ci";
 import NoSearch from "./noSearch/noApartment/NoSearch";
+import "react-toastify/dist/ReactToastify.css";
+import { Bounce, toast } from "react-toastify";
 // import CardAp from "@/Components/Cards/ApartmentCard/CardAp";
-const CardAp = React.memo( dynamic(
-  () => import("@/Components/Cards/ApartmentCard/CardAp"),
-  {
+const CardAp = React.memo(
+  dynamic(() => import("@/Components/Cards/ApartmentCard/CardAp"), {
     ssr: false,
-  }
-));
+  })
+);
 
 // Define Data type properly
 type City = { id: number; name: string };
@@ -275,21 +276,50 @@ export default function ApartmentsPage({
         !selectedcity ||
         !selectedDistrict
       ) {
-        return;
+        toast("Please Enter All Fields", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
       }
-      if (pathname === `/${await locale}`) {
-        router.push(
-          `/${await locale}/apartments?start_date=${selectedStart}&end_date=${selectedEnd}&city=${
-            selectedcity.id
-          }&district=${selectedDistrict.id}`
-        );
-        return;
+      else if (pathname === `/${await locale}`) {
+        if (
+          !selectedStart ||
+          !selectedEnd ||
+          !selectedcity ||
+          !selectedDistrict
+        ) {
+          toast("Please Enter All Fields", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce,
+          });
+        } else {
+          router.push(
+            `/${await locale}/apartments?start_date=${selectedStart}&end_date=${selectedEnd}&city=${
+              selectedcity?.id
+            }&district=${selectedDistrict?.id}`
+          );
+          return;
+        }
       }
 
       setLoading(true);
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/search/search-apartments?checkInDate=${selectedStart}&checkOutDate=${selectedEnd}&districtId=${selectedDistrict.id}&locale=${locale}`
+        `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/search/search-apartments?checkInDate=${selectedStart}&checkOutDate=${selectedEnd}&districtId=${selectedDistrict?.id}&locale=${locale}`
       );
       const data = await res.json();
       if (Array.isArray(data)) {
