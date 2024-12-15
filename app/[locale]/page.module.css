@@ -323,7 +323,7 @@
   .reviews {
     width: 100%;
     min-height: fit-content;
-    margin: 50px auto;
+    margin: 0px auto 32px auto;
   }
   .reviewsHeader {
     gap: 12px;
