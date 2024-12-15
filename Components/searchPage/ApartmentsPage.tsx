@@ -526,7 +526,6 @@ export default function ApartmentsPage({
               apartmentsList?.map((apartment) => (
                 <div
                   key={apartment.id}
-                  // style={{ zIndex: "1" }}
                   className={styles.cardAp}
                 >
                   <CardAp

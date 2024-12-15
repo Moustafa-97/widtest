@@ -45,6 +45,11 @@
   justify-content: center;
   align-items: center;
   margin:74px auto;
+  /* transform: translateY(-775px);
+  -webkit-transform: translateY(-775px);
+  -moz-transform: translateY(-775px);
+  -ms-transform: translateY(-775px);
+  -o-transform: translateY(-775px); */
 }
 .AboutUs {
   width: 100%;
