@@ -49,6 +49,7 @@
 .AboutUs {
   width: 100%;
   min-height: fit-content;
+  height: fit-content;
   margin: 0px auto 113px auto;
   display: flex;
   align-items: center;
@@ -245,9 +246,6 @@
     height: auto;
     min-height: 429px;
   }
-  .AboutUs {
-    margin: 0px auto 25px auto;
-  }
 }
 @media screen and (max-width: 430px) {
   .main {
@@ -258,9 +256,6 @@
     height: auto;
     min-height: 429px;
   }
-
-
-
   .SearchContainer{
     position: relative;
     margin: 0 auto 32px auto;
@@ -296,7 +291,6 @@
     margin: 0 0 32px 0;
     height: 533px;
   }
-  
   .suggested {
     height: fit-content;
     min-height: 541px;
@@ -320,7 +314,6 @@
     line-height:  auto;
     width: calc(100% - 34px - 6px);
   }
-  
   .suggestedCarousel {
     width: 100%;
     height: fit-content;
