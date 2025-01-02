@@ -9,7 +9,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import styles from "./register.module.css";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { BlinkBlur } from "react-loading-indicators";
 
 // Validation schema using Yup
@@ -36,7 +36,7 @@ const Register = () => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
   const [mounted, setMounted] = useState(false);
-
+const t = useTranslations("forms");
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -71,12 +71,12 @@ const Register = () => {
   return (
     <div>
       <div className={styles.header}>
-        <p>Signup to manage your bookings effortlessly</p>
-        <h3>Welcome to Booking Website</h3>
+        <p>{t("loginTitle")}</p>
+        <h3>{t("welcome")}</h3>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.input}>
-          <label htmlFor="firstName">First Name:</label>
+          <label htmlFor="firstName">{t("firstName")}:</label>
           <input id="firstName" {...register("firstName")} />
           {errors.firstName && (
             <p style={{ color: "red" }}>{errors.firstName.message}</p>
@@ -84,7 +84,7 @@ const Register = () => {
         </div>
 
         <div className={styles.input}>
-          <label htmlFor="lastName">Last Name:</label>
+          <label htmlFor="lastName">{t("lastName")}:</label>
           <input id="lastName" {...register("lastName")} />
           {errors.lastName && (
             <p style={{ color: "red" }}>{errors.lastName.message}</p>
@@ -92,7 +92,7 @@ const Register = () => {
         </div>
 
         <div className={styles.input}>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">{t("email")}:</label>
           <input id="email" {...register("email")} type="email" />
           {errors.email && (
             <p style={{ color: "red" }}>{errors.email.message}</p>
@@ -100,7 +100,7 @@ const Register = () => {
         </div>
 
         <div className={styles.input}>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">{t("password")}:</label>
 
           <input id="password" {...register("password")} type="password" />
           {errors.password && (
@@ -108,16 +108,16 @@ const Register = () => {
           )}
         </div>
         <p className={styles.termsText}>
-          By creating an account, you agree to the{" "}
-          <Link href={`/${locale}/terms`}> Terms of use</Link> and{" "}
-          <Link href={`/${locale}/privacy`}> Privacy Policy</Link>.
+          {t("confirmationText")}{" "}
+          <Link href={`/${locale}/terms`}> {t("terms")}</Link> {t("and")}{" "}
+          <Link href={`/${locale}/privacy`}> {t("privacy")}</Link>.
         </p>
         <button className={styles.button} type="submit" disabled={isSubmitting}>
-          Register
+          {t("register")}
         </button>
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <p className={styles.loginText}>
-          Have an account?{" "}
+          {t("haveAccount")}{" "}
           <Link
             href={`/${locale}/login`}
             onWaiting={() => (
@@ -129,7 +129,7 @@ const Register = () => {
               />
             )}
           >
-            Login
+            {t("login")}
           </Link>
           .
         </p>

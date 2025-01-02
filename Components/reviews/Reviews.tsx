@@ -6,6 +6,7 @@ import axios from "axios";
 import Image from "next/image";
 import { OrbitProgress } from "react-loading-indicators";
 import userSvg from "./user.svg";
+import { useTranslations } from "next-intl";
 interface User {
   id: string;
   firstName: string;
@@ -58,7 +59,7 @@ export default function Reviews(props: Props) {
 
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-
+  const t = useTranslations("ApartmentReviews")
   // Fetch reviews when page or limit changes
   useEffect(() => {
     const fetchReviews = async () => {
@@ -105,10 +106,10 @@ export default function Reviews(props: Props) {
                 <div className={styles.reviewCardRate}>
                   {review.rating}{" "}
                   {(review.rating / 5) * 100 > 85
-                    ? "Excellent"
+                    ? t("excellent")
                     : (review.rating / 5) * 100 > 70
-                    ? "Very Good"
-                    : "Good"}{" "}
+                    ? t("verygood")
+                    : t("good")}{" "}
                   |
                 </div>
 

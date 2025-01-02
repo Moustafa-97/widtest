@@ -3,7 +3,7 @@ import Button from "@/Components/Buttons/Button";
 import Image from "next/image";
 import React from "react";
 import styles from "./history.module.css";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import ModalButton from "@/Components/modal/ModalBtn";
 
 export default async function History({
@@ -40,7 +40,7 @@ export default async function History({
 }) {
   const locale: "en" | "ar" | unknown = useLocale();
   // console.log(history);
-
+  const t = useTranslations("profile");
   return (
     <>
       <section className={styles.card}>
@@ -66,12 +66,12 @@ export default async function History({
                   {/* in & out */}
                   <div className={styles.inOut}>
                     <div className={styles.chIn}>
-                      <p>checkIn</p>
+                      <p>{t("checkIn")}</p>
                       <span>{history.checkInDate.split("T")[0]}</span>
                     </div>
                     <div className={styles.inOutLine}></div>
                     <div className={styles.chOut}>
-                      <p>checkOut</p>
+                      <p>{t("checkOut")}</p>
                       <span>{history.checkOutDate.split("T")[0]}</span>
                     </div>
                   </div>
@@ -82,7 +82,7 @@ export default async function History({
                       history.bookingStatus === "CONFIRMED" ? (
                         <div style={{ width: "50%" }}>
                           <ModalButton
-                            text="Cancel"
+                            text={t("cancel")}
                             endpoint={`/v1/booking/${history.id}/cancel-booking`}
                             policy={
                               history.Apartment.CancellationPolicy
@@ -109,12 +109,12 @@ export default async function History({
                           color: "red",
                         }}
                       >
-                        No Refund
+                        {t("noRefund")}
                       </div>
                     )}
                     <div style={{ width: "50%" }}>
                       <Button
-                        text="View"
+                        text={t("view")}
                         onClicks={`/${await locale}/apartments/${
                           history.Apartment.id
                         }`}

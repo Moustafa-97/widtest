@@ -5,7 +5,7 @@ import Image from "next/image";
 import React, { useEffect } from "react";
 import styles from "./topRated.module.css";
 import dynamic from "next/dynamic";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 const Button = dynamic(() => import("@/Components/Buttons/Button"), {
   ssr: false,
 });
@@ -16,19 +16,21 @@ const Carousel = dynamic(() => import("@/Components/Carousel/Carousel"), {
 export default function TopRated() {
   const locale: "en" | "ar" | any = useLocale();
   const [data, setData] = React.useState([]);
-
+  const t = useTranslations("HomePage");
   useEffect(() => {
-      async function fetchOffers(locale: "en" | "ar"): Promise<any[]> {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/home/top-rated-apartments?limit=10&page=1&locale=${await locale}`
-        );
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
-        return response.json();
+    async function fetchOffers(locale: "en" | "ar"): Promise<any[]> {
+      const response = await fetch(
+        `${
+          process.env.NEXT_PUBLIC_BACKENDAPI
+        }/v1/home/top-rated-apartments?limit=10&page=1&locale=${await locale}`
+      );
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
       }
-      fetchOffers(locale).then((data:any) => setData(data));
-    }, []);
+      return response.json();
+    }
+    fetchOffers(locale).then((data: any) => setData(data));
+  }, []);
 
   const Card = () => {
     return data.map(
@@ -52,7 +54,7 @@ export default function TopRated() {
           </div>
           <div className={styles.bookButton}>
             <Button
-              text="Book Now"
+              text={t("booknow")}
               onClicks={`${await locale}/apartments/${item.id}`}
               type={undefined}
             />

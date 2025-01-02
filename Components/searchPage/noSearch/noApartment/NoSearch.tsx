@@ -1,12 +1,14 @@
-// NoApartmentsAvailable.tsx
-import React from 'react';
-import styles from './NoSearch.module.css';
+"use client";
+import React from "react";
+import styles from "./NoSearch.module.css";
+import { useTranslations } from "next-intl";
 
 export default function NoSearch() {
+  const t = useTranslations("serachError");
   return (
     <div className={styles.container}>
       <div className={styles.icon}>🔎</div>
-      <h2 className={styles.message}>Enter seach field</h2>
+      <h2 className={styles.message}>{t("search")}</h2>
     </div>
   );
 }

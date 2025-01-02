@@ -4,6 +4,7 @@
 import React, { useEffect, useState } from "react";
 import { SiMastercard, SiVisa } from "react-icons/si";
 import styles from "./payment.module.css";
+import { useTranslations } from "next-intl";
 
 export default function Payment() {
   const [visaNumber, setVisaNumber] = useState<any>([]);
@@ -46,6 +47,7 @@ export default function Payment() {
       }
     );
   };
+  const t = useTranslations("profile")
   return (
     <>
       <div className={styles.visa}>
@@ -69,7 +71,7 @@ export default function Payment() {
               )
             )
           ) : (
-            <div className={styles.visaAdd}>add visa</div>
+            <div className={styles.visaAdd}>{t("addVisa")}</div>
           )}
         </div>
       </div>

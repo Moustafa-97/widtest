@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./profileMain.module.css";
 import axios from "axios";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { useSearchParams } from "next/navigation";
 
@@ -18,11 +18,12 @@ const Payment = dynamic(() => import("../profilePayment/Payment"), {
 });
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function ProfileMain() {
+  const t = useTranslations("profile");
   const searchParams = useSearchParams();
   const history = searchParams.get("history");
   const locale = useLocale();
   const [selected, setSelected] = useState(history ? history : "Profile");
-  const profileSections = ["Profile", "History", "Payment Methods"];
+  const profileSections = [t("profile"), t("history"), t("payment")];
   const [profileData, setProfileData] = useState({});
   const [profileHistory, setProfileHistory] = useState([]);
   const token = localStorage.getItem("token");
@@ -65,7 +66,6 @@ export default function ProfileMain() {
         .catch((err) => console.log(err));
     }
   }, []);
-  
 
   return (
     <>

@@ -53,8 +53,8 @@ export default  function Reviews() {
               <div className={styles.userSection}>
                 {item.User.profilePicture && (
                   <Image
-                    width={500}
-                    height={500}
+                    width={1000}
+                    height={1000}
                     placeholder="empty"
                     loading="lazy"
                     src={item.User.profilePicture}
@@ -77,8 +77,8 @@ export default  function Reviews() {
             <div className={styles.imgSection}>
               {item.Apartment.ApartmentImage && (
                 <Image
-                  width={500}
-                  height={500}
+                  width={1000}
+                  height={1000}
                   placeholder="empty"
                   loading="lazy"
                   src={item.Apartment.ApartmentImage}

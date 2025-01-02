@@ -68,8 +68,8 @@ export default function ProfileHeader(props: any) {
             <Image
               src={profilePic}
               alt="profile"
-              width={500}
-              height={500}
+              width={1000}
+              height={1000}
               className={styles.profileImage}
               loading="eager"
               placeholder="empty"

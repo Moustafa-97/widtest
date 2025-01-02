@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import styles from "./account.module.css";
+import { useTranslations } from "next-intl";
 
 export default function Account({
   account,
@@ -68,7 +69,7 @@ export default function Account({
       // alert("Error updating account");
     }
   };
-
+const t = useTranslations("profile")
   return (
     <>
       <section className={styles.accountSection}>
@@ -77,7 +78,7 @@ export default function Account({
           {isEditing.email ? (
             <>
               <label>
-                <p>Email</p>
+                <p>{t("email")}</p>
                 <input
                   type="email"
                   name="email"
@@ -91,27 +92,27 @@ export default function Account({
                   className={styles.saveButton}
                   onClick={() => handleSubmit("email", "email")}
                 >
-                  Save
+                  {t("save")}
                 </button>
                 <button
                   className={styles.saveButton}
                   onClick={() => handleEditClick("email")}
                 >
-                  Cancel
+                  {t("cancel")}
                 </button>
               </div>
             </>
           ) : (
             <>
               <div className={styles.detail}>
-                <p>Email</p>
+                <p>{t("email")}</p>
                 <span>{account.email}</span>
               </div>
               <button
                 className={styles.editButton}
                 onClick={() => handleEditClick("email")}
               >
-                Edit
+                {t("edit")}
               </button>
             </>
           )}
@@ -123,7 +124,7 @@ export default function Account({
             <>
               <div>
                 <label>
-                  <p>Name</p>
+                  <p>{t("name")}</p>
                   <input
                     type="text"
                     name="firstName"
@@ -149,20 +150,20 @@ export default function Account({
                     handleSubmit("lastName", "name");
                   }}
                 >
-                  Save
+                  {t("save")}
                 </button>
                 <button
                   className={styles.saveButton}
                   onClick={() => handleEditClick("name")}
                 >
-                  Cancel
+                  {t("cancel")}
                 </button>
               </div>
             </>
           ) : (
             <>
               <div className={styles.detail}>
-                <p>Name</p>
+                <p>{t("name")}</p>
                 <span>
                   {account.firstName} {account.lastName}
                 </span>
@@ -171,7 +172,7 @@ export default function Account({
                 className={styles.editButton}
                 onClick={() => handleEditClick("name")}
               >
-                Edit
+                {t("edit")}
               </button>
             </>
           )}

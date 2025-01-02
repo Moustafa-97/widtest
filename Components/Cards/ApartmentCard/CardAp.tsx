@@ -75,8 +75,8 @@ export default function CardAp(props: Props) {
               <Image
                 src={data?.ApartmentImage}
                 alt="test"
-                width={500}
-                height={500}
+                width={1000}
+                height={1000}
                 loading="eager"
                 placeholder="empty"
               />
@@ -84,8 +84,8 @@ export default function CardAp(props: Props) {
               <Image
                 src={image}
                 alt="test"
-                width={500}
-                height={500}
+                width={1000}
+                height={1000}
                 loading="eager"
                 placeholder="empty"
               />

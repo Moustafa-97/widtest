@@ -260,15 +260,15 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
               </div>
               <div className={styles.roomDetailsPrice}>
                 <p>${apartment?.nightlyPrice}</p>
-                <span>/night</span>
+                <span>/{t("night")}</span>
               </div>
             </div>
 
             <div className={styles.locationDetails}>
               <div className={styles.hotelLogo}>
                 <Image
-                  width={500}
-                  height={500}
+                  width={1000}
+                  height={1000}
                   src={logo}
                   alt="Room for payment"
                   className={styles.image}
@@ -301,7 +301,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
                   <div className={styles.bookingCheckDate}>
                     <p>{startDate}</p>
                   </div>
-                  <p className={styles.bookingP}>check in</p>
+                  <p className={styles.bookingP}>{t("checkIn")}</p>
                 </div>
                 <div className={styles.bookingLogo}>
                   <span>
@@ -312,7 +312,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
                   <div className={styles.bookingCheckDate}>
                     <p>{endDate}</p>
                   </div>
-                  <p className={styles.bookingP}>check out</p>
+                  <p className={styles.bookingP}>{t("checkOut")}</p>
                 </div>
               </div>
             )}
@@ -423,7 +423,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
           </section>
           <section className={styles.pay}>
             <PaymentBtn
-              text="Pay Now"
+              text={t("payNow")}
               method="POST"
               data={{ checkInDate: start_date, checkOutDate: end_date }}
               endpoint1={`/v1/booking/pay-with-saved-card/${bill?.bookingId}?locale=${locale}`}

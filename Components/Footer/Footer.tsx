@@ -51,8 +51,7 @@ function Footer() {
             />
           </div>
           <p>
-            We offer a range of apartment options tailored to your preferences.
-            We’re here to ensure a seamless and comfortable stay for you!
+            {t("text")}
           </p>
         </div>
         <div className={styles.footerCompanyLinks}>

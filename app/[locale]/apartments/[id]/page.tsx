@@ -121,7 +121,8 @@ export default async function ApartmentPageId({
   params: { id },
   searchParams: { start_date, end_date, city, district },
 }: any) {
-  const t = getTranslations("Buttons");
+  const t = getTranslations("ApartmentReviews");
+  const ts = getTranslations("searchPage");
 
   const locale: "en" | "ar" | any = getLocale();
 
@@ -187,7 +188,7 @@ export default async function ApartmentPageId({
           <div className={styles.roomPrice}>
             <div className={styles.roomDetailsPrice}>
               <p>${`${data?.data.nightlyPrice}`}</p>
-              <span>/night</span>
+              <span>/{(await ts)("night")}</span>
             </div>
           </div>
           {/* buttons */}
@@ -209,7 +210,7 @@ export default async function ApartmentPageId({
             </div>
             <div className={styles.viewBtn}>
               <Button
-                text={(await t)("bookNow")}
+                text={(await ts)("bookNow")}
                 onClicks={`${id}/payment?start_date=${start_date}&end_date=${end_date}&city=${city}&district=${district}`}
                 type={undefined}
               />
@@ -226,23 +227,23 @@ export default async function ApartmentPageId({
 
       <div className={styles.bottomSection}>
         <div className={styles.textContainer}>
-          <h4>OVERVIEW</h4>
+          <h4>{(await ts)("overview")}</h4>
           <p>{data?.data.description}</p>
         </div>
         {/* edit */}
         <div className={styles.cardContainer}>
           <div className={styles.card}>
             <p className={styles.cardHeader}>
-              {data?.data?.avgRating ?? "No rating available"}
+              {data?.data?.avgRating ?? (await t)("noRating")}
             </p>
             <p className={styles.rateCardComp}>
               {data?.data?.avgRating
                 ? (data.data.avgRating / 5) * 100 > 85
-                  ? "Excellent"
+                  ? (await t)("excellent")
                   : (data.data.avgRating / 5) * 100 > 65
-                  ? "Very Good"
-                  : "Good"
-                : "No rating available"}
+                  ? (await t)("verygood")
+                  : (await t)("good")
+                : (await t)("noRating")}
             </p>
             <p className={styles.reviewCardComp}>
               {data?.data?.reviewCount ?? "0"} reviews
@@ -253,8 +254,8 @@ export default async function ApartmentPageId({
           <div className={styles.card}>
             <p className={styles.cardHeader}>
               {data?.data.ApartmentDetails?.isPetsAllowed
-                ? "Pets Allowded"
-                : "Pets Not Allowded"}{" "}
+                ? (await t)("allowPets")
+                : (await t)("noAllowPets")}
             </p>
 
             <Image src={pet} width={100} height={100} loading="lazy" alt={""} />
@@ -263,7 +264,8 @@ export default async function ApartmentPageId({
           <div className={styles.card}>
             <p className={styles.cardHeader}>
               {" "}
-              {data?.data.ApartmentDetails?.numberOfBedRooms} Bedrooms
+              {data?.data.ApartmentDetails?.numberOfBedRooms}{" "}
+              {(await t)("bedroom")}
             </p>
             <Image src={bed} width={100} height={100} loading="lazy" alt={""} />
           </div>
@@ -271,7 +273,8 @@ export default async function ApartmentPageId({
           <div className={styles.card}>
             <p className={styles.cardHeader}>
               {" "}
-              {data?.data.ApartmentDetails?.numberOfBathrooms} Bathrooms
+              {data?.data.ApartmentDetails?.numberOfBathrooms}{" "}
+              {(await t)("bath")}
             </p>
             <Image
               src={bath}
@@ -286,8 +289,10 @@ export default async function ApartmentPageId({
         {/* location */}
         <div className={styles.locationContainer}>
           <div className={styles.locationHeader}>
-            <h4>LOCATION</h4>
-            <button className={styles.gmapButton}>view on google maps</button>
+            <h4>{(await t)("location")}</h4>
+            <button className={styles.gmapButton}>
+              {(await t)("viewGoogle")}
+            </button>
           </div>
           <div className={styles.locationMap}>
             <iframe
@@ -300,7 +305,7 @@ export default async function ApartmentPageId({
           </div>
         </div>
         <div className={styles.amenitiesContainer}>
-          <h4>AMENITIES</h4>
+          <h4>{(await t)("amenities")}</h4>
           <Amenities amenities={data?.data.ApartmentAmenities} />
         </div>
       </div>
@@ -308,13 +313,13 @@ export default async function ApartmentPageId({
       {/* review */}
       <div className={styles.reviewContainer}>
         <div className={styles.reviewHeader}>
-          <h4>REVIEWS</h4>
+          <h4>{(await t)("reviews")}</h4>
 
           <ReviewModal
             method="POST"
             endpoint={`/v1/reviews/review/${data?.data.id}`}
             data=""
-            text="Add review"
+            text={(await t)("addReview")}
             width="100%"
             id={data?.data.id}
             locale={await locale}

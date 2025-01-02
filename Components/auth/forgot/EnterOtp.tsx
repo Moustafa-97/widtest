@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Link from "next/link";
 import { FaBackward } from "react-icons/fa";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import styles from "./enter.module.css";
 import { BlinkBlur } from "react-loading-indicators";
 
@@ -26,7 +26,7 @@ const Entertoken = () => {
   const locale = useLocale();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
-
+  const t = useTranslations("forms");
   const {
     register,
     handleSubmit,
@@ -43,13 +43,11 @@ const Entertoken = () => {
       );
 
       if (response.status === 200) {
-        console.log("Password reset successful:", response.data);
+        // console.log("Password reset successful:", response.data);
         router.push(`/${locale}/resetPassword`);
       }
     } catch (error) {
-      setErrorMessage(
-        "Invalid token or failed to reset password. Please try again."
-      );
+      setErrorMessage(t("errorToken"));
       console.error("Error during token verification:", error);
     }
   };
@@ -58,16 +56,16 @@ const Entertoken = () => {
     <div>
       <div className={styles.back}>
         <Link href={`/${locale}/login`}>
-          <FaBackward /> Back to Login
+          <FaBackward /> {t("backToLogin")}
         </Link>
       </div>
       <div className={styles.header}>
-        <h3>Verify code</h3>
-        <p>An authentication code has been sent to your email.</p>
+        <h3>{t("verifyCode")}</h3>
+        <p>{t("verifyCodeText")}</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.input}>
-          <label htmlFor="token">token</label>
+          <label htmlFor="token">{t("token")}</label>
           <input id="token" {...register("token")} type="text" />
           {errors.token && (
             <p style={{ color: "red" }}>{errors.token.message}</p>
@@ -75,7 +73,7 @@ const Entertoken = () => {
         </div>
 
         <div className={styles.input}>
-          <label htmlFor="newEmail">Email</label>
+          <label htmlFor="newEmail">{t("email")}</label>
           <input id="newEmail" {...register("email")} type="email" />
           {errors.email && (
             <p style={{ color: "red" }}>{errors.email.message}</p>
@@ -83,12 +81,12 @@ const Entertoken = () => {
         </div>
 
         <button className={styles.button} type="submit" disabled={isSubmitting}>
-          Reset Password
+          {t("resetPassword")}
         </button>
 
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <p className={styles.loginText}>
-          Don’t have an account?{" "}
+          {t("dontHaveAccount")}{" "}
           <Link
             href={`/${locale}/register`}
             onWaiting={() => (
@@ -100,7 +98,7 @@ const Entertoken = () => {
               />
             )}
           >
-            Register
+            {t("register")}
           </Link>
           .
         </p>

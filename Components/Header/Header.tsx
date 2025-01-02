@@ -11,8 +11,8 @@ import ResponsiveHeader from "@/Components/Header/responsive/ResponsiveHeader";
 import axios from "axios";
 import Image from "next/image";
 import ProfileBtn from "../Buttons/profileBtn/ProfileBtn";
-import ar from "./ar.svg";
-import en from "./en.svg";
+// import ar from "./ar.svg";
+// import en from "./en.svg";
 
 export default function Header({ token }: { token: string | any }) {
   const t = useTranslations("Header");
@@ -130,29 +130,31 @@ export default function Header({ token }: { token: string | any }) {
                 >
                   <div className={styles.languageSwitch}>
                     {locale === "en" ? (
-                      <Image
-                        src={en}
-                        alt="ar"
-                        width={100}
-                        height={100}
-                        style={{
-                          width: "30%",
-                          minWidth: "30px",
-                          height: "auto",
-                        }}
-                      />
+                      // <Image
+                      //   src={en}
+                      //   alt="ar"
+                      //   width={100}
+                      //   height={100}
+                      //   style={{
+                      //     width: "30%",
+                      //     minWidth: "30px",
+                      //     height: "auto",
+                      //   }}
+                      // />
+                      <span>AR</span>
                     ) : (
-                      <Image
-                        src={ar}
-                        alt="ar"
-                        width={100}
-                        height={100}
-                        style={{
-                          width: "30%",
-                          minWidth: "30px",
-                          height: "auto",
-                        }}
-                      />
+                      // <Image
+                      //   src={ar}
+                      //   alt="ar"
+                      //   width={100}
+                      //   height={100}
+                      //   style={{
+                      //     width: "30%",
+                      //     minWidth: "30px",
+                      //     height: "auto",
+                      //   }}
+                      // />
+                      <span>EN</span>
                     )}
                   </div>
                 </Link>
@@ -204,7 +206,6 @@ export default function Header({ token }: { token: string | any }) {
             pathname={pathname}
             searchParams={searchParams}
             locale={locale}
-            // cookies={cookies}
             token={token}
             isLogged={isLogged}
             t={t}

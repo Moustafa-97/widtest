@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import styles from "./login.module.css";
 import Link from "next/link";
 import { BlinkBlur } from "react-loading-indicators";
@@ -25,7 +25,7 @@ const Login = () => {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
   // const [resData, setResData] = useState(null);
-
+  const t = useTranslations("forms");
   const {
     register,
     handleSubmit,
@@ -50,7 +50,7 @@ const Login = () => {
         router.push(`/${locale}`);
       }
     } catch (error) {
-      setErrorMessage("Invalid email or password");
+      setErrorMessage(t("loginError"));
       console.error("Error during login:", error);
     }
   };
@@ -58,12 +58,12 @@ const Login = () => {
   return (
     <div>
       <div className={styles.header}>
-        <p>Signup to manage your bookings effortlessly</p>
-        <h3>Welcome to Booking Website</h3>
+        <p>{t("loginTitle")}</p>
+        <h3>{t("welcome")}</h3>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.input}>
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">{t("email")}</label>
           <input id="email" {...register("email")} type="email" />
           {errors.email && (
             <p style={{ color: "red" }}>{errors.email.message}</p>
@@ -71,7 +71,7 @@ const Login = () => {
         </div>
 
         <div className={styles.input}>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">{t("password")}</label>
           <input id="password" {...register("password")} type="password" />
           {errors.password && (
             <p style={{ color: "red" }}>{errors.password.message}</p>
@@ -79,16 +79,16 @@ const Login = () => {
         </div>
 
         <p className={styles.termsText}>
-          <Link href={`/${locale}/forgetPassword`}> Forgot Password ?</Link>
+          <Link href={`/${locale}/forgetPassword`}> {t("forgetPassword")}</Link>
         </p>
 
         <button className={styles.button} type="submit" disabled={isSubmitting}>
-          Login
+          {t("login")}
         </button>
 
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <p className={styles.loginText}>
-          Don’t have an account?{" "}
+          {t("dontHaveAccount")}{" "}
           <Link
             href={`/${locale}/register`}
             onWaiting={() => (
@@ -100,7 +100,7 @@ const Login = () => {
               />
             )}
           >
-            Register
+            {t("register")}
           </Link>
           .
         </p>

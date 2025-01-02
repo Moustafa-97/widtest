@@ -4,8 +4,8 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "./responsiveHeader.module.css";
 import Link from "next/link";
 import Button from "@/Components/Buttons/Button";
-import ar from "../ar.svg";
-import en from "../en.svg";
+// import ar from "../ar.svg";
+// import en from "../en.svg";
 import logo from "../logo.svg";
 import Image from "next/image";
 import homeIcon from "@/public/navbar/home.svg";
@@ -126,21 +126,23 @@ const ResponsiveHeader = ({
                   >
                     <div className={styles.languageSwitch}>
                       {locale === "en" ? (
-                        <Image
-                          src={en}
-                          alt="ar"
-                          width={100}
-                          height={100}
-                          style={{ width: "10%", height: "auto" }}
-                        />
+                        // <Image
+                        //   src={en}
+                        //   alt="ar"
+                        //   width={100}
+                        //   height={100}
+                        //   style={{ width: "10%", height: "auto" }}
+                        // />
+                        <span>AR</span>
                       ) : (
-                        <Image
-                          src={ar}
-                          alt="ar"
-                          width={100}
-                          height={100}
-                          style={{ width: "10%", height: "auto" }}
-                        />
+                        // <Image
+                        //   src={ar}
+                        //   alt="ar"
+                        //   width={100}
+                        //   height={100}
+                        //   style={{ width: "10%", height: "auto" }}
+                        // />
+                        <span>EN</span>
                       )}
                     </div>
                   </Link>{" "}

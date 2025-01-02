@@ -520,7 +520,7 @@ export default function ApartmentsPage({
               <span></span>
             </div>
           ) : errorMessage && errorMessage ? (
-            <p>Please set feileds correctly...</p>
+            <p>{t("correctFeild")}</p>
           ) : apartmentsList ? (
             apartmentsList.length > 0 ? (
               apartmentsList?.map((apartment) => (

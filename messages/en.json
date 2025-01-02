@@ -9,7 +9,69 @@
     "about": "We assist you in finding your dream homes.",
     "topRatedTitle": "TOP RATED",
     "suggestedTitle": "SUGGESTED RENTALS",
-    "reviewsTitle": "REVIEWS"
+    "reviewsTitle": "REVIEWS",
+    "booknow":"Book Now",
+    "browse":"Browse our top-rated apartments, highly praised by guests for exceptional comfort and service."
+  },
+  "ApartmentReviews": {
+    "excellent": "Excellent",
+    "verygood": "Very Good",
+    "good": "Good",
+    "reviews": "Reviews",
+    "neRating":"No rating available",
+    "allowPets":"Pets Allowed",
+    "noAllowPets":"Pets Not Allowed",
+    "bedroom":"Bedrooms",
+    "bath":"Bathrooms",
+    "location":"LOCATION",
+    "viewGoogle":"view on google maps",
+    "amenities":"AMENITIES",
+    "addReview":"Add review"
+  },
+  "forms": {
+    "backToLogin": "Back to Login",
+    "verifyCode": "Verify Code",
+    "verifyCodeText": "An authentication code has been sent to your email.",
+    "token": "Token",
+    "errorToken": "Invalid token or failed to reset password. Please try again.",
+    "failedOtp": "Failed to send OTP. Please try again.",
+    "email": "Email",
+    "confirmEmail": "Confirm Email",
+    "sendOtp": "Send OTP",
+    "gotOtp": "Got your OTP",
+    "otp": "OTP",
+    "finalStep": "Don’t worry, this is the final step",
+    "password": "Password",
+    "newPassword": "New Password",
+    "forgotPassword": "Forgot your Password?",
+    "forgotPasswordText": "Don’t worry, happens to all of us. Enter your email below to recover your password",
+    "resetPassword": "Reset Password",
+    "dontHaveAccount": "Don't have an account?",
+    "haveAccount": "Have an account?",
+    "register": "Register",
+    "loginTitle": "Signup to manage your bookings effortlessly",
+    "welcome": "Welcome to WID",
+    "login": "Login",
+    "loginError": "Invalid email or password",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "confirmationText": "By creating an account, you agree to the",
+    "terms": "Terms of use",
+    "and": "and",
+    "privacy": "Privacy Policy"
+  },
+  "payment": {
+    "completePayment": "Complete registration payment",
+    "personalDetails": "Personal Details",
+    "name": "Name",
+    "email": "Email",
+    "street": "Street",
+    "city": "City",
+    "state": "State",
+    "country": "Country",
+    "zip": "Zip Code",
+    "save": "Save my information",
+    "submit": "Submit"
   },
   "SearchPage": {
     "title": "Find stay",
@@ -24,7 +86,10 @@
     "apply": "Apply",
     "startingFrom": "Starting from",
     "night": "night",
-    "view": "View Place"
+    "view": "View Place",
+    "correctFeild":"Please set feileds correctly...",
+    "bookNow":"BOOK NOW",
+    "overview":"OVERVIEW"
   },
   "About": {
     "whyUs": "Why Choose Us?",
@@ -63,9 +128,13 @@
     "taxes": "Taxes (VAT 14%)",
     "servicesCost": "Services Cost",
     "total": "Total",
-    "selectADate": "Please select a date"
+    "selectADate": "Please select a date",
+    "night":"night",
+    "checkIn":"check in",
+    "checkOut":"check out"
   },
   "Footer": {
+    "text": "We offer a range of apartment options tailored to your preferences. We’re here to ensure a seamless and comfortable stay for you!",
     "rights": " All Rights Reserved",
     "company": "COMPANY",
     "know": "KNOW MORE",
@@ -75,6 +144,40 @@
     "contact": " contact us",
     "follow": "FOLLOW",
     "about": "About Us",
-    "apartments": "Apartments"
+    "apartments": "Apartments",
+    "ready": "Ready to get started?",
+    "readyText": "Download the app to book your next stay with ease. Explore, compare, and reserve—all at your fingertips.",
+    "getPlay":"Get it on",
+    "appStore":"App Store",
+    "googlePlay":"Google Play"
+
+  },
+  "modal":{
+    "sure":"Are you sure",
+    "cancel":"you want to cancel this booking?",
+    "leaveYour":"Leave your review!",
+    "submit":"Submit"
+  },
+  "profile":{
+    "profile":"Prfile",
+    "history":"History",
+    "payment":"Payment Methods",
+    "email":"Email",
+    "save":"Save",
+    "cancel":"Cancel",
+    "edit":"Edit",
+    "name":"Name",
+    "checkIn":"check in",
+    "checkOut":"check out",
+    "noRefund":"No Refund",
+    "view":"View",
+    "addVisa":"Add Visa"
+  },
+  "searchError":{
+    "noApart":"No Apartments Available",
+    "tryAgain":"Please try a different search or check back later.",
+    "tryAgainbtn":"Try Again",
+    "search":"Enter seach field"
   }
+
 }

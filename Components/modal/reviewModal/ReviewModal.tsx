@@ -7,6 +7,7 @@ import style from "./reviewModal.module.css";
 import axios from "axios";
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useTranslations } from "next-intl";
 
 interface ApiButtonProps {
   method?: "POST" | "GET" | "DELETE";
@@ -133,7 +134,7 @@ const ReviewModal = ({ endpoint, text, locale, id }: ApiButtonProps) => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showModal]);
-
+  const t = useTranslations("modal");
   return (
     <>
       {isHistory && isHistory.length > 0 ? (
@@ -152,7 +153,7 @@ const ReviewModal = ({ endpoint, text, locale, id }: ApiButtonProps) => {
       {showModal && (
         <div className={styles.modalOverlay}>
           <div className={styles.modal} ref={modalRef}>
-            <h2>Leave your review!</h2>
+            <h2>{t("leaveYour")}</h2>
             <form onSubmit={handleClick}>
               <textarea
                 className={style.textArea}
@@ -179,7 +180,7 @@ const ReviewModal = ({ endpoint, text, locale, id }: ApiButtonProps) => {
                 ))}
               </div>
               <button className={style.button} type="submit">
-                Submit
+                {t("submit")}
               </button>
             </form>
           </div>

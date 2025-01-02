@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "./forget.module.css";
 import Link from "next/link";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { FaBackward } from "react-icons/fa";
 import { BlinkBlur } from "react-loading-indicators";
 
@@ -23,7 +23,7 @@ const ForgetPassword = () => {
   const locale = useLocale();
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
-
+  const t = useTranslations("forms");
   const {
     register,
     handleSubmit,
@@ -44,7 +44,7 @@ const ForgetPassword = () => {
         router.push(`/${locale}/otp`); // Navigate to OTP input page
       }
     } catch (error) {
-      setErrorMessage("Failed to send OTP. Please try again.");
+      setErrorMessage(t("failedOtp"));
       console.error("Error during password recovery:", error);
     }
   };
@@ -57,15 +57,12 @@ const ForgetPassword = () => {
         </Link>
       </div>
       <div className={styles.header}>
-        <h3>Forgot your password?</h3>
-        <p>
-          Don’t worry, happens to all of us. Enter your email below to recover
-          your password
-        </p>
+        <h3>{t("forgotPassword")}</h3>
+        <p>{t("forgotPasswordText")}</p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.input}>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">{t("email")}:</label>
           <input id="email" {...register("email")} type="email" />
           {errors.email && (
             <p style={{ color: "red" }}>{errors.email.message}</p>
@@ -73,12 +70,12 @@ const ForgetPassword = () => {
         </div>
 
         <button className={styles.button} type="submit" disabled={isSubmitting}>
-          Send OTP
+          {t("sendOtp")}
         </button>
 
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
         <p className={styles.loginText}>
-          Don’t have an account?{" "}
+          {t("dontHaveAccount")}{" "}
           <Link
             href={`/${locale}/register`}
             onWaiting={() => (
@@ -90,7 +87,7 @@ const ForgetPassword = () => {
               />
             )}
           >
-            Register
+            {t("register")}
           </Link>
           .
         </p>

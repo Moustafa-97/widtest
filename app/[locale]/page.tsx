@@ -103,8 +103,8 @@ export default async function HomePage() {
       <div className={styles.topImageContainer}>
         <Image
           src={topHome}
-          width={500}
-          height={500}
+          width={1500}
+          height={1500}
           alt="home"
           loading="eager"
           placeholder="blur"
@@ -122,18 +122,15 @@ export default async function HomePage() {
           </div>
 
           {/* Top Rated Section */}
-            <div className={styles.topRated}>
-              <div className={styles.topRatedHeader}>
-                <p className={styles.Textheader}>{t("topRatedTitle")}</p>
-                <p className={styles.TextBody}>
-                  Browse our top-rated apartments, highly praised by guests for
-                  exceptional comfort and service.
-                </p>
-              </div>
-              <div className={styles.topRatedCarousel}>
-                <TopRated />
-              </div>
+          <div className={styles.topRated}>
+            <div className={styles.topRatedHeader}>
+              <p className={styles.Textheader}>{t("topRatedTitle")}</p>
+              <p className={styles.TextBody}>{t("browse")}</p>
             </div>
+            <div className={styles.topRatedCarousel}>
+              <TopRated />
+            </div>
+          </div>
 
           {/* Offers Section */}
           <div className={`${locale === "ar" ? "rtl" : "ltr"} ${styles.offer}`}>
@@ -144,10 +141,7 @@ export default async function HomePage() {
           <div className={styles.suggested}>
             <div className={styles.suggestedHeader}>
               <p className={styles.Textheader}>{t("suggestedTitle")}</p>
-              <p className={styles.TextBody}>
-                Browse our top-rated apartments, highly praised by guests for
-                exceptional comfort and service.
-              </p>
+              <p className={styles.TextBody}>{t("browse")}</p>
             </div>
             <div className={styles.suggestedCarousel}>
               <Suggested />
@@ -158,10 +152,7 @@ export default async function HomePage() {
           <div className={styles.reviews}>
             <div className={styles.reviewsHeader}>
               <p className={styles.Textheader}>{t("reviewsTitle")}</p>
-              <p className={styles.TextBody}>
-                Browse our top-rated apartments, highly praised by guests for
-                exceptional comfort and service.
-              </p>
+              <p className={styles.TextBody}>{t("browse")}</p>
             </div>
             <div className={styles.reviewCarousel}>
               <Reviews />

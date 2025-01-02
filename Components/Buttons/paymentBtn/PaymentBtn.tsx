@@ -4,6 +4,7 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
 import styles from "./paymentBtn.module.css";
+import { useTranslations } from "next-intl";
 // import { useLocale } from "next-intl";
 // import Link from "next/link";
 
@@ -264,7 +265,7 @@ const PaymentBtn = ({
       console.error("Error submitting form:", error);
     }
   };
-
+  const t = useTranslations("payment");
   return (
     <>
       <>
@@ -298,20 +299,20 @@ const PaymentBtn = ({
               // }
               >
                 {/* {headerText} */}
-                Complete registration payment
+                {t("completePayment")}
               </h2>
-              <h3>Personal details</h3>
+              <h3>{t("personalDetails")}</h3>
 
               <form className={styles.modalForm} onSubmit={handleSubmit}>
                 <div className={styles.formRow}>
                   <div className={styles.inputSection}>
-                    <label htmlFor="name">Name</label>
+                    <label htmlFor="name">{t("name")}</label>
                     <input
                       id="name"
                       type="text"
                       name="name"
                       placeholder={
-                        !CustomerBillingInfo ? "Name" : customerData.name
+                        !CustomerBillingInfo ? t("name") : customerData.name
                       }
                       value={customerData.name}
                       onChange={handleChange}
@@ -319,13 +320,13 @@ const PaymentBtn = ({
                     />
                   </div>
                   <div className={styles.inputSection}>
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email">{t("email")}</label>
                     <input
                       id="email"
                       type="email"
                       name="email"
                       placeholder={
-                        !CustomerBillingInfo ? "Email" : customerData.email
+                        !CustomerBillingInfo ? t("email") : customerData.email
                       }
                       value={customerData.email}
                       onChange={handleChange}
@@ -336,13 +337,15 @@ const PaymentBtn = ({
 
                 <div className={styles.formRow}>
                   <div className={styles.inputSection}>
-                    <label htmlFor="street">Street</label>
+                    <label htmlFor="street">{t("street")}</label>
                     <input
                       id="street"
                       type="text"
                       name="street1"
                       placeholder={
-                        !CustomerBillingInfo ? "Street" : customerData.street1
+                        !CustomerBillingInfo
+                          ? t("street")
+                          : customerData.street1
                       }
                       value={customerData.street1}
                       onChange={handleChange}
@@ -350,13 +353,13 @@ const PaymentBtn = ({
                     />
                   </div>
                   <div className={styles.inputSection}>
-                    <label htmlFor="city">City</label>
+                    <label htmlFor="city">{t("city")}</label>
                     <input
                       id="city"
                       type="text"
                       name="city"
                       placeholder={
-                        !CustomerBillingInfo ? "City" : customerData.city
+                        !CustomerBillingInfo ? t("city") : customerData.city
                       }
                       value={customerData.city}
                       onChange={handleChange}
@@ -367,13 +370,13 @@ const PaymentBtn = ({
 
                 <div className={styles.formRow}>
                   <div className={styles.inputSection}>
-                    <label htmlFor="state">State</label>
+                    <label htmlFor="state">{t("state")}</label>
                     <input
                       id="state"
                       type="text"
                       name="state"
                       placeholder={
-                        !CustomerBillingInfo ? "State" : customerData.state
+                        !CustomerBillingInfo ? t("state") : customerData.state
                       }
                       value={customerData.state}
                       onChange={handleChange}
@@ -381,13 +384,15 @@ const PaymentBtn = ({
                     />
                   </div>
                   <div className={styles.inputSection}>
-                    <label htmlFor="country">Country</label>
+                    <label htmlFor="country">{t("country")}</label>
                     <input
                       id="country"
                       type="text"
                       name="country"
                       placeholder={
-                        !CustomerBillingInfo ? "Country" : customerData.country
+                        !CustomerBillingInfo
+                          ? t("country")
+                          : customerData.country
                       }
                       value={customerData.country}
                       onChange={handleChange}
@@ -397,13 +402,13 @@ const PaymentBtn = ({
                 </div>
                 <div className={styles.formRow}>
                   <div className={styles.inputSection}>
-                    <label htmlFor="zip">Zip Code</label>
+                    <label htmlFor="zip">{t("zip")}</label>
                     <input
                       id="zip"
                       type="text"
                       name="zip"
                       placeholder={
-                        !CustomerBillingInfo ? "Zip code" : customerData.zip
+                        !CustomerBillingInfo ? t("zip") : customerData.zip
                       }
                       value={customerData.zip}
                       onChange={handleChange}
@@ -413,7 +418,7 @@ const PaymentBtn = ({
                   {token && (
                     <div className={styles.inputSection}>
                       <div className={styles.radioSection}>
-                        <label htmlFor="save">Save my information</label>
+                        <label htmlFor="save">{t("save")}</label>
                         <input
                           type="radio"
                           value="no"
@@ -427,7 +432,7 @@ const PaymentBtn = ({
                   )}
                 </div>
                 <button className={styles.button} type="submit">
-                  Submit
+                  {t("submit")}
                 </button>
               </form>
             </div>

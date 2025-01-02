@@ -7,7 +7,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import styles from "./reset.module.css";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import { FaBackward } from "react-icons/fa";
 
@@ -29,7 +29,7 @@ const ResetPass = () => {
 
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
-
+  const t = useTranslations("forms");
   const {
     register,
     handleSubmit,
@@ -57,9 +57,7 @@ const ResetPass = () => {
         router.push(`/${locale}/login`);
       }
     } catch (error) {
-      setErrorMessage(
-        "Invalid token or failed to reset password. Please try again."
-      );
+      setErrorMessage(t("errorToken"));
       console.error("Error during password reset:", error);
     }
   };
@@ -72,12 +70,12 @@ const ResetPass = () => {
         </Link>
       </div>
       <div className={styles.header}>
-        <h3>Got your OTP</h3>
-        <p>Don’t worry, this is the final step</p>
+        <h3>{t("gotOtp")}</h3>
+        <p>{t("finalStep")} </p>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         <div className={styles.input}>
-          <label htmlFor="token">OTP</label>
+          <label htmlFor="token">{t("otp")}</label>
           <input id="token" {...register("token")} type="text" />
           {errors.token && (
             <p style={{ color: "red" }}>{errors.token.message}</p>
@@ -85,7 +83,7 @@ const ResetPass = () => {
         </div>
 
         <div className={styles.input}>
-          <label htmlFor="password">New Password</label>
+          <label htmlFor="password">{t("newPassword")}</label>
           <input id="password" {...register("password")} type="password" />
           {errors.password && (
             <p style={{ color: "red" }}>{errors.password.message}</p>
@@ -93,7 +91,7 @@ const ResetPass = () => {
         </div>
 
         <div className={styles.input}>
-          <label htmlFor="email">Confirm Email</label>
+          <label htmlFor="email">{t("confirmEmail")}</label>
           <input id="email" {...register("email")} type="email" />
           {errors.email && (
             <p style={{ color: "red" }}>{errors.email.message}</p>
@@ -101,7 +99,7 @@ const ResetPass = () => {
         </div>
 
         <button className={styles.button} type="submit" disabled={isSubmitting}>
-          Reset Password
+          {t("resetPassword")}
         </button>
 
         {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
