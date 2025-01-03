@@ -122,7 +122,7 @@ export default async function ApartmentPageId({
   searchParams: { start_date, end_date, city, district },
 }: any) {
   const t = getTranslations("ApartmentReviews");
-  const ts = getTranslations("searchPage");
+  const ts = getTranslations("SearchPage");
 
   const locale: "en" | "ar" | any = getLocale();
 
