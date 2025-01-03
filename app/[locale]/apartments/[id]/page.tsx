@@ -229,6 +229,9 @@ export default async function ApartmentPageId({
         <div className={styles.textContainer}>
           <h4>{(await ts)("overview")}</h4>
           <p>{data?.data.description}</p>
+          <p style={{ fontWeight: "bolder", marginTop: "17px" }}>
+            {(await ts)("checkInAndOut")}
+          </p>
         </div>
         {/* edit */}
         <div className={styles.cardContainer}>

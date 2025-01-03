@@ -10,23 +10,23 @@
     "topRatedTitle": "TOP RATED",
     "suggestedTitle": "SUGGESTED RENTALS",
     "reviewsTitle": "REVIEWS",
-    "booknow":"Book Now",
-    "browse":"Browse our top-rated apartments, highly praised by guests for exceptional comfort and service."
+    "booknow": "Book Now",
+    "browse": "Browse our top-rated apartments, highly praised by guests for exceptional comfort and service."
   },
   "ApartmentReviews": {
     "excellent": "Excellent",
     "verygood": "Very Good",
     "good": "Good",
     "reviews": "Reviews",
-    "neRating":"No rating available",
-    "allowPets":"Pets Allowed",
-    "noAllowPets":"Pets Not Allowed",
-    "bedroom":"Bedrooms",
-    "bath":"Bathrooms",
-    "location":"LOCATION",
-    "viewGoogle":"view on google maps",
-    "amenities":"AMENITIES",
-    "addReview":"Add review"
+    "neRating": "No rating available",
+    "allowPets": "Pets Allowed",
+    "noAllowPets": "Pets Not Allowed",
+    "bedroom": "Bedrooms",
+    "bath": "Bathrooms",
+    "location": "LOCATION",
+    "viewGoogle": "view on google maps",
+    "amenities": "AMENITIES",
+    "addReview": "Add review"
   },
   "forms": {
     "backToLogin": "Back to Login",
@@ -87,9 +87,10 @@
     "startingFrom": "Starting from",
     "night": "night",
     "view": "View Place",
-    "correctFeild":"Please set feileds correctly...",
-    "bookNow":"BOOK NOW",
-    "overview":"OVERVIEW"
+    "correctFeild": "Please set feileds correctly...",
+    "bookNow": "BOOK NOW",
+    "overview": "OVERVIEW",
+    "checkInAndOut": "Check in from 14:00 to 17:00 and Check out at 12:00"
   },
   "About": {
     "whyUs": "Why Choose Us?",
@@ -129,9 +130,9 @@
     "servicesCost": "Services Cost",
     "total": "Total",
     "selectADate": "Please select a date",
-    "night":"night",
-    "checkIn":"check in",
-    "checkOut":"check out"
+    "night": "night",
+    "checkIn": "check in",
+    "checkOut": "check out"
   },
   "Footer": {
     "text": "We offer a range of apartment options tailored to your preferences. We’re here to ensure a seamless and comfortable stay for you!",
@@ -147,37 +148,35 @@
     "apartments": "Apartments",
     "ready": "Ready to get started?",
     "readyText": "Download the app to book your next stay with ease. Explore, compare, and reserve—all at your fingertips.",
-    "getPlay":"Get it on",
-    "appStore":"App Store",
-    "googlePlay":"Google Play"
-
+    "getPlay": "Get it on",
+    "appStore": "App Store",
+    "googlePlay": "Google Play"
   },
-  "modal":{
-    "sure":"Are you sure",
-    "cancel":"you want to cancel this booking?",
-    "leaveYour":"Leave your review!",
-    "submit":"Submit"
+  "modal": {
+    "sure": "Are you sure",
+    "cancel": "you want to cancel this booking?",
+    "leaveYour": "Leave your review!",
+    "submit": "Submit"
   },
-  "profile":{
-    "profile":"Prfile",
-    "history":"History",
-    "payment":"Payment Methods",
-    "email":"Email",
-    "save":"Save",
-    "cancel":"Cancel",
-    "edit":"Edit",
-    "name":"Name",
-    "checkIn":"check in",
-    "checkOut":"check out",
-    "noRefund":"No Refund",
-    "view":"View",
-    "addVisa":"Add Visa"
+  "profile": {
+    "profile": "Prfile",
+    "history": "History",
+    "payment": "Payment Methods",
+    "email": "Email",
+    "save": "Save",
+    "cancel": "Cancel",
+    "edit": "Edit",
+    "name": "Name",
+    "checkIn": "check in",
+    "checkOut": "check out",
+    "noRefund": "No Refund",
+    "view": "View",
+    "addVisa": "Add Visa"
   },
-  "searchError":{
-    "noApart":"No Apartments Available",
-    "tryAgain":"Please try a different search or check back later.",
-    "tryAgainbtn":"Try Again",
-    "search":"Enter seach field"
+  "searchError": {
+    "noApart": "No Apartments Available",
+    "tryAgain": "Please try a different search or check back later.",
+    "tryAgainbtn": "Try Again",
+    "search": "Enter seach field"
   }
-
 }
