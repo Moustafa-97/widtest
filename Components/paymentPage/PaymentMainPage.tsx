@@ -136,6 +136,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
   const locale = useLocale();
   const token = localStorage.getItem("token");
   const t = useTranslations("Payment");
+  const ts = useTranslations("SearchPage");
 
   useEffect(() => {
     const fetchBill = async () => {
@@ -331,7 +332,7 @@ const PaymentMainPage: React.FC<Props> = ({ start_date, end_date, id }) => {
                   <ApartmentReviews rate={bill?.Apartment?.avgRating} />
                 </div>
                 <div className={styles.roomProtection}>
-                  <p>{t("widProtection")}</p>
+                  <p>{ts("checkInAndOut")}</p>
                 </div>
               </div>
               <div className={styles.chechoutCardBill}>
