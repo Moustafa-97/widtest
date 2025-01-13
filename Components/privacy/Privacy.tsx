@@ -4,10 +4,10 @@ import styles from "./privacy.module.css";
 const TermsOfService = () => {
   return (
     <div className={styles.container}>
-      <h1>Terms of Service and Privacy Policy</h1>
+      <h1>Privacy Policy</h1>
       <div className={styles.topP}>
         <p className={styles.p1}>
-          Please read these Terms of Service and Privacy Policy carefully before using our application WID. By downloading, accessing, or using the App, you agree to be bound by these Terms. If you do not agree to these Terms, please uninstall the App immediately.
+          Please read these Privacy Policy carefully before using our application WID. By downloading, accessing, or using the App, you agree to be bound by these Terms. If you do not agree to these Terms, please uninstall the App immediately.
         </p>
         <p className={styles.p2}>
           These Terms outline the rules and guidelines that govern your use of the App, including your rights, responsibilities, and how we handle your data. Our goal is to ensure transparency and protect your privacy.

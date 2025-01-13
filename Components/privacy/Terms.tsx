@@ -4,10 +4,10 @@ import styles from "./privacy.module.css";
 const TermsOfService = () => {
   return (
     <div className={styles.container}>
-      <h1>Terms of Service & Privacy Policy</h1>
+      <h1>Privacy Policy</h1>
 
       <section>
-        <h2>1. Terms of Service</h2>
+        <h2>1. Privacy Policy</h2>
 
         <h3>1.1. About WID</h3>
         <p>
@@ -89,7 +89,7 @@ const TermsOfService = () => {
         </p>
         <p>
           <strong>Email:</strong>{" "}
-          <a href="mailto:support@wid.com">support@wid.com</a>
+          <a href="mailto:support@wid.com">wid@rentals.org</a>
         </p>
         <p>
           <strong>Website:</strong>{" "}
