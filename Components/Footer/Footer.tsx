@@ -72,7 +72,7 @@ function Footer() {
           <h4>{t("know")}</h4>
           <ul>
             <li>
-              <Link href={`/${locale}/termsAndConditions`}>{t("terms")}</Link>
+              <Link href={`/${locale}/terms`}>{t("terms")}</Link>
             </li>
             <li>
               <Link style={{textWrap:"nowrap"}} href={`/${locale}/privacyAndPolicy`}>{t("privacy")}</Link>

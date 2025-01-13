@@ -25,7 +25,7 @@ export default function HeaderLayout({
   ];
   const SecondaryheaderRoutes = [
     `/${locale}/privacyAndPolicy`,
-    `/${locale}/termsAndConditions`,
+    `/${locale}/terms`,
   ];
 
   return (
