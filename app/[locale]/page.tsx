@@ -6,8 +6,8 @@ import Image from "next/image";
 import topHome from "@/public/HomePage/bbok.png";
 import { OrbitProgress } from "react-loading-indicators";
 
-const AboutHome = dynamic(
-  () => import("@/Components/HomePage/About/AboutHome"),
+const AboutUs = dynamic(
+  () => import("@/Components/00UPDATES/Home/about-us/AboutUs"),
   {
     ssr: false,
     loading: () => (
@@ -118,7 +118,8 @@ export default async function HomePage() {
         </div>
         <main className={styles.main}>
           <div className={styles.AboutUs}>
-            <AboutHome />
+            {/* <AboutHome /> */}
+            <AboutUs />
           </div>
 
           {/* Top Rated Section */}

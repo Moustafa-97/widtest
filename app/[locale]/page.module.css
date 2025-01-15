@@ -31,7 +31,7 @@
   -ms-transform: translateY(-20px);
   -o-transform: translateY(-20px);
 }
-.SearchContainer{
+.SearchContainer {
   position: relative;
   margin: 0 auto 74px auto;
 }
@@ -44,7 +44,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin:74px auto;
+  margin: 74px auto;
+  transform: translateY(-160px);
+  -webkit-transform: translateY(-160px);
+  -moz-transform: translateY(-160px);
+  -ms-transform: translateY(-160px);
+  -o-transform: translateY(-160px);
 }
 .AboutUs {
   width: 100%;
@@ -90,7 +95,7 @@
   width: 5.625vw;
   height: 2px;
   display: inline-block;
-  background: linear-gradient(90deg, #4F8F92, #014751);
+  background: linear-gradient(90deg, #4f8f92, #014751);
   margin-right: 20px;
   border-radius: 30px;
   -webkit-border-radius: 30px;
@@ -101,12 +106,11 @@
 .topRatedHeader .TextBody {
   font-size: 16px;
   font-weight: 500;
-  line-height:  19.5px;
+  line-height: 19.5px;
   width: calc(100% - 5.625vw - 20px);
   align-self: flex-end;
   justify-self: flex-end;
 }
-
 
 .topRatedCarousel {
   width: 100%;
@@ -164,7 +168,7 @@
   width: 5.625vw;
   height: 2px;
   display: inline-block;
-  background: linear-gradient(90deg, #4F8F92, #014751);
+  background: linear-gradient(90deg, #4f8f92, #014751);
   margin-right: 20px;
   border-radius: 30px;
   -webkit-border-radius: 30px;
@@ -175,7 +179,7 @@
 .suggestedHeader .TextBody {
   font-size: 16px;
   font-weight: 500;
-  line-height:  19.5px;
+  line-height: 19.5px;
   width: calc(100% - 5.625vw - 20px);
   align-self: flex-end;
   justify-self: flex-end;
@@ -215,7 +219,7 @@
   width: 5.625vw;
   height: 2px;
   display: inline-block;
-  background: linear-gradient(90deg, #4F8F92, #014751);
+  background: linear-gradient(90deg, #4f8f92, #014751);
   margin-right: 20px;
   border-radius: 30px;
   -webkit-border-radius: 30px;
@@ -226,7 +230,7 @@
 .reviewsHeader .TextBody {
   font-size: 16px;
   font-weight: 500;
-  line-height:  19.5px;
+  line-height: 19.5px;
   width: calc(100% - 5.625vw - 20px);
   align-self: flex-end;
   justify-self: flex-end;
@@ -241,6 +245,11 @@
   .main {
     width: 92%;
     margin: auto;
+    transform: translateY(-120px);
+    -webkit-transform: translateY(-120px);
+    -moz-transform: translateY(-120px);
+    -ms-transform: translateY(-120px);
+    -o-transform: translateY(-120px);
   }
   .suggestedCarousel {
     height: auto;
@@ -256,7 +265,7 @@
     height: auto;
     min-height: 429px;
   }
-  .SearchContainer{
+  .SearchContainer {
     position: relative;
     margin: 0 auto 32px auto;
   }
@@ -268,7 +277,7 @@
     height: 553px;
     margin: 0px auto 32px auto;
   }
-  
+
   .topRatedHeader {
     gap: 12px;
     margin-bottom: 16px;
@@ -283,7 +292,7 @@
   }
   .topRatedHeader .TextBody {
     font-size: 14px;
-    line-height:  auto;
+    line-height: auto;
     width: calc(100% - 34px - 6px);
   }
   /* offer */
@@ -295,7 +304,6 @@
     height: fit-content;
     min-height: 541px;
     margin: 0px auto 32px auto;
-   
   }
   .suggestedHeader {
     gap: 12px;
@@ -311,7 +319,7 @@
   }
   .suggestedHeader .TextBody {
     font-size: 14px;
-    line-height:  auto;
+    line-height: auto;
     width: calc(100% - 34px - 6px);
   }
   .suggestedCarousel {
@@ -339,12 +347,11 @@
   }
   .reviewsHeader .TextBody {
     font-size: 14px;
-    line-height:  auto;
+    line-height: auto;
     width: calc(100% - 34px - 6px);
   }
-  
+
   .reviewCarousel {
     height: 489px;
   }
-
 }
