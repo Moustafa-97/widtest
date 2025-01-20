@@ -50,7 +50,7 @@ const ApartmentsPage = dynamic(
   }
 );
 const TopRated = dynamic(
-  () => import("@/Components/HomePage/TopRated/TopRated"),
+  () => import("@/Components/00UPDATES/Home/top-rated/TopRated"),
   {
     ssr: false,
     loading: () => (
@@ -124,13 +124,13 @@ export default async function HomePage() {
 
           {/* Top Rated Section */}
           <div className={styles.topRated}>
-            <div className={styles.topRatedHeader}>
+            {/* <div className={styles.topRatedHeader}>
               <p className={styles.Textheader}>{t("topRatedTitle")}</p>
               <p className={styles.TextBody}>{t("browse")}</p>
-            </div>
-            <div className={styles.topRatedCarousel}>
+            </div> */}
+            {/* <div className={styles.topRatedCarousel}> */}
               <TopRated />
-            </div>
+            {/* </div> */}
           </div>
 
           {/* Offers Section */}

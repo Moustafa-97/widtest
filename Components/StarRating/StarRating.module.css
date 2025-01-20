@@ -1,23 +1,37 @@
 /* components/StarRating.module.css */
 .starSection {
+  height: 16px;
+  width: fit-content;
   display: flex;
   flex-direction: row;
-  justify-content: inherit;
-  align-items: inherit;
-
-  gap: clamp(4px, 4vw, 10px);
-  width: 100%;
-  height: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  width: fit-content;
+  height: 16px;
+  gap: 3px;
 }
 .starRating {
   display: flex;
   flex-direction: row;
   justify-content: inherit;
   align-items: inherit;
-  gap: 1px;
-  height: 50%;
+  height: 100%;
 }
 
 .star {
   transition: color 0.2s;
+  -webkit-transition: color 0.2s;
+  -moz-transition: color 0.2s;
+  -ms-transition: color 0.2s;
+  -o-transition: color 0.2s;
+}
+.value {
+  font-size: 12px;
+  font-weight: 400;
+  text-wrap: nowrap;
+}
+@media screen and (max-width: 768px) {
+  .value {
+    display: none;
+  }
 }

@@ -1,12 +1,13 @@
 "use client";
 import React from "react";
 import styles from "./aboutUs.module.css";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Link from "next/link";
 import Image from "next/image";
 import threePic from "@/public/HomePage/homePageMulti.png";
 function AboutUs() {
   const t = useTranslations("aboutHome");
+  const locale = useLocale()
   return (
     <>
       <div className={styles.container}>
@@ -25,7 +26,7 @@ function AboutUs() {
 
         {/* btn */}
         <div className={styles.btn}>
-          <Link href="/about">{t("title")}</Link>
+          <Link href={`${locale}/about`}>{t("title")}</Link>
         </div>
         {/* mini text */}
         <div className={styles.miniText}>

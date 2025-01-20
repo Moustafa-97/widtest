@@ -15,16 +15,19 @@
     "browse": "Browse our top-rated apartments, highly praised by guests for exceptional comfort and service."
   },
   "ApartmentReviews": {
+    "noRating":"No Rating Available",
     "excellent": "Excellent",
     "verygood": "Very Good",
     "good": "Good",
+    "poor": "Poor",
     "reviews": "Reviews",
-    "neRating": "No rating available",
+    "perNight": "/night",
+    "bookNow": "Book Now",
     "allowPets": "Pets Allowed",
     "noAllowPets": "Pets Not Allowed",
     "bedroom": "Bedrooms",
     "bath": "Bathrooms",
-    "location": "LOCATION",
+    "location": "LOCATION/MAP",
     "viewGoogle": "view on google maps",
     "amenities": "AMENITIES",
     "addReview": "Add review"

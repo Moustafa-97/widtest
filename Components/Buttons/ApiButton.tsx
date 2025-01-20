@@ -1,9 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useEffect, useState } from "react";
 import styles from "./apiButton.module.css";
 import { useLocale } from "next-intl";
+import axios from "axios";
+import { Bounce, toast } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 
 interface ApiButtonProps {
   method: "POST" | "GET" | "DELETE";
@@ -14,75 +19,64 @@ interface ApiButtonProps {
   token?: string;
 }
 
-const ApiButton = ({
-  method,
-  endpoint,
-  data,
-  icon,
-  id,
-}:
-ApiButtonProps) => {
+const ApiButton = ({ method, endpoint, icon, id }: ApiButtonProps) => {
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<any>(null);
   const [wished, setWished] = useState<{ id: string }[]>();
   const locale = useLocale();
   const token = localStorage.getItem("token");
+  const notify = (message: string) =>
+    toast(message, {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
 
   useEffect(() => {
     if (!token) {
       return;
     }
-    const res = fetch(
-      `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/wishlist/get-wishlist?local=${locale}`,
-
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    res
-      .then((res) => res.json())
-      .then((data) => {
-        setWished(data);
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/wishlist/get-wishlist?local=${locale}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        setWished(res.data);
+      })
+      .catch((err) => console.log(err));
   }, [response]);
 
   const handleClick = async () => {
     if (!token) {
+      notify("Please login first");
       return;
     }
     setLoading(true);
 
     try {
-      const options: RequestInit = {
-        method,
-        headers: {
-          ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        },
-      };
-
-      // Only include body for POST and DELETE requests
-      if (method !== "GET" && data) {
-        options.body = JSON.stringify(data);
-      }
-
-      // Making the request to the external API using the endpoint
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint}`,
-        options
-      );
-
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-
-      const result = await res.json();
-      setResponse(result);
-      // console.log("API response:", result);
+      axios
+        .post(`${process.env.NEXT_PUBLIC_BACKENDAPI}${endpoint}`, {
+          method,
+          headers: {
+            ...(token ? { Authorization: `Bearer ${token}` } : {}),
+          },
+        })
+        .then((res) => {
+          setResponse(res.data);
+          notify("added");
+        })
+        .catch((err) => console.log(err));
     } catch (error) {
       console.error("API request failed:", error);
     } finally {
@@ -93,7 +87,9 @@ ApiButtonProps) => {
   return (
     <>
       <div
-        className={`${styles.favorite} ${response ? styles.added : ""} ${
+        className={`${styles.favorite} ${
+          response !== null ? styles.added : ""
+        } ${
           wished?.find((apartment) => apartment.id === id) ? styles.added : ""
         }`}
         onClick={handleClick}

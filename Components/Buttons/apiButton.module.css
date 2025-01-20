@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--lightGreen);
-  width: 100%;
-  height: 100%;
+  border: 1px solid var(--green);
+  width: 48px;
+  height: 48px;
   cursor: pointer;
   border-radius: 4px;
   -webkit-border-radius: 4px;
@@ -20,7 +20,7 @@
 
 .favorite:hover {
   border: 1px solid var(--lightGreen);
-  background-color: var(--green);
+  background-color: var(--lightGreen);
   transition: all 0.4s;
   -webkit-transition: all 0.4s;
   -moz-transition: all 0.4s;
@@ -38,5 +38,5 @@
   -o-transition: all 0.4s;
 }
 .added {
-  background-color: var(--lightGreen);
+  background-color: var(--green);
 }

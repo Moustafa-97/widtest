@@ -1,35 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { FaStar } from "react-icons/fa";
-import styles from "./StarRating.module.css"; // Import CSS module
-import React, { useEffect, useState } from "react";
+import styles from "./StarRating.module.css"; 
+import React from "react";
 
 interface StarRatingProps {
   rating: number | any;
 }
 
 const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
-  const [screenWidth, setScreenWidth] = useState<number>(0);
 
-  useEffect(() => {
-    const handleResize = () => {
-      const currentWidth = window.innerWidth;
-      // Only update the state if the width is different
-      if (currentWidth !== screenWidth) {
-        setScreenWidth(currentWidth);
-      }
-    };
-
-    // Set the initial screen width on mount
-    setScreenWidth(window.innerWidth);
-
-    // Add the resize event listener
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup the event listener on unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, [screenWidth]);
-  const isMobile = screenWidth <= 800;
   return (
     <>
       <div className={styles.starSection}>
@@ -40,14 +20,15 @@ const StarRating: React.FC<StarRatingProps> = ({ rating }) => {
               <FaStar
                 key={starValue}
                 className={styles.star}
-                size={24}
-                color={starValue <= rating ? "#ffc107" : "#e4e5e9"}
+                size={16}
+                color={starValue <= rating ? "#FF8682" : "#ff868252"}
+                
               />
             );
           })}
         </div>
         <div className={styles.value}>
-          <p>{isMobile ? "" : rating?.toFixed(1)}</p>
+          <p>{rating?.toFixed(1)} stars apartment</p>
         </div>
       </div>
     </>

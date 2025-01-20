@@ -4,7 +4,9 @@
 }
 .amenitiesList {
   width: 100%;
-  min-height: fit-content;
+  max-width: 719px;
+  height: fit-content;
+  min-height: 216px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   list-style: none;
