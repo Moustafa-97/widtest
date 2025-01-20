@@ -7,13 +7,14 @@ import Image from "next/image";
 import { OrbitProgress } from "react-loading-indicators";
 import userSvg from "./user.svg";
 import { useTranslations } from "next-intl";
+import { ScreenBreakpoints } from "@/Utils/screenBreakPoints/ScreenBreakPoints";
+
 interface User {
   id: string;
   firstName: string;
   lastName: string;
   avatar: string;
 }
-
 interface Review {
   id: string;
   rating: number;
@@ -21,54 +22,64 @@ interface Review {
   createdAt: string;
   User: User;
 }
-
 interface Props {
   id: string;
 }
 
 export default function Reviews(props: Props) {
+  const { isMobile } = ScreenBreakpoints();
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5); // Set initial limit
   const [reviews, setReviews] = useState<Review[]>([]);
-  const [screenWidth, setScreenWidth] = useState<number>(0);
+  // const [screenWidth, setScreenWidth] = useState<number>(0);
 
   // Handle window resize and set screen width
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setScreenWidth(window.innerWidth);
+  //   };
 
-    // Set initial screen width
-    setScreenWidth(window.innerWidth);
+  //   // Set initial screen width
+  //   setScreenWidth(window.innerWidth);
 
-    // Add resize event listener
-    window.addEventListener("resize", handleResize);
+  //   // Add resize event listener
+  //   window.addEventListener("resize", handleResize);
 
-    // Cleanup the event listener on unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  //   // Cleanup the event listener on unmount
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   // Adjust limit based on screen width
   useEffect(() => {
-    if (screenWidth <= 800) {
-      setLimit(2); // Adjust limit for mobile
+    if (isMobile) {
+      setLimit(2);
     } else {
-      setLimit(5); // Default limit for larger screens
+      setLimit(5);
     }
-  }, [screenWidth]); // Re-run the effect when screen width changes
+    // if (screenWidth <= 800) {
+    //   setLimit(2); // Adjust limit for mobile
+    // } else {
+    //   setLimit(5); // Default limit for larger screens
+    // }
+  }, [isMobile]); // Re-run the effect when screen width changes
 
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  const t = useTranslations("ApartmentReviews")
+  const t = useTranslations("ApartmentReviews");
   // Fetch reviews when page or limit changes
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/apartments/${props.id}/reviews?page=${page}&limit=${limit}`
-        );
-        setReviews(response.data);
-        setLoading(false);
+        axios
+          .get(
+            `${process.env.NEXT_PUBLIC_BACKENDAPI}/v1/apartments/${props.id}/reviews?page=${page}&limit=${limit}`
+          )
+          .then((response) => {
+            setReviews(response.data);
+            setLoading(false);
+          });
+        // setReviews(response.data);
+        // setLoading(false);
       } catch (err : any) {
         setError(`Failed to fetch data: ${err?.message}`);
         setLoading(false);
@@ -104,14 +115,15 @@ export default function Reviews(props: Props) {
             <div className={styles.reviewCardSection}>
               <div className={styles.reviewCardInfo}>
                 <div className={styles.reviewCardRate}>
-                  {review.rating}{" "}
+                  {review.rating.toFixed(1)}{" "}
                   {(review.rating / 5) * 100 > 85
                     ? t("excellent")
                     : (review.rating / 5) * 100 > 70
                     ? t("verygood")
                     : t("good")}{" "}
-                  |
+                  
                 </div>
+                <div>|</div>
 
                 <div className={styles.reviewUserName}>
                   <span>{review.User.firstName}</span>

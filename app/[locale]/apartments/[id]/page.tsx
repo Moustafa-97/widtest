@@ -126,7 +126,6 @@ export default async function ApartmentPageId({
       <div className={styles.reviewContainer}>
         <div className={styles.reviewHeader}>
           <h4>{(await t)("reviews")}</h4>
-
           <ReviewModal
             method="POST"
             endpoint={`/v1/reviews/review/${data?.data.id}`}
